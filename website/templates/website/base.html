@@ -4,7 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            {% block title %}Polska Strefa Inwestycji - Portal Informacyjny{% endblock title %}
+            {% block title %}
+                Polska Strefa Inwestycji - Portal Informacyjny
+            {% endblock title %}
         </title>
         <style>
             :root {
@@ -379,7 +381,7 @@
                             <a href="#o-programie">O Programie</a>
                         </li>
                         <li>
-                            <a href="#baza-gmin">Baza Gmin</a>
+                            <a href="{% url 'gminy_list' %}">Baza Gmin</a>
                         </li>
                         <li>
                             <a href="#kalkulator">Kalkulator</a>

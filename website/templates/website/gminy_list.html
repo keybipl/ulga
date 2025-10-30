@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gminy objęte Polską Strefą Inwestycji</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }
+
+            header {
+                background: linear-gradient(135deg, #C4161C 0%, #9B1116 100%);
+                color: white;
+                padding: 30px;
+                text-align: center;
+            }
+
+            header h1 {
+                font-size: 2.5em;
+                margin-bottom: 10px;
+            }
+
+            header p {
+                font-size: 1.1em;
+                opacity: 0.9;
+            }
+
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                padding: 30px;
+                background: #f8f9fa;
+                border-bottom: 2px solid #e9ecef;
+            }
+
+            .stat-card {
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                text-align: center;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            }
+
+            .stat-card .number {
+                font-size: 2.5em;
+                font-weight: bold;
+                color: #C4161C;
+                margin-bottom: 5px;
+            }
+
+            .stat-card .label {
+                color: #6c757d;
+                font-size: 0.9em;
+            }
+
+            .controls {
+                padding: 20px 30px;
+                background: white;
+                border-bottom: 1px solid #e9ecef;
+                display: flex;
+                gap: 15px;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .search-box {
+                flex: 1;
+                min-width: 250px;
+            }
+
+            .search-box input {
+                width: 100%;
+                padding: 12px 20px;
+                border: 2px solid #e9ecef;
+                border-radius: 8px;
+                font-size: 1em;
+                transition: border-color 0.3s;
+            }
+
+            .search-box input:focus {
+                outline: none;
+                border-color: #C4161C;
+            }
+
+            .filter-group {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .filter-group label {
+                font-weight: 600;
+                color: #495057;
+            }
+
+            .filter-group select {
+                padding: 10px 15px;
+                border: 2px solid #e9ecef;
+                border-radius: 8px;
+                font-size: 1em;
+                cursor: pointer;
+                transition: border-color 0.3s;
+            }
+
+            .filter-group select:focus {
+                outline: none;
+                border-color: #C4161C;
+            }
+
+            .table-container {
+                padding: 30px;
+                overflow-x: auto;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            thead {
+                background: #1a2332;
+                color: white;
+            }
+
+            th {
+                padding: 15px;
+                text-align: left;
+                font-weight: 600;
+                font-size: 0.95em;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            tbody tr {
+                border-bottom: 1px solid #e9ecef;
+                transition: background-color 0.2s;
+            }
+
+            tbody tr:hover {
+                background-color: #f8f9fa;
+            }
+
+            td {
+                padding: 15px;
+                font-size: 0.95em;
+            }
+
+            .badge {
+                display: inline-block;
+                padding: 6px 12px;
+                border-radius: 20px;
+                font-weight: 600;
+                font-size: 0.85em;
+                text-align: center;
+                min-width: 60px;
+            }
+
+            .badge-15 {
+                background: #d1ecf1;
+                color: #0c5460;
+            }
+
+            .badge-25 {
+                background: #d4edda;
+                color: #155724;
+            }
+
+            .badge-30 {
+                background: #fff3cd;
+                color: #856404;
+            }
+
+            .badge-35 {
+                background: #f8d7da;
+                color: #721c24;
+            }
+
+            .badge-40 {
+                background: #cce5ff;
+                color: #004085;
+            }
+
+            .badge-50 {
+                background: #e2d9f3;
+                color: #4a2c6d;
+            }
+
+            .rodzaj {
+                font-weight: 600;
+                color: #6c757d;
+                font-size: 0.85em;
+            }
+
+            .gmina-tracaca {
+                color: #C4161C;
+                font-weight: 600;
+            }
+
+            .back-link {
+                display: inline-block;
+                margin: 20px 30px;
+                padding: 12px 24px;
+                background: #C4161C;
+                color: white;
+                text-decoration: none;
+                border-radius: 8px;
+                font-weight: 600;
+                transition: background-color 0.3s;
+            }
+
+            .back-link:hover {
+                background: #9B1116;
+            }
+
+            @media (max-width: 768px) {
+                header h1 {
+                    font-size: 1.8em;
+                }
+
+                .stats {
+                    grid-template-columns: 1fr;
+                }
+
+                .controls {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                table {
+                    font-size: 0.85em;
+                }
+
+                th,
+                td {
+                    padding: 10px 8px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>🏛️ Gminy objęte Polską Strefą Inwestycji</h1>
+                <p>Przeglądaj wszystkie gminy z informacją o intensywności pomocy publicznej</p>
+            </header>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="number">{{ total_count }}</div>
+                    <div class="label">Wszystkich gmin</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">{{ wojewodztwa_stats|length }}</div>
+                    <div class="label">Województw</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">15-50%</div>
+                    <div class="label">Zakres intensywności</div>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="search-box">
+                    <input type="text"
+                           id="searchInput"
+                           placeholder="🔍 Szukaj gminy, powiatu lub województwa..."
+                           onkeyup="filterTable()">
+                </div>
+                <div class="filter-group">
+                    <label for="intensywnoscFilter">Intensywność:</label>
+                    <select id="intensywnoscFilter" onchange="filterTable()">
+                        <option value="">Wszystkie</option>
+                        <option value="15">15%</option>
+                        <option value="25">25%</option>
+                        <option value="30">30%</option>
+                        <option value="35">35%</option>
+                        <option value="40">40%</option>
+                        <option value="50">50%</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="rodzajFilter">Rodzaj:</label>
+                    <select id="rodzajFilter" onchange="filterTable()">
+                        <option value="">Wszystkie</option>
+                        <option value="GM">GM</option>
+                        <option value="GW">GW</option>
+                        <option value="GMW">GMW</option>
+                        <option value="MNP">MNP</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="gminaTable">
+                    <thead>
+                        <tr>
+                            <th>Województwo</th>
+                            <th>Powiat</th>
+                            <th>Gmina</th>
+                            <th>Rodzaj</th>
+                            <th>Intensywność pomocy</th>
+                            <th>Minimalne nakłady</th>
+                            <th>Gmina tracąca</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for gmina in gminy %}
+                            <tr>
+                                <td>{{ gmina.wojewodztwo }}</td>
+                                <td>{{ gmina.powiat }}</td>
+                                <td>
+                                    <strong>{{ gmina.nazwa }}</strong>
+                                </td>
+                                <td>
+                                    <span class="rodzaj">{{ gmina.rodzaj }}</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-{{ gmina.intensywnosc_pomocy|floatformat:'0' }}">{{ gmina.intensywnosc_pomocy }}%</span>
+                                </td>
+                                <td>{{ gmina.minimalne_naklady|floatformat:0 }} zł</td>
+                                <td>
+                                    {% if gmina.gmina_tracaca %}
+                                        <span class="gmina-tracaca">TAK</span>
+                                    {% else %}
+                                        NIE
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="{% url 'home' %}" class="back-link">← Powrót do strony głównej</a>
+        </div>
+        <script>
+            function filterTable() {
+                const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                const intensywnoscFilter = document.getElementById('intensywnoscFilter').value;
+                const rodzajFilter = document.getElementById('rodzajFilter').value;
+                const table = document.getElementById('gminaTable');
+                const rows = table.getElementsByTagName('tr');
+
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    const wojewodztwo = row.cells[0].textContent.toLowerCase();
+                    const powiat = row.cells[1].textContent.toLowerCase();
+                    const gmina = row.cells[2].textContent.toLowerCase();
+                    const rodzaj = row.cells[3].textContent.trim();
+                    const intensywnosc = row.cells[4].textContent.replace('%', '').trim();
+
+                    const matchesSearch = wojewodztwo.includes(searchInput) ||
+                        powiat.includes(searchInput) ||
+                        gmina.includes(searchInput);
+
+                    const matchesIntensywnosc = !intensywnoscFilter || intensywnosc === intensywnoscFilter;
+                    const matchesRodzaj = !rodzajFilter || rodzaj === rodzajFilter;
+
+                    if (matchesSearch && matchesIntensywnosc && matchesRodzaj) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
