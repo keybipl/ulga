@@ -1,0 +1,386 @@
+{% extends "website/base.html" %}
+{% block title %}
+    O Programie PSI - Polska Strefa Inwestycji
+{% endblock title %}
+{% block content %}
+    <style>
+        .psi-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 60px 40px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .hero-section h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero-section .lead-text {
+            font-size: 1.25rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .hero-section .psi-highlight {
+            color: #C4161C;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #C4161C;
+            border-radius: 2px;
+        }
+
+        .info-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .info-card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            border-left-color: #C4161C;
+        }
+
+        .info-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a2332;
+            margin-bottom: 16px;
+        }
+
+        .info-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .info-card strong {
+            color: #C4161C;
+            font-weight: 600;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature-item {
+            background: #ffffff;
+            padding: 35px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a2332;
+            margin-bottom: 12px;
+        }
+
+        .feature-text {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 5px solid #C4161C;
+            padding: 30px 35px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1a2332;
+            margin-bottom: 16px;
+        }
+
+        .highlight-box p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .benefit-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .benefit-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #C4161C;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: #1a2332;
+            border-radius: 16px;
+            margin-top: 60px;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #C4161C;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(196, 22, 28, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #9B1116;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(196, 22, 28, 0.4);
+            color: white;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #C4161C;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .simple-cta {
+            text-align: center;
+            margin-top: 50px;
+            padding-bottom: 40px;
+        }
+
+        .simple-cta-link {
+            display: inline-block;
+            color: #C4161C;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #C4161C;
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .simple-cta-link:hover {
+            color: #9B1116;
+            border-bottom-color: #9B1116;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section .lead-text {
+                font-size: 1.1rem;
+            }
+
+            .info-card {
+                padding: 25px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+    <div class="psi-page">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1>Polska Strefa Inwestycji</h1>
+            <p class="lead-text">
+                <strong class="psi-highlight">Polska Strefa Inwestycji (PSI)</strong> to program wspierający przedsiębiorców,
+                którzy chcą inwestować i rozwijać swoją działalność w Polsce.
+                Dzięki niemu możesz <strong class="psi-highlight">całkowicie zwolnić swoją firmę z podatku dochodowego</strong>.
+            </p>
+        </div>
+        <!-- Stats Row -->
+        <div class="stats-row">
+            <div class="stat-box">
+                <span class="stat-number">70%</span>
+                <span class="stat-label">maksymalne wsparcie</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">12-15</span>
+                <span class="stat-label">lat ulgi podatkowej</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">przejrzystość zasad</span>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <h2 class="section-title">Jak to działa?</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <span class="feature-icon">📍</span>
+                <div class="feature-title">Ty decydujesz, gdzie inwestujesz</div>
+                <p class="feature-text">
+                    W przeciwieństwie do dawnych rozwiązań, <strong>nie ma żadnych ograniczeń terytorialnych</strong>.
+                    To Ty wybierasz miejsce, w którym chcesz zrealizować inwestycję i otrzymać wsparcie – może to być dowolna lokalizacja w Polsce.
+                </p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">⚖️</span>
+                <div class="feature-title">Przejrzyste zasady dla wszystkich</div>
+                <p class="feature-text">
+                    Program nie jest uznaniowy – oznacza to, że <strong>wsparcie przysługuje każdemu</strong>, kto spełni określone warunki.
+                    Decyzja o przyznaniu ulgi podejmowana jest na podstawie Kodeksu postępowania administracyjnego (KPA).
+                </p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">📄</span>
+                <div class="feature-title">Jak uzyskać wsparcie?</div>
+                <p class="feature-text">
+                    Zwolnienie z podatku otrzymujesz na podstawie <strong>decyzji o wsparciu</strong> – to oficjalny dokument administracyjny
+                    wydawany przez <strong>Specjalne Strefy Ekonomiczne</strong>, które zarządzają programem.
+                </p>
+            </div>
+        </div>
+        <!-- Timeline Info -->
+        <div class="info-card">
+            <span class="info-card-icon">⏱️</span>
+            <h3>Na jak długo otrzymasz wsparcie?</h3>
+            <p>
+                Decyzja o wsparciu wydawana jest <strong>na okres od 12 do 15 lat</strong> – czas trwania ulgi również zależy od lokalizacji Twojej inwestycji.
+                To oznacza długoterminową stabilność i przewidywalność dla rozwoju Twojego biznesu.
+            </p>
+        </div>
+        <!-- Benefits Section -->
+        <div class="info-card">
+            <span class="info-card-icon">💰</span>
+            <h3>Ile możesz zyskać?</h3>
+            <p>
+                W zależności od tego, gdzie zlokalizujesz swoją inwestycję, możesz otrzymać <strong>nawet do 70% wsparcia</strong>.
+            </p>
+            <p>Ulga liczona jest od:</p>
+            <ul class="benefit-list">
+                <li>
+                    wartości Twojej inwestycji, <strong>lub</strong>
+                </li>
+                <li>dwuletnich kosztów wynagrodzeń nowo zatrudnionych pracowników</li>
+            </ul>
+        </div>
+        <!-- Final Highlight -->
+        <div class="highlight-box">
+            <h3>💡 Podsumowanie</h3>
+            <p>
+                <strong>Polska Strefa Inwestycji</strong> to realna szansa na rozwój Twojej firmy z pomocą państwa –
+                bez zbędnej biurokracji i z jasnymi zasadami gry.
+            </p>
+        </div>
+        <!-- Simple CTA Link -->
+        <div class="simple-cta">
+            <a href="{% url 'gminy_list' %}" class="simple-cta-link">Zobacz bazę gmin z warunkami wsparcia →</a>
+        </div>
+    </div>
+{% endblock content %}
