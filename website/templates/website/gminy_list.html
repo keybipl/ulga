@@ -4,8 +4,8 @@
 {% endblock title %}
 {% block content %}
     <style>
-        .gminy-page {
-            max-width: 1400px;
+        .psi-page {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 60px 20px;
         }
@@ -35,11 +35,16 @@
             line-height: 1.7;
         }
 
-        .container {
+        .gminy-container {
             background: white;
             border-radius: 12px;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
             overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .gminy-wrapper {
+            margin-bottom: 50px;
         }
 
         .stats {
@@ -255,121 +260,123 @@
             }
         }
     </style>
-    <div class="gminy-page">
+    <div class="psi-page">
         <div class="page-header">
             <h1>🏛️ Baza Gmin Polskiej Strefy Inwestycji</h1>
             <p>
                 Przeglądaj wszystkie gminy w Polsce z informacją o intensywności pomocy publicznej i minimalnych nakładach inwestycyjnych
             </p>
         </div>
-        <div class="container">
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="number">{{ total_count }}</div>
-                    <div class="label">Wszystkich gmin</div>
+        <div class="gminy-wrapper">
+            <div class="gminy-container">
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="number">{{ total_count }}</div>
+                        <div class="label">Wszystkich gmin</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">{{ wojewodztwa_stats|length }}</div>
+                        <div class="label">Województw</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">15-50%</div>
+                        <div class="label">Zakres intensywności</div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="number">{{ wojewodztwa_stats|length }}</div>
-                    <div class="label">Województw</div>
+                <div class="controls">
+                    <div class="search-box">
+                        <input type="text"
+                               id="searchInput"
+                               placeholder="🔍 Szukaj gminy, powiatu lub województwa..."
+                               onkeyup="filterTable()">
+                    </div>
+                    <div class="filter-group">
+                        <label for="intensywnoscFilter">Intensywność:</label>
+                        <select id="intensywnoscFilter" onchange="filterTable()">
+                            <option value="">Wszystkie</option>
+                            <option value="0">0%</option>
+                            <option value="15">15%</option>
+                            <option value="25">25%</option>
+                            <option value="30">30%</option>
+                            <option value="35">35%</option>
+                            <option value="40">40%</option>
+                            <option value="50">50%</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="number">15-50%</div>
-                    <div class="label">Zakres intensywności</div>
-                </div>
-            </div>
-            <div class="controls">
-                <div class="search-box">
-                    <input type="text"
-                           id="searchInput"
-                           placeholder="🔍 Szukaj gminy, powiatu lub województwa..."
-                           onkeyup="filterTable()">
-                </div>
-                <div class="filter-group">
-                    <label for="intensywnoscFilter">Intensywność:</label>
-                    <select id="intensywnoscFilter" onchange="filterTable()">
-                        <option value="">Wszystkie</option>
-                        <option value="0">0%</option>
-                        <option value="15">15%</option>
-                        <option value="25">25%</option>
-                        <option value="30">30%</option>
-                        <option value="35">35%</option>
-                        <option value="40">40%</option>
-                        <option value="50">50%</option>
-                    </select>
-                </div>
-            </div>
-            <div class="table-container">
-                <table id="gminaTable">
-                    <thead>
-                        <tr>
-                            <th>Województwo</th>
-                            <th>Powiat</th>
-                            <th>Gmina</th>
-                            <th>Rodzaj</th>
-                            <th>Intensywność pomocy</th>
-                            <th>Minimalne nakłady</th>
-                            <th>Gmina tracąca</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for gmina in gminy %}
+                <div class="table-container">
+                    <table id="gminaTable">
+                        <thead>
                             <tr>
-                                <td>{{ gmina.wojewodztwo }}</td>
-                                <td>{{ gmina.powiat }}</td>
-                                <td>
-                                    <strong>{{ gmina.nazwa }}</strong>
-                                </td>
-                                <td>
-                                    <span class="rodzaj">{{ gmina.rodzaj }}</span>
-                                </td>
-                                <td>
-                                    <span class="badge badge-{{ gmina.intensywnosc_pomocy|floatformat:'0' }}">{{ gmina.intensywnosc_pomocy }}%</span>
-                                </td>
-                                <td>{{ gmina.minimalne_naklady|floatformat:0 }} zł</td>
-                                <td>
-                                    {% if gmina.gmina_tracaca %}
-                                        <span class="gmina-tracaca">TAK</span>
-                                    {% else %}
-                                        NIE
-                                    {% endif %}
-                                </td>
+                                <th>Województwo</th>
+                                <th>Powiat</th>
+                                <th>Gmina</th>
+                                <th>Rodzaj</th>
+                                <th>Intensywność pomocy</th>
+                                <th>Minimalne nakłady</th>
+                                <th>Gmina tracąca</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <script>
-                function filterTable() {
-                    const searchInput = document.getElementById('searchInput').value.toLowerCase();
-                    const intensywnoscFilter = document.getElementById('intensywnoscFilter').value;
-                    const table = document.getElementById('gminaTable');
-                    const rows = table.getElementsByTagName('tr');
+                        </thead>
+                        <tbody>
+                            {% for gmina in gminy %}
+                                <tr>
+                                    <td>{{ gmina.wojewodztwo }}</td>
+                                    <td>{{ gmina.powiat }}</td>
+                                    <td>
+                                        <strong>{{ gmina.nazwa }}</strong>
+                                    </td>
+                                    <td>
+                                        <span class="rodzaj">{{ gmina.rodzaj }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-{{ gmina.intensywnosc_pomocy|floatformat:'0' }}">{{ gmina.intensywnosc_pomocy }}%</span>
+                                    </td>
+                                    <td>{{ gmina.minimalne_naklady|floatformat:0 }} zł</td>
+                                    <td>
+                                        {% if gmina.gmina_tracaca %}
+                                            <span class="gmina-tracaca">TAK</span>
+                                        {% else %}
+                                            NIE
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <script>
+                    function filterTable() {
+                        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                        const intensywnoscFilter = document.getElementById('intensywnoscFilter').value;
+                        const table = document.getElementById('gminaTable');
+                        const rows = table.getElementsByTagName('tr');
 
-                    for (let i = 1; i < rows.length; i++) {
-                        const row = rows[i];
-                        const wojewodztwo = row.cells[0].textContent.toLowerCase();
-                        const powiat = row.cells[1].textContent.toLowerCase();
-                        const gmina = row.cells[2].textContent.toLowerCase();
-                        // Pobierz wartość intensywności i usuń wszystko oprócz liczb i kropki
-                        const intensywnoscText = row.cells[4].textContent.trim();
-                        const intensywnosc = intensywnoscText.replace(/[^\d.]/g, '');
+                        for (let i = 1; i < rows.length; i++) {
+                            const row = rows[i];
+                            const wojewodztwo = row.cells[0].textContent.toLowerCase();
+                            const powiat = row.cells[1].textContent.toLowerCase();
+                            const gmina = row.cells[2].textContent.toLowerCase();
+                            // Pobierz wartość intensywności i usuń wszystko oprócz liczb i kropki
+                            const intensywnoscText = row.cells[4].textContent.trim();
+                            const intensywnosc = intensywnoscText.replace(/[^\d.]/g, '');
 
-                        const matchesSearch = wojewodztwo.includes(searchInput) ||
-                            powiat.includes(searchInput) ||
-                            gmina.includes(searchInput);
+                            const matchesSearch = wojewodztwo.includes(searchInput) ||
+                                powiat.includes(searchInput) ||
+                                gmina.includes(searchInput);
 
-                        // Porównaj jako liczby (parseFloat obcina .00)
-                        const matchesIntensywnosc = !intensywnoscFilter ||
-                            parseFloat(intensywnosc) === parseFloat(intensywnoscFilter);
+                            // Porównaj jako liczby (parseFloat obcina .00)
+                            const matchesIntensywnosc = !intensywnoscFilter ||
+                                parseFloat(intensywnosc) === parseFloat(intensywnoscFilter);
 
-                        if (matchesSearch && matchesIntensywnosc) {
-                            row.style.display = '';
-                        } else {
-                            row.style.display = 'none';
+                            if (matchesSearch && matchesIntensywnosc) {
+                                row.style.display = '';
+                            } else {
+                                row.style.display = 'none';
+                            }
                         }
                     }
-                }
-            </script>
+                </script>
+            </div>
         </div>
     </div>
 {% endblock content %}
