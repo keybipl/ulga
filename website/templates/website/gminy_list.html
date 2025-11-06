@@ -1,272 +1,268 @@
-<!DOCTYPE html>
-<html lang="pl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Gminy objęte Polską Strefą Inwestycji</title>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
+{% extends "website/base.html" %}
+{% block title %}
+    Gminy objęte Polską Strefą Inwestycji
+{% endblock title %}
+{% block content %}
+    <style>
+        .gminy-page {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 60px 40px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .page-header p {
+            font-size: 1.15rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #ffffff;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 25px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .stat-card:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+            border-left-color: #C4161C;
+        }
+
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #C4161C;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .controls {
+            padding: 25px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #C4161C;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .filter-group select {
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: #C4161C;
+        }
+
+        .table-container {
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #1a2332;
+            color: white;
+        }
+
+        th {
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e9ecef;
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        td {
+            padding: 16px 15px;
+            font-size: 0.95em;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85em;
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .badge-0 {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .badge-15 {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge-25 {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-30 {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-35 {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-40 {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .badge-50 {
+            background: #e2d9f3;
+            color: #4a2c6d;
+        }
+
+        .rodzaj {
+            font-weight: 600;
+            color: #6c757d;
+            font-size: 0.85em;
+        }
+
+        .gmina-tracaca {
+            color: #C4161C;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
             }
 
-            body {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-                padding: 20px;
-            }
-
-            .container {
-                max-width: 1400px;
-                margin: 0 auto;
-                background: white;
-                border-radius: 10px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                overflow: hidden;
-            }
-
-            header {
-                background: linear-gradient(135deg, #C4161C 0%, #9B1116 100%);
-                color: white;
-                padding: 30px;
-                text-align: center;
-            }
-
-            header h1 {
-                font-size: 2.5em;
-                margin-bottom: 10px;
-            }
-
-            header p {
-                font-size: 1.1em;
-                opacity: 0.9;
+            .page-header p {
+                font-size: 1rem;
             }
 
             .stats {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 20px;
-                padding: 30px;
-                background: #f8f9fa;
-                border-bottom: 2px solid #e9ecef;
-            }
-
-            .stat-card {
-                background: white;
-                padding: 20px;
-                border-radius: 8px;
-                text-align: center;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            }
-
-            .stat-card .number {
-                font-size: 2.5em;
-                font-weight: bold;
-                color: #C4161C;
-                margin-bottom: 5px;
-            }
-
-            .stat-card .label {
-                color: #6c757d;
-                font-size: 0.9em;
+                grid-template-columns: 1fr;
             }
 
             .controls {
-                padding: 20px 30px;
-                background: white;
-                border-bottom: 1px solid #e9ecef;
-                display: flex;
-                gap: 15px;
-                align-items: center;
-                flex-wrap: wrap;
-            }
-
-            .search-box {
-                flex: 1;
-                min-width: 250px;
-            }
-
-            .search-box input {
-                width: 100%;
-                padding: 12px 20px;
-                border: 2px solid #e9ecef;
-                border-radius: 8px;
-                font-size: 1em;
-                transition: border-color 0.3s;
-            }
-
-            .search-box input:focus {
-                outline: none;
-                border-color: #C4161C;
-            }
-
-            .filter-group {
-                display: flex;
-                gap: 10px;
-                align-items: center;
-            }
-
-            .filter-group label {
-                font-weight: 600;
-                color: #495057;
-            }
-
-            .filter-group select {
-                padding: 10px 15px;
-                border: 2px solid #e9ecef;
-                border-radius: 8px;
-                font-size: 1em;
-                cursor: pointer;
-                transition: border-color 0.3s;
-            }
-
-            .filter-group select:focus {
-                outline: none;
-                border-color: #C4161C;
-            }
-
-            .table-container {
-                padding: 30px;
-                overflow-x: auto;
+                flex-direction: column;
+                align-items: stretch;
             }
 
             table {
-                width: 100%;
-                border-collapse: collapse;
+                font-size: 0.85em;
             }
 
-            thead {
-                background: #1a2332;
-                color: white;
-            }
-
-            th {
-                padding: 15px;
-                text-align: left;
-                font-weight: 600;
-                font-size: 0.95em;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-
-            tbody tr {
-                border-bottom: 1px solid #e9ecef;
-                transition: background-color 0.2s;
-            }
-
-            tbody tr:hover {
-                background-color: #f8f9fa;
-            }
-
+            th,
             td {
-                padding: 15px;
-                font-size: 0.95em;
+                padding: 10px 8px;
             }
-
-            .badge {
-                display: inline-block;
-                padding: 6px 12px;
-                border-radius: 20px;
-                font-weight: 600;
-                font-size: 0.85em;
-                text-align: center;
-                min-width: 60px;
-            }
-
-            .badge-0 {
-                background: #e9ecef;
-                color: #495057;
-            }
-
-            .badge-15 {
-                background: #d1ecf1;
-                color: #0c5460;
-            }
-
-            .badge-25 {
-                background: #d4edda;
-                color: #155724;
-            }
-
-            .badge-30 {
-                background: #fff3cd;
-                color: #856404;
-            }
-
-            .badge-35 {
-                background: #f8d7da;
-                color: #721c24;
-            }
-
-            .badge-40 {
-                background: #cce5ff;
-                color: #004085;
-            }
-
-            .badge-50 {
-                background: #e2d9f3;
-                color: #4a2c6d;
-            }
-
-            .rodzaj {
-                font-weight: 600;
-                color: #6c757d;
-                font-size: 0.85em;
-            }
-
-            .gmina-tracaca {
-                color: #C4161C;
-                font-weight: 600;
-            }
-
-            .back-link {
-                display: inline-block;
-                margin: 20px 30px;
-                padding: 12px 24px;
-                background: #C4161C;
-                color: white;
-                text-decoration: none;
-                border-radius: 8px;
-                font-weight: 600;
-                transition: background-color 0.3s;
-            }
-
-            .back-link:hover {
-                background: #9B1116;
-            }
-
-            @media (max-width: 768px) {
-                header h1 {
-                    font-size: 1.8em;
-                }
-
-                .stats {
-                    grid-template-columns: 1fr;
-                }
-
-                .controls {
-                    flex-direction: column;
-                    align-items: stretch;
-                }
-
-                table {
-                    font-size: 0.85em;
-                }
-
-                th,
-                td {
-                    padding: 10px 8px;
-                }
-            }
-        </style>
-    </head>
-    <body>
+        }
+    </style>
+    <div class="gminy-page">
+        <div class="page-header">
+            <h1>🏛️ Baza Gmin Polskiej Strefy Inwestycji</h1>
+            <p>
+                Przeglądaj wszystkie gminy w Polsce z informacją o intensywności pomocy publicznej i minimalnych nakładach inwestycyjnych
+            </p>
+        </div>
         <div class="container">
-            <header>
-                <h1>🏛️ Gminy objęte Polską Strefą Inwestycji</h1>
-                <p>Przeglądaj wszystkie gminy z informacją o intensywności pomocy publicznej</p>
-            </header>
             <div class="stats">
                 <div class="stat-card">
                     <div class="number">{{ total_count }}</div>
@@ -342,39 +338,38 @@
                     </tbody>
                 </table>
             </div>
-            <a href="{% url 'home' %}" class="back-link">← Powrót do strony głównej</a>
-        </div>
-        <script>
-            function filterTable() {
-                const searchInput = document.getElementById('searchInput').value.toLowerCase();
-                const intensywnoscFilter = document.getElementById('intensywnoscFilter').value;
-                const table = document.getElementById('gminaTable');
-                const rows = table.getElementsByTagName('tr');
+            <script>
+                function filterTable() {
+                    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                    const intensywnoscFilter = document.getElementById('intensywnoscFilter').value;
+                    const table = document.getElementById('gminaTable');
+                    const rows = table.getElementsByTagName('tr');
 
-                for (let i = 1; i < rows.length; i++) {
-                    const row = rows[i];
-                    const wojewodztwo = row.cells[0].textContent.toLowerCase();
-                    const powiat = row.cells[1].textContent.toLowerCase();
-                    const gmina = row.cells[2].textContent.toLowerCase();
-                    // Pobierz wartość intensywności i usuń wszystko oprócz liczb i kropki
-                    const intensywnoscText = row.cells[4].textContent.trim();
-                    const intensywnosc = intensywnoscText.replace(/[^\d.]/g, '');
+                    for (let i = 1; i < rows.length; i++) {
+                        const row = rows[i];
+                        const wojewodztwo = row.cells[0].textContent.toLowerCase();
+                        const powiat = row.cells[1].textContent.toLowerCase();
+                        const gmina = row.cells[2].textContent.toLowerCase();
+                        // Pobierz wartość intensywności i usuń wszystko oprócz liczb i kropki
+                        const intensywnoscText = row.cells[4].textContent.trim();
+                        const intensywnosc = intensywnoscText.replace(/[^\d.]/g, '');
 
-                    const matchesSearch = wojewodztwo.includes(searchInput) ||
-                        powiat.includes(searchInput) ||
-                        gmina.includes(searchInput);
+                        const matchesSearch = wojewodztwo.includes(searchInput) ||
+                            powiat.includes(searchInput) ||
+                            gmina.includes(searchInput);
 
-                    // Porównaj jako liczby (parseFloat obcina .00)
-                    const matchesIntensywnosc = !intensywnoscFilter ||
-                        parseFloat(intensywnosc) === parseFloat(intensywnoscFilter);
+                        // Porównaj jako liczby (parseFloat obcina .00)
+                        const matchesIntensywnosc = !intensywnoscFilter ||
+                            parseFloat(intensywnosc) === parseFloat(intensywnoscFilter);
 
-                    if (matchesSearch && matchesIntensywnosc) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
+                        if (matchesSearch && matchesIntensywnosc) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
                     }
                 }
-            }
-        </script>
-    </body>
-</html>
+            </script>
+        </div>
+    </div>
+{% endblock content %}
