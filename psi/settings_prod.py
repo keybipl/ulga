@@ -10,8 +10,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
-# HTTPS settings
-if not DEBUG:
+# HTTPS settings (enable when you have SSL certificate)
+USE_SSL = os.environ.get('USE_SSL', 'False') == 'True'
+if not DEBUG and USE_SSL:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
