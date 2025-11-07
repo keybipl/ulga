@@ -1,0 +1,40 @@
+[Unit]
+Description=Ulga Django Application
+After=network.target
+
+[Service]
+Type=notify
+User=ubuntu
+Group=ubuntu
+
+# Runtime directory
+RuntimeDirectory=ulga
+RuntimeDirectoryMode=0755
+
+# Logging directory
+LogsDirectory=ulga
+LogsDirectoryMode=0755
+
+WorkingDirectory=/home/ubuntu/ulga
+Environment="PATH=/home/ubuntu/ulga/venv/bin"
+EnvironmentFile=/home/ubuntu/ulga/.env
+
+ExecStart=/home/ubuntu/ulga/venv/bin/gunicorn \
+          --config /home/ubuntu/ulga/deploy/gunicorn_config.py \
+          psi.wsgi:application
+
+# Restart policy
+Restart=on-failure
+RestartSec=10s
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/home/ubuntu/ulga/db.sqlite3
+ReadWritePaths=/home/ubuntu/ulga/media
+ReadWritePaths=/home/ubuntu/ulga/staticfiles
+
+[Install]
+WantedBy=multi-user.target
