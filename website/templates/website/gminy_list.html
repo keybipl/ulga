@@ -193,6 +193,20 @@
             margin: 0;
         }
 
+        .hint-message {
+            padding: 12px 30px;
+            text-align: center;
+            color: #718096;
+            font-size: 0.9rem;
+            background: #f7fafc;
+            border-top: 1px solid #e2e8f0;
+            font-style: italic;
+        }
+
+        .hint-message.hidden {
+            display: none;
+        }
+
         .table-container {
             padding: 30px;
             overflow-x: auto;
@@ -578,6 +592,7 @@
                     </div>
                     <button id="clearFilters" class="clear-btn">Wyczyść filtry</button>
                 </div>
+                <div id="hintMessage" class="hint-message hidden">💡 Kliknij w wiersz z gminą, aby zobaczyć szczegółowe informacje</div>
                 <div class="table-container">
                     <div id="loadingMessage" class="loading-message">
                         <p>👆 Wybierz województwo, aby zobaczyć gminy</p>
@@ -722,15 +737,18 @@
                         const tbody = document.getElementById('gminaTableBody');
                         const table = document.getElementById('gminaTable');
                         const loadingMessage = document.getElementById('loadingMessage');
+                        const hintMessage = document.getElementById('hintMessage');
 
                         if (gminy.length === 0) {
                             showLoadingMessage('🔍 Nie znaleziono gmin dla wybranych kryteriów');
+                            hintMessage.classList.add('hidden');
                             return;
                         }
 
                         tbody.innerHTML = '';
                         loadingMessage.style.display = 'none';
                         table.classList.remove('hidden');
+                        hintMessage.classList.remove('hidden');
 
                         gminy.forEach(gmina => {
                             // Wiersz główny
@@ -924,17 +942,21 @@
                     function clearTable() {
                         const tbody = document.getElementById('gminaTableBody');
                         const table = document.getElementById('gminaTable');
+                        const hintMessage = document.getElementById('hintMessage');
                         tbody.innerHTML = '';
                         table.classList.add('hidden');
+                        hintMessage.classList.add('hidden');
                         currentGminyData = [];
                     }
 
                     function showLoadingMessage(message) {
                         const loadingMessage = document.getElementById('loadingMessage');
                         const table = document.getElementById('gminaTable');
+                        const hintMessage = document.getElementById('hintMessage');
                         loadingMessage.innerHTML = `<p>${message}</p>`;
                         loadingMessage.style.display = 'block';
                         table.classList.add('hidden');
+                        hintMessage.classList.add('hidden');
                     }
                 </script>
             </div>
