@@ -92,6 +92,7 @@ def api_get_gminy(request):
                 if gmina.minimalne_naklady
                 else None,
                 "gmina_tracaca": gmina.gmina_tracaca,
+                "strefa_ekonomiczna": gmina.strefa_ekonomiczna,
             }
         )
 

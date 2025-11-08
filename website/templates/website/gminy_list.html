@@ -688,6 +688,12 @@
                                         <strong>⭐ Inwestując w tej gminie otrzymujesz punkt w kryterium jakościowym dotyczącym lokalizacji inwestycji.</strong>
                                     </div>
                                 ` : ''}
+                                ${gmina.strefa_ekonomiczna ? `
+                                    <div style="background: #e7f3ff; border-left: 4px solid #0066cc; padding: 12px 15px; margin-bottom: 20px; border-radius: 4px;">
+                                        <div style="font-size: 0.85em; color: #495057; margin-bottom: 4px;">Specjalna Strefa Ekonomiczna:</div>
+                                        <div style="font-weight: 600; color: #1a2332;">${gmina.strefa_ekonomiczna}</div>
+                                    </div>
+                                ` : ''}
                                 <div class="firm-types-grid">
                                     <!-- Duża firma -->
                                     <div class="firm-type-card">

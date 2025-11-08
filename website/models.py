@@ -29,6 +29,13 @@ class Gmina(models.Model):
     )
     powiat = models.CharField(max_length=100, verbose_name="Powiat")
     wojewodztwo = models.CharField(max_length=50, verbose_name="Województwo")
+    strefa_ekonomiczna = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name="Specjalna Strefa Ekonomiczna",
+        help_text="Nazwa SSE zarządzającej tym obszarem",
+    )
 
     # Parametry PSI
     intensywnosc_pomocy = models.DecimalField(
