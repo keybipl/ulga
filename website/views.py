@@ -1,7 +1,18 @@
+import locale
+
 from django.http import JsonResponse
 from django.shortcuts import render
 
 from .models import Gmina
+
+# Ustaw polską lokalizację dla sortowania
+try:
+    locale.setlocale(locale.LC_ALL, "pl_PL.UTF-8")
+except locale.Error:
+    try:
+        locale.setlocale(locale.LC_ALL, "Polish_Poland.1250")
+    except locale.Error:
+        pass  # Jeśli nie można ustawić, użyj domyślnego
 
 # Create your views here.
 
@@ -13,17 +24,19 @@ def home(request):
 def gminy_list(request):
     """Widok z listą wszystkich gmin - teraz z AJAX loading"""
     # Pobierz unikalne województwa dla dropdown
-    wojewodztwa = (
-        Gmina.objects.values_list("wojewodztwo", flat=True)
-        .distinct()
-        .order_by("wojewodztwo")
-    )
+    wojewodztwa_all = Gmina.objects.values_list("wojewodztwo", flat=True)
+    wojewodztwa = list(
+        set(wojewodztwa_all)
+    )  # Użyj set() dla prawdziwych unikalnych wartości
+
+    # Sortuj województwa alfabetycznie z polskimi znakami
+    wojewodztwa.sort(key=locale.strxfrm)
 
     # Statystyki ogólne
     total_count = Gmina.objects.count()
 
     context = {
-        "wojewodztwa": list(wojewodztwa),
+        "wojewodztwa": wojewodztwa,
         "total_count": total_count,
     }
 

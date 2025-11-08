@@ -47,43 +47,6 @@
             margin-bottom: 50px;
         }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            background: #ffffff;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .stat-card {
-            background: #f8f9fa;
-            padding: 25px 20px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-
-        .stat-card:hover {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transform: translateY(-2px);
-            border-left-color: #C4161C;
-        }
-
-        .stat-card .number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #C4161C;
-            margin-bottom: 5px;
-        }
-
-        .stat-card .label {
-            color: #6c757d;
-            font-size: 0.9em;
-        }
-
         .controls {
             padding: 25px 30px;
             background: #f8f9fa;
@@ -399,6 +362,44 @@
             font-size: 0.9em;
         }
 
+        .gmina-tracaca-badge {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .gmina-tracaca-info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            color: #856404;
+            font-weight: 500;
+        }
+
+        .gmina-tracaca-info strong {
+            color: #dc3545;
+        }
+
         @media (max-width: 768px) {
             .page-header h1 {
                 font-size: 2rem;
@@ -436,20 +437,6 @@
         </div>
         <div class="gminy-wrapper">
             <div class="gminy-container">
-                <div class="stats">
-                    <div class="stat-card">
-                        <div class="number">{{ total_count }}</div>
-                        <div class="label">Wszystkich gmin</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="number">{{ wojewodztwa|length }}</div>
-                        <div class="label">Województw</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="number">0-70%</div>
-                        <div class="label">Zakres intensywności</div>
-                    </div>
-                </div>
                 <div class="controls">
                     <div class="filter-group">
                         <label for="wojewodztwoSelect">Województwo:</label>
@@ -514,6 +501,9 @@
                             const response = await fetch(`/api/powiaty/?wojewodztwo=${encodeURIComponent(wojewodztwo)}`);
                             const data = await response.json();
 
+                            // Sortuj powiaty alfabetycznie z polskimi znakami
+                            data.powiaty.sort((a, b) => a.localeCompare(b, 'pl-PL'));
+
                             powiatSelect.innerHTML = '<option value="">Wszystkie powiaty</option>';
                             data.powiaty.forEach(powiat => {
                                 const option = document.createElement('option');
@@ -576,6 +566,21 @@
                         try {
                             const response = await fetch(url);
                             const data = await response.json();
+
+                            // Sortuj gminy alfabetycznie z polskimi znakami
+                            data.gminy.sort((a, b) => {
+                                // Najpierw po województwie
+                                const wojewodztwoCompare = a.wojewodztwo.localeCompare(b.wojewodztwo, 'pl-PL');
+                                if (wojewodztwoCompare !== 0) return wojewodztwoCompare;
+
+                                // Potem po powiecie
+                                const powiatCompare = a.powiat.localeCompare(b.powiat, 'pl-PL');
+                                if (powiatCompare !== 0) return powiatCompare;
+
+                                // Na końcu po nazwie gminy
+                                return a.nazwa.localeCompare(b.nazwa, 'pl-PL');
+                            });
+
                             currentGminyData = data.gminy;
                             renderGminy(currentGminyData);
                         } catch (error) {
@@ -672,8 +677,17 @@
                             }) : '-';
                         };
 
+                        // Sprawdź czy nakłady to 10, 15 lub 20 mln
+                        const nakladyMln = nakladyDuza / 1000000;
+                        const pokazBonusPunkt = gmina.gmina_tracaca || nakladyMln === 10 || nakladyMln === 15 || nakladyMln === 20;
+
                         return `
                             <div class="details-content">
+                                ${pokazBonusPunkt ? `
+                                    <div class="gmina-tracaca-info">
+                                        <strong>⭐ Inwestując w tej gminie otrzymujesz punkt w kryterium jakościowym dotyczącym lokalizacji inwestycji.</strong>
+                                    </div>
+                                ` : ''}
                                 <div class="firm-types-grid">
                                     <!-- Duża firma -->
                                     <div class="firm-type-card">
