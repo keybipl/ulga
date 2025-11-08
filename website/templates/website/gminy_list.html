@@ -113,6 +113,12 @@
             border-color: #C4161C;
         }
 
+        .search-box input:disabled {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
         .filter-group {
             display: flex;
             gap: 10px;
@@ -131,11 +137,47 @@
             font-size: 1em;
             cursor: pointer;
             transition: border-color 0.3s;
+            min-width: 200px;
         }
 
         .filter-group select:focus {
             outline: none;
             border-color: #C4161C;
+        }
+
+        .filter-group select:disabled {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .clear-btn {
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .clear-btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .loading-message {
+            padding: 60px 30px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 1.2em;
+        }
+
+        .loading-message p {
+            margin: 0;
         }
 
         .table-container {
@@ -146,6 +188,10 @@
         table {
             width: 100%;
             border-collapse: collapse;
+        }
+
+        table.hidden {
+            display: none;
         }
 
         thead {
@@ -221,15 +267,136 @@
             color: #4a2c6d;
         }
 
+        .badge-45 {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge-60 {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-65 {
+            background: #c3e6cb;
+            color: #155724;
+        }
+
+        .badge-70 {
+            background: #b8daff;
+            color: #004085;
+        }
+
         .rodzaj {
             font-weight: 600;
             color: #6c757d;
             font-size: 0.85em;
         }
 
-        .gmina-tracaca {
-            color: #C4161C;
+        .expandable-row {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .expandable-row:hover {
+            background-color: #f1f3f5 !important;
+        }
+
+        .expand-icon {
+            display: inline-block;
+            margin-right: 8px;
+            transition: transform 0.3s;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .expand-icon.expanded {
+            transform: rotate(90deg);
+        }
+
+        .details-row {
+            display: none;
+            background-color: #f8f9fa;
+        }
+
+        .details-row.show {
+            display: table-row;
+        }
+
+        .details-cell {
+            padding: 25px 30px !important;
+            border-left: 4px solid #C4161C;
+        }
+
+        .details-content {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .details-header {
+            font-size: 1.1em;
             font-weight: 600;
+            color: #1a2332;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .firm-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .firm-type-card {
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.2s;
+        }
+
+        .firm-type-card:hover {
+            border-color: #C4161C;
+            box-shadow: 0 2px 8px rgba(196, 22, 28, 0.1);
+        }
+
+        .firm-type-header {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .firm-detail {
+            margin: 8px 0;
+            font-size: 0.9em;
+        }
+
+        .firm-detail-label {
+            color: #6c757d;
+            font-size: 0.85em;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .firm-detail-value {
+            color: #1a2332;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .firm-detail-secondary {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-top: 4px;
+        }
+
+        .range-display {
+            color: #6c757d;
+            font-size: 0.9em;
         }
 
         @media (max-width: 768px) {
@@ -275,37 +442,38 @@
                         <div class="label">Wszystkich gmin</div>
                     </div>
                     <div class="stat-card">
-                        <div class="number">{{ wojewodztwa_stats|length }}</div>
+                        <div class="number">{{ wojewodztwa|length }}</div>
                         <div class="label">Województw</div>
                     </div>
                     <div class="stat-card">
-                        <div class="number">15-50%</div>
+                        <div class="number">0-70%</div>
                         <div class="label">Zakres intensywności</div>
                     </div>
                 </div>
                 <div class="controls">
-                    <div class="search-box">
-                        <input type="text"
-                               id="searchInput"
-                               placeholder="🔍 Szukaj gminy, powiatu lub województwa..."
-                               onkeyup="filterTable()">
-                    </div>
                     <div class="filter-group">
-                        <label for="intensywnoscFilter">Intensywność:</label>
-                        <select id="intensywnoscFilter" onchange="filterTable()">
-                            <option value="">Wszystkie</option>
-                            <option value="0">0%</option>
-                            <option value="15">15%</option>
-                            <option value="25">25%</option>
-                            <option value="30">30%</option>
-                            <option value="35">35%</option>
-                            <option value="40">40%</option>
-                            <option value="50">50%</option>
+                        <label for="wojewodztwoSelect">Województwo:</label>
+                        <select id="wojewodztwoSelect">
+                            <option value="">-- Wybierz województwo --</option>
+                            {% for wojewodztwo in wojewodztwa %}<option value="{{ wojewodztwo }}">{{ wojewodztwo }}</option>{% endfor %}
                         </select>
                     </div>
+                    <div class="filter-group">
+                        <label for="powiatSelect">Powiat:</label>
+                        <select id="powiatSelect" disabled>
+                            <option value="">-- Wybierz najpierw województwo --</option>
+                        </select>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="🔍 Szukaj gminy..." disabled>
+                    </div>
+                    <button id="clearFilters" class="clear-btn">Wyczyść filtry</button>
                 </div>
                 <div class="table-container">
-                    <table id="gminaTable">
+                    <div id="loadingMessage" class="loading-message">
+                        <p>👆 Wybierz województwo, aby zobaczyć gminy</p>
+                    </div>
+                    <table id="gminaTable" class="hidden">
                         <thead>
                             <tr>
                                 <th>Województwo</th>
@@ -314,66 +482,306 @@
                                 <th>Rodzaj</th>
                                 <th>Intensywność pomocy</th>
                                 <th>Minimalne nakłady</th>
-                                <th>Gmina tracąca</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {% for gmina in gminy %}
-                                <tr>
-                                    <td>{{ gmina.wojewodztwo }}</td>
-                                    <td>{{ gmina.powiat }}</td>
-                                    <td>
-                                        <strong>{{ gmina.nazwa }}</strong>
-                                    </td>
-                                    <td>
-                                        <span class="rodzaj">{{ gmina.rodzaj }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-{{ gmina.intensywnosc_pomocy|floatformat:'0' }}">{{ gmina.intensywnosc_pomocy }}%</span>
-                                    </td>
-                                    <td>{{ gmina.minimalne_naklady|floatformat:0 }} zł</td>
-                                    <td>
-                                        {% if gmina.gmina_tracaca %}
-                                            <span class="gmina-tracaca">TAK</span>
-                                        {% else %}
-                                            NIE
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
+                        <tbody id="gminaTableBody">
+                            <!-- Wiersze będą wczytywane przez AJAX -->
                         </tbody>
                     </table>
                 </div>
                 <script>
-                    function filterTable() {
-                        const searchInput = document.getElementById('searchInput').value.toLowerCase();
-                        const intensywnoscFilter = document.getElementById('intensywnoscFilter').value;
-                        const table = document.getElementById('gminaTable');
-                        const rows = table.getElementsByTagName('tr');
+                    let currentGminyData = [];
 
-                        for (let i = 1; i < rows.length; i++) {
-                            const row = rows[i];
-                            const wojewodztwo = row.cells[0].textContent.toLowerCase();
-                            const powiat = row.cells[1].textContent.toLowerCase();
-                            const gmina = row.cells[2].textContent.toLowerCase();
-                            // Pobierz wartość intensywności i usuń wszystko oprócz liczb i kropki
-                            const intensywnoscText = row.cells[4].textContent.trim();
-                            const intensywnosc = intensywnoscText.replace(/[^\d.]/g, '');
+                    // Pobierz powiaty dla wybranego województwa
+                    document.getElementById('wojewodztwoSelect').addEventListener('change', async function() {
+                        const wojewodztwo = this.value;
+                        const powiatSelect = document.getElementById('powiatSelect');
+                        const searchInput = document.getElementById('searchInput');
 
-                            const matchesSearch = wojewodztwo.includes(searchInput) ||
-                                powiat.includes(searchInput) ||
-                                gmina.includes(searchInput);
-
-                            // Porównaj jako liczby (parseFloat obcina .00)
-                            const matchesIntensywnosc = !intensywnoscFilter ||
-                                parseFloat(intensywnosc) === parseFloat(intensywnoscFilter);
-
-                            if (matchesSearch && matchesIntensywnosc) {
-                                row.style.display = '';
-                            } else {
-                                row.style.display = 'none';
-                            }
+                        if (!wojewodztwo) {
+                            powiatSelect.disabled = true;
+                            powiatSelect.innerHTML = '<option value="">-- Wybierz najpierw województwo --</option>';
+                            searchInput.disabled = true;
+                            searchInput.value = '';
+                            clearTable();
+                            showLoadingMessage('👆 Wybierz województwo, aby zobaczyć gminy');
+                            return;
                         }
+
+                        // Załaduj powiaty
+                        showLoadingMessage('⏳ Ładowanie powiatów...');
+                        try {
+                            const response = await fetch(`/api/powiaty/?wojewodztwo=${encodeURIComponent(wojewodztwo)}`);
+                            const data = await response.json();
+
+                            powiatSelect.innerHTML = '<option value="">Wszystkie powiaty</option>';
+                            data.powiaty.forEach(powiat => {
+                                const option = document.createElement('option');
+                                option.value = powiat;
+                                option.textContent = powiat;
+                                powiatSelect.appendChild(option);
+                            });
+
+                            powiatSelect.disabled = false;
+                            searchInput.disabled = false;
+
+                            // Automatycznie załaduj gminy dla całego województwa
+                            loadGminy();
+                        } catch (error) {
+                            console.error('Błąd ładowania powiatów:', error);
+                            showLoadingMessage('❌ Błąd ładowania danych. Spróbuj ponownie.');
+                        }
+                    });
+
+                    // Załaduj gminy po wyborze powiatu
+                    document.getElementById('powiatSelect').addEventListener('change', function() {
+                        loadGminy();
+                    });
+
+                    // Filtrowanie po nazwie gminy
+                    document.getElementById('searchInput').addEventListener('input', function() {
+                        const searchTerm = this.value.toLowerCase().trim();
+                        if (searchTerm.length >= 2) {
+                            filterGminyByName(searchTerm);
+                        } else if (searchTerm.length === 0) {
+                            renderGminy(currentGminyData);
+                        }
+                    });
+
+                    // Wyczyść filtry
+                    document.getElementById('clearFilters').addEventListener('click', function() {
+                        document.getElementById('wojewodztwoSelect').value = '';
+                        document.getElementById('powiatSelect').value = '';
+                        document.getElementById('powiatSelect').disabled = true;
+                        document.getElementById('powiatSelect').innerHTML = '<option value="">-- Wybierz najpierw województwo --</option>';
+                        document.getElementById('searchInput').value = '';
+                        document.getElementById('searchInput').disabled = true;
+                        clearTable();
+                        showLoadingMessage('👆 Wybierz województwo, aby zobaczyć gminy');
+                    });
+
+                    async function loadGminy() {
+                        const wojewodztwo = document.getElementById('wojewodztwoSelect').value;
+                        const powiat = document.getElementById('powiatSelect').value;
+
+                        if (!wojewodztwo) return;
+
+                        showLoadingMessage('⏳ Ładowanie gmin...');
+
+                        let url = `/api/gminy/?wojewodztwo=${encodeURIComponent(wojewodztwo)}`;
+                        if (powiat) {
+                            url += `&powiat=${encodeURIComponent(powiat)}`;
+                        }
+
+                        try {
+                            const response = await fetch(url);
+                            const data = await response.json();
+                            currentGminyData = data.gminy;
+                            renderGminy(currentGminyData);
+                        } catch (error) {
+                            console.error('Błąd ładowania gmin:', error);
+                            showLoadingMessage('❌ Błąd ładowania danych. Spróbuj ponownie.');
+                        }
+                    }
+
+                    function filterGminyByName(searchTerm) {
+                        const filtered = currentGminyData.filter(gmina =>
+                            gmina.nazwa.toLowerCase().includes(searchTerm)
+                        );
+                        renderGminy(filtered);
+                    }
+
+                    function renderGminy(gminy) {
+                        const tbody = document.getElementById('gminaTableBody');
+                        const table = document.getElementById('gminaTable');
+                        const loadingMessage = document.getElementById('loadingMessage');
+
+                        if (gminy.length === 0) {
+                            showLoadingMessage('🔍 Nie znaleziono gmin dla wybranych kryteriów');
+                            return;
+                        }
+
+                        tbody.innerHTML = '';
+                        loadingMessage.style.display = 'none';
+                        table.classList.remove('hidden');
+
+                        gminy.forEach(gmina => {
+                            // Wiersz główny
+                            const mainRow = document.createElement('tr');
+                            mainRow.className = 'expandable-row';
+                            mainRow.dataset.gminaId = gmina.id;
+
+                            const intensywnosc = Math.round(gmina.intensywnosc_pomocy);
+                            const intensywnoscMala = intensywnosc + 20;
+
+                            mainRow.innerHTML = `
+                                <td>${gmina.wojewodztwo}</td>
+                                <td>${gmina.powiat}</td>
+                                <td>
+                                    <span class="expand-icon">▶</span>
+                                    <strong>${gmina.nazwa}</strong>
+                                </td>
+                                <td><span class="rodzaj">${gmina.rodzaj}</span></td>
+                                <td>
+                                    <span class="badge badge-${intensywnosc}">${intensywnosc}%</span>
+                                    <span>-</span>
+                                    <span class="badge badge-${intensywnoscMala}">${intensywnoscMala}%</span>
+                                </td>
+                                <td>
+                                    ${gmina.minimalne_naklady ? formatNakladyRange(gmina.minimalne_naklady) : '-'}
+                                </td>
+                            `;
+
+                            // Wiersz szczegółów
+                            const detailsRow = document.createElement('tr');
+                            detailsRow.className = 'details-row';
+                            detailsRow.innerHTML = `
+                                <td colspan="6" class="details-cell">
+                                    ${renderDetailsContent(gmina)}
+                                </td>
+                            `;
+
+                            // Event listener dla rozwijania
+                            mainRow.addEventListener('click', function() {
+                                toggleDetails(mainRow, detailsRow);
+                            });
+
+                            tbody.appendChild(mainRow);
+                            tbody.appendChild(detailsRow);
+                        });
+                    }
+
+                    function formatNakladyRange(naklady) {
+                        const mikro = naklady / 50;
+                        const mikroIstniejacy = mikro / 2; // 50% dla istniejącego zakładu (dolna granica)
+                        const duza = naklady; // 100% dla nowego zakładu (górna granica)
+
+                        return `${(mikroIstniejacy / 1000000).toFixed(1)} - ${(duza / 1000000).toFixed(1)} mln zł`;
+                    }
+
+                    function renderDetailsContent(gmina) {
+                        const intensywnosc = Math.round(gmina.intensywnosc_pomocy);
+                        const nakladyDuza = gmina.minimalne_naklady;
+                        const nakładySrednia = nakladyDuza / 10;
+                        const nakladyMala = nakladyDuza / 20;
+                        const nakladyMikro = nakladyDuza / 50;
+
+                        const formatNaklady = (value) => {
+                            return value ? value.toLocaleString('pl-PL', {
+                                maximumFractionDigits: 0
+                            }) : '-';
+                        };
+
+                        return `
+                            <div class="details-content">
+                                <div class="firm-types-grid">
+                                    <!-- Duża firma -->
+                                    <div class="firm-type-card">
+                                        <div class="firm-type-header"><span>Duża firma</span></div>
+                                        <div class="firm-detail">
+                                            <span class="firm-detail-label">Intensywność pomocy:</span>
+                                            <div class="firm-detail-value">${intensywnosc}%</div>
+                                        </div>
+                                        <div class="firm-detail">
+                                            <span class="firm-detail-label">Minimalne nakłady:</span>
+                                            <div class="firm-detail-value">
+                                                ${nakladyDuza ? `
+                                                    <div>Nowy zakład: ${formatNaklady(nakladyDuza)} zł</div>
+                                                    <div class="firm-detail-secondary">
+                                                        Istniejący zakład: ${formatNaklady(nakladyDuza / 2)} zł
+                                                    </div>
+                                                ` : '-'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Średnia firma -->
+                                    <div class="firm-type-card">
+                                        <div class="firm-type-header"><span>Średnia firma</span></div>
+                                        <div class="firm-detail">
+                                            <span class="firm-detail-label">Intensywność pomocy:</span>
+                                            <div class="firm-detail-value">${intensywnosc + 10}%</div>
+                                        </div>
+                                        <div class="firm-detail">
+                                            <span class="firm-detail-label">Minimalne nakłady:</span>
+                                            <div class="firm-detail-value">
+                                                ${nakładySrednia ? `
+                                                    <div>Nowy zakład: ${formatNaklady(nakładySrednia)} zł</div>
+                                                    <div class="firm-detail-secondary">
+                                                        Istniejący zakład: ${formatNaklady(nakładySrednia / 2)} zł
+                                                    </div>
+                                                ` : '-'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Mała firma -->
+                                    <div class="firm-type-card">
+                                        <div class="firm-type-header"><span>Mała firma</span></div>
+                                        <div class="firm-detail">
+                                            <span class="firm-detail-label">Intensywność pomocy:</span>
+                                            <div class="firm-detail-value">${intensywnosc + 20}%</div>
+                                        </div>
+                                        <div class="firm-detail">
+                                            <span class="firm-detail-label">Minimalne nakłady:</span>
+                                            <div class="firm-detail-value">
+                                                ${nakladyMala ? `
+                                                    <div>Nowy zakład: ${formatNaklady(nakladyMala)} zł</div>
+                                                    <div class="firm-detail-secondary">
+                                                        Istniejący zakład: ${formatNaklady(nakladyMala / 2)} zł
+                                                    </div>
+                                                ` : '-'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Mikro firma -->
+                                    <div class="firm-type-card">
+                                        <div class="firm-type-header"><span>Mikro firma</span></div>
+                                        <div class="firm-detail">
+                                            <span class="firm-detail-label">Intensywność pomocy:</span>
+                                            <div class="firm-detail-value">${intensywnosc + 20}%</div>
+                                        </div>
+                                        <div class="firm-detail">
+                                            <span class="firm-detail-label">Minimalne nakłady:</span>
+                                            <div class="firm-detail-value">
+                                                ${nakladyMikro ? `
+                                                    <div>Nowy zakład: ${formatNaklady(nakladyMikro)} zł</div>
+                                                    <div class="firm-detail-secondary">
+                                                        Istniejący zakład: ${formatNaklady(nakladyMikro / 2)} zł
+                                                    </div>
+                                                ` : '-'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    function toggleDetails(mainRow, detailsRow) {
+                        const icon = mainRow.querySelector('.expand-icon');
+
+                        if (detailsRow.classList.contains('show')) {
+                            detailsRow.classList.remove('show');
+                            if (icon) icon.classList.remove('expanded');
+                        } else {
+                            detailsRow.classList.add('show');
+                            if (icon) icon.classList.add('expanded');
+                        }
+                    }
+
+                    function clearTable() {
+                        const tbody = document.getElementById('gminaTableBody');
+                        const table = document.getElementById('gminaTable');
+                        tbody.innerHTML = '';
+                        table.classList.add('hidden');
+                        currentGminyData = [];
+                    }
+
+                    function showLoadingMessage(message) {
+                        const loadingMessage = document.getElementById('loadingMessage');
+                        const table = document.getElementById('gminaTable');
+                        loadingMessage.innerHTML = `<p>${message}</p>`;
+                        loadingMessage.style.display = 'block';
+                        table.classList.add('hidden');
                     }
                 </script>
             </div>
