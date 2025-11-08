@@ -112,6 +112,35 @@
                 color: var(--psi-red);
             }
 
+            /* Hamburger Menu */
+            .hamburger {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+                padding: 10px;
+                gap: 5px;
+            }
+
+            .hamburger span {
+                width: 30px;
+                height: 3px;
+                background: var(--psi-navy);
+                transition: all 0.3s;
+                border-radius: 2px;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
             .btn-primary {
                 background: white;
                 color: var(--psi-red);
@@ -330,9 +359,62 @@
             }
 
             @media (max-width: 768px) {
-                .nav-menu {
+                .header-top {
+                    padding: 8px 0;
+                    font-size: 0.8rem;
+                }
+
+                .contact-info {
                     flex-direction: column;
-                    gap: 10px;
+                    gap: 5px;
+                }
+
+                .hamburger {
+                    display: flex;
+                }
+
+                .nav-menu {
+                    display: none;
+                    flex-direction: column;
+                    gap: 0;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: white;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                    padding: 0;
+                }
+
+                .nav-menu.active {
+                    display: flex;
+                }
+
+                .nav-menu li {
+                    border-bottom: 1px solid var(--psi-light-gray);
+                }
+
+                .nav-menu a {
+                    display: block;
+                    padding: 15px 20px;
+                    border-radius: 0;
+                }
+
+                .nav-menu .btn-primary {
+                    border-radius: 0;
+                    text-align: center;
+                }
+
+                .logo-img {
+                    height: 40px;
+                }
+
+                nav {
+                    position: relative;
+                }
+
+                .hero {
+                    padding: 60px 0 40px;
                 }
 
                 .hero h1 {
@@ -341,6 +423,42 @@
 
                 .hero p {
                     font-size: 1rem;
+                    margin-bottom: 20px;
+                }
+
+                .btn-large {
+                    padding: 12px 25px;
+                    font-size: 1rem;
+                }
+
+                .features {
+                    padding: 50px 0;
+                }
+
+                .section-title {
+                    font-size: 1.8rem;
+                    margin-bottom: 30px;
+                }
+
+                .feature-card {
+                    padding: 25px 20px;
+                    min-height: auto;
+                }
+
+                .cta-section {
+                    padding: 50px 0;
+                }
+
+                .cta-section h2 {
+                    font-size: 1.8rem;
+                }
+
+                .cta-section p {
+                    font-size: 1rem;
+                }
+
+                .footer-content {
+                    gap: 30px;
                 }
             }
         </style>
@@ -371,7 +489,12 @@
                              height="48"
                              loading="lazy" />
                     </a>
-                    <ul class="nav-menu">
+                    <div class="hamburger" onclick="toggleMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="nav-menu" id="navMenu">
                         <li>
                             <a href="{% url 'o_programie' %}">O Programie</a>
                         </li>
@@ -519,5 +642,23 @@
                 </div>
             </div>
         </footer>
+        <script>
+            function toggleMenu() {
+                const navMenu = document.getElementById('navMenu');
+                const hamburger = document.querySelector('.hamburger');
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            }
+
+            // Zamknij menu po kliknięciu w link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    const navMenu = document.getElementById('navMenu');
+                    const hamburger = document.querySelector('.hamburger');
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+        </script>
     </body>
 </html>

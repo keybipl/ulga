@@ -4,383 +4,176 @@
 {% endblock title %}
 {% block content %}
     <style>
-        .psi-page {
+        .article-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 30px 120px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .hero-section {
-            text-align: center;
-            margin-bottom: 80px;
-            padding: 60px 40px;
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        .hero-section h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #1a2332;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .hero-section .lead-text {
-            font-size: 1.25rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        .hero-section .psi-highlight {
-            color: #C4161C;
-            font-weight: 600;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a2332;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: #C4161C;
-            border-radius: 2px;
-        }
-
-        .info-card {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-
-        .info-card:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            transform: translateY(-4px);
-            border-left-color: #C4161C;
-        }
-
-        .info-card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .info-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1a2332;
-            margin-bottom: 16px;
-        }
-
-        .info-card p {
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 12px;
-        }
-
-        .info-card strong {
-            color: #C4161C;
-            font-weight: 600;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .feature-item {
-            background: #ffffff;
-            padding: 35px 30px;
-            border-radius: 12px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            transform: translateY(-4px);
-        }
-
-        .feature-icon {
+        .article-content h1 {
             font-size: 2.2rem;
-            margin-bottom: 18px;
-            display: block;
-        }
-
-        .feature-title {
-            font-size: 1.2rem;
             font-weight: 600;
-            color: #1a2332;
-            margin-bottom: 12px;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            line-height: 1.4;
         }
 
-        .feature-text {
-            color: #666;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        .highlight-box {
-            background: #f8f9fa;
-            border-left: 5px solid #C4161C;
-            padding: 30px 35px;
-            border-radius: 8px;
-            margin: 40px 0;
-        }
-
-        .highlight-box h3 {
-            font-size: 1.4rem;
+        .article-content h2 {
+            font-size: 1.6rem;
             font-weight: 600;
-            color: #1a2332;
-            margin-bottom: 16px;
+            color: #34495e;
+            margin-top: 60px;
+            margin-bottom: 25px;
+            line-height: 1.4;
         }
 
-        .highlight-box p {
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 8px;
+        .article-content p {
+            font-size: 1.05rem;
+            color: #4a5568;
+            line-height: 1.9;
+            margin-bottom: 25px;
         }
 
-        .benefit-list {
+        .article-content ul {
             list-style: none;
-            padding: 0;
-            margin: 20px 0;
+            padding-left: 0;
+            margin: 25px 0;
         }
 
-        .benefit-list li {
-            padding: 12px 0 12px 35px;
+        .article-content li {
+            font-size: 1.05rem;
+            color: #4a5568;
+            line-height: 1.9;
+            margin-bottom: 18px;
+            padding-left: 25px;
             position: relative;
-            color: #555;
-            line-height: 1.6;
         }
 
-        .benefit-list li::before {
-            content: "✓";
+        .article-content li::before {
+            content: "—";
             position: absolute;
             left: 0;
-            color: #C4161C;
-            font-weight: bold;
-            font-size: 1.3rem;
+            color: #718096;
         }
 
-        .cta-section {
+        .article-footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid #e2e8f0;
             text-align: center;
-            padding: 60px 40px;
-            background: #1a2332;
-            border-radius: 16px;
-            margin-top: 60px;
-            color: white;
         }
 
-        .cta-section h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #C4161C;
-            color: white;
-            padding: 16px 40px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(196, 22, 28, 0.3);
-        }
-
-        .cta-button:hover {
-            background: #9B1116;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(196, 22, 28, 0.4);
-            color: white;
-        }
-
-        .stats-row {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin: 50px 0;
-        }
-
-        .stat-box {
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #C4161C;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
+        .article-footer p {
+            color: #718096;
             font-size: 1rem;
-            color: #666;
-            font-weight: 500;
+            margin-bottom: 25px;
         }
 
-        .simple-cta {
-            text-align: center;
-            margin-top: 50px;
-            padding-bottom: 40px;
-        }
-
-        .simple-cta-link {
+        .article-footer a {
             display: inline-block;
-            color: #C4161C;
-            font-size: 1.1rem;
-            font-weight: 600;
+            color: #3182ce;
             text-decoration: none;
-            border-bottom: 2px solid #C4161C;
-            padding-bottom: 4px;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            padding: 0 20px;
+            transition: color 0.2s;
         }
 
-        .simple-cta-link:hover {
-            color: #9B1116;
-            border-bottom-color: #9B1116;
+        .article-footer a:hover {
+            color: #2c5aa0;
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2rem;
+            .article-content {
+                padding: 40px 20px 80px;
             }
 
-            .hero-section .lead-text {
-                font-size: 1.1rem;
+            .article-content h1 {
+                font-size: 1.8rem;
             }
 
-            .info-card {
-                padding: 25px;
+            .article-content h2 {
+                font-size: 1.4rem;
+                margin-top: 40px;
             }
 
-            .section-title {
-                font-size: 1.6rem;
+            .article-content p,
+            .article-content li {
+                font-size: 1rem;
+            }
+
+            .article-footer a {
+                display: block;
+                margin: 10px 0;
+                padding: 10px 0;
             }
         }
     </style>
-    <div class="psi-page">
-        <!-- Hero Section -->
-        <div class="hero-section">
-            <h1>Polska Strefa Inwestycji</h1>
-            <p class="lead-text">
-                <strong class="psi-highlight">Polska Strefa Inwestycji (PSI)</strong> to program wspierający przedsiębiorców,
-                którzy chcą inwestować i rozwijać swoją działalność w Polsce.
-                Dzięki niemu możesz <strong class="psi-highlight">całkowicie zwolnić swoją firmę z podatku dochodowego</strong>.
-            </p>
-        </div>
-        <!-- Stats Row -->
-        <div class="stats-row">
-            <div class="stat-box">
-                <span class="stat-number">70%</span>
-                <span class="stat-label">maksymalne wsparcie</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-number">12-15</span>
-                <span class="stat-label">lat ulgi podatkowej</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">przejrzystość zasad</span>
-            </div>
-        </div>
-        <!-- Main Content -->
-        <h2 class="section-title">Jak to działa?</h2>
-        <div class="feature-grid">
-            <div class="feature-item">
-                <span class="feature-icon">📍</span>
-                <div class="feature-title">Ty decydujesz, gdzie inwestujesz</div>
-                <p class="feature-text">
-                    W przeciwieństwie do dawnych rozwiązań, <strong>nie ma żadnych ograniczeń terytorialnych</strong>.
-                    To Ty wybierasz miejsce, w którym chcesz zrealizować inwestycję i otrzymać wsparcie – może to być dowolna lokalizacja w Polsce.
-                </p>
-            </div>
-            <div class="feature-item">
-                <span class="feature-icon">⚖️</span>
-                <div class="feature-title">Przejrzyste zasady dla wszystkich</div>
-                <p class="feature-text">
-                    Program nie jest uznaniowy – oznacza to, że <strong>wsparcie przysługuje każdemu</strong>, kto spełni określone warunki.
-                    Decyzja o przyznaniu ulgi podejmowana jest na podstawie Kodeksu postępowania administracyjnego (KPA).
-                </p>
-            </div>
-            <div class="feature-item">
-                <span class="feature-icon">📄</span>
-                <div class="feature-title">Jak uzyskać wsparcie?</div>
-                <p class="feature-text">
-                    Zwolnienie z podatku otrzymujesz na podstawie <strong>decyzji o wsparciu</strong> – to oficjalny dokument administracyjny
-                    wydawany przez <strong>Specjalne Strefy Ekonomiczne</strong>, które zarządzają programem.
-                </p>
-            </div>
-        </div>
-        <!-- Timeline Info -->
-        <div class="info-card">
-            <span class="info-card-icon">⏱️</span>
-            <h3>Na jak długo otrzymasz wsparcie?</h3>
-            <p>
-                Decyzja o wsparciu wydawana jest <strong>na okres od 12 do 15 lat</strong> – czas trwania ulgi również zależy od lokalizacji Twojej inwestycji.
-                To oznacza długoterminową stabilność i przewidywalność dla rozwoju Twojego biznesu.
-            </p>
-        </div>
-        <!-- Benefits Section -->
-        <div class="info-card">
-            <span class="info-card-icon">💰</span>
-            <h3>Ile możesz zyskać?</h3>
-            <p>
-                W zależności od tego, gdzie zlokalizujesz swoją inwestycję, możesz otrzymać <strong>nawet do 70% wsparcia</strong>.
-            </p>
-            <p>Ulga liczona jest od:</p>
-            <ul class="benefit-list">
-                <li>
-                    wartości Twojej inwestycji, <strong>lub</strong>
-                </li>
-                <li>dwuletnich kosztów wynagrodzeń nowo zatrudnionych pracowników</li>
-            </ul>
-        </div>
-        <!-- Final Highlight -->
-        <div class="highlight-box">
-            <h3>💡 Podsumowanie</h3>
-            <p>
-                <strong>Polska Strefa Inwestycji</strong> to realna szansa na rozwój Twojej firmy z pomocą państwa –
-                bez zbędnej biurokracji i z jasnymi zasadami gry.
-            </p>
-        </div>
-        <!-- Simple CTA Link -->
-        <div class="simple-cta">
-            <a href="{% url 'gminy_list' %}" class="simple-cta-link">Zobacz bazę gmin z warunkami wsparcia →</a>
+    <div class="article-content">
+        <h1>Program Polska Strefa Inwestycji</h1>
+        <p>
+            Program Polska Strefa Inwestycji (PSI) jest regulowany przez ustawę z dnia 10 maja 2018 r.
+            o wspieraniu nowych inwestycji (Dz.U. 2024 poz. 1814 t.j.). Wykładnią ustawy i podstawą do działania
+            jest rozporządzenie Rady Ministrów w sprawie pomocy publicznej udzielanej niektórym przedsiębiorcom
+            na realizację nowych inwestycji.
+        </p>
+        <p>
+            Specjalne Strefy Ekonomiczne pełnią funkcję zarządzającego obszarem PSI. Ustawodawca przydzielił
+            poszczególnym strefom konkretne powiaty i gminy na terenie całego kraju. Możesz sprawdzić,
+            która strefa odpowiada za Twoją lokalizację w zakładce Baza gmin na naszej stronie.
+        </p>
+        <h2>Zasady działania programu</h2>
+        <p>
+            Program zakłada zwolnienie z podatku dochodowego dla przedsiębiorców realizujących nowe inwestycje,
+            po spełnieniu określonych kryteriów:
+        </p>
+        <ul>
+            <li>Kryteria ilościowe – minimalna wysokość nakładów inwestycyjnych (szczegóły dostępne w naszej bazie gmin)</li>
+            <li>Kryteria jakościowe</li>
+        </ul>
+        <h2>Korzyści z programu</h2>
+        <ul>
+            <li>
+                Maksymalna intensywność pomocy – od 10% do 70% wartości kosztów kwalifikowanych w zależności od lokalizacji inwestycji i wielkości przedsiębiorstwa
+            </li>
+            <li>Długi okres korzystania – zwolnienie można wykorzystywać przez 12, 14 lub 15 lat (w zależności od lokalizacji)</li>
+            <li>Możliwość kumulacji – wsparcie można łączyć z innymi formami pomocy publicznej</li>
+            <li>Przewidywalność – jasne kryteria i przejrzysty proces uzyskania wsparcia</li>
+        </ul>
+        <h2>Kto może skorzystać?</h2>
+        <p>Z programu PSI mogą skorzystać:</p>
+        <ul>
+            <li>Wszyscy przedsiębiorcy</li>
+            <li>Zarówno nowe firmy rozpoczynające działalność, jak i istniejące przedsiębiorstwa rozwijające działalność</li>
+            <li>Inwestorzy krajowi i zagraniczni</li>
+            <li>Firmy realizujące inwestycje w produkcji, nowoczesnych usługach dla biznesu oraz centrach badawczo-rozwojowych</li>
+        </ul>
+        <h2>Rodzaje wspieranych działalności</h2>
+        <p>Program obejmuje szerokie spektrum branż, w tym:</p>
+        <ul>
+            <li>Działalność produkcyjną</li>
+            <li>Nowoczesne usługi dla biznesu (centra usług wspólnych, contact center, centra IT)</li>
+            <li>Centra badawczo-rozwojowe</li>
+            <li>Działalność innowacyjną</li>
+        </ul>
+        <h2>Tryb uzyskania wsparcia</h2>
+        <p>
+            Zwolnienie z podatku dochodowego jest realizowane poprzez decyzję administracyjną wydawaną
+            przez zarządzającego strefą. Decyzja wydawana jest w trybie Kodeksu postępowania administracyjnego (KPA),
+            co oznacza, że:
+        </p>
+        <ul>
+            <li>To nie jest konkurs – jak w przypadku funduszy unijnych</li>
+            <li>Wsparcie przysługuje z mocy prawa – po spełnieniu określonych warunków</li>
+            <li>Proces jest przewidywalny i przejrzysty</li>
+            <li>Przedsiębiorca ma prawo do odwołania w przypadku decyzji negatywnej</li>
+        </ul>
+        <div class="article-footer">
+            <p>Sprawdź swoją ulgę – skorzystaj z naszego Kalkulatora</p>
+            <a href="{% url 'gminy_list' %}">Baza gmin</a>
+            <span style="color: #cbd5e0;">•</span>
+            <a href="#kalkulator">Kalkulator</a>
         </div>
     </div>
 {% endblock content %}
