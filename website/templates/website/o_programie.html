@@ -28,11 +28,55 @@
             line-height: 1.4;
         }
 
+        .article-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
         .article-content p {
             font-size: 1.05rem;
             color: #4a5568;
             line-height: 1.9;
             margin-bottom: 25px;
+        }
+
+        .info-box {
+            background: #f7fafc;
+            border-left: 3px solid #cbd5e0;
+            padding: 25px 30px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            margin-bottom: 15px;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .or-separator {
+            text-align: center;
+            margin: 20px 0;
+            color: #718096;
+            font-style: italic;
+        }
+
+        .separator-dot {
+            color: #cbd5e0;
+        }
+
+        .highlight-text {
+            font-style: italic;
+            color: #2d3748;
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
         }
 
         .article-content ul {
@@ -112,16 +156,21 @@
     </style>
     <div class="article-content">
         <h1>Program Polska Strefa Inwestycji</h1>
+        <h2>Podstawy prawne</h2>
         <p>
             Program Polska Strefa Inwestycji (PSI) jest regulowany przez ustawę z dnia 10 maja 2018 r.
             o wspieraniu nowych inwestycji (Dz.U. 2024 poz. 1814 t.j.). Wykładnią ustawy i podstawą do działania
-            jest rozporządzenie Rady Ministrów w sprawie pomocy publicznej udzielanej niektórym przedsiębiorcom
-            na realizację nowych inwestycji.
+            jest rozporządzenie Rady Ministrów z dnia 27 grudnia 2022 r. w sprawie pomocy publicznej udzielanej
+            niektórym przedsiębiorcom na realizację nowych inwestycji (Dz.U. 2022 poz. 2861, z późn. zm.).
         </p>
+        <h2>Rola Specjalnych Stref Ekonomicznych</h2>
         <p>
             Specjalne Strefy Ekonomiczne pełnią funkcję zarządzającego obszarem PSI. Ustawodawca przydzielił
-            poszczególnym strefom konkretne powiaty i gminy na terenie całego kraju. Możesz sprawdzić,
-            która strefa odpowiada za Twoją lokalizację w zakładce Baza gmin na naszej stronie.
+            poszczególnym strefom konkretne powiaty i gminy na terenie całego kraju – przypisanie to zostało
+            określone w rozporządzeniu Ministra Przedsiębiorczości i Technologii z dnia 29 sierpnia 2018 r.
+            w sprawie ustalenia obszarów i przypisania ich zarządzającym (Dz.U. 2018 poz. 1698). Wnioski o wsparcie
+            składa się do strefy, do której przypisany jest dany powiat. Możesz sprawdzić, która strefa odpowiada
+            za Twoją lokalizację w zakładce Baza gmin na naszej stronie.
         </p>
         <h2>Zasady działania programu</h2>
         <p>
@@ -130,38 +179,61 @@
         </p>
         <ul>
             <li>Kryteria ilościowe – minimalna wysokość nakładów inwestycyjnych (szczegóły dostępne w naszej bazie gmin)</li>
-            <li>Kryteria jakościowe</li>
+            <li>
+                Kryteria jakościowe – zdefiniowano 13 kryteriów dla działalności przemysłowej oraz 12 kryteriów dla działalności usługowej. W zależności od lokalizacji inwestycji, przedsiębiorca musi wybrać i spełnić 4, 5 lub 6 z nich
+            </li>
         </ul>
+        <h2>Koszty kwalifikowane</h2>
+        <p>Kosztami kwalifikowanymi w ramach programu są:</p>
+        <ul>
+            <li>
+                Rzeczowe aktywa trwałe (grunty, budynki, maszyny, urządzenia) lub wartości niematerialne i prawne (licencje, patenty, know-how)
+            </li>
+        </ul>
+        <p class="or-separator">lub</p>
+        <ul>
+            <li>Dwuletnie koszty pracy nowo zatrudnionych pracowników</li>
+        </ul>
+        <div class="info-box">
+            <p>
+                Od wartości tych kosztów przysługuje procent pomocy w intensywności przypisanej do danej lokalizacji
+                – szczegóły dostępne w naszej bazie gmin.
+            </p>
+        </div>
         <h2>Korzyści z programu</h2>
         <ul>
             <li>
                 Maksymalna intensywność pomocy – od 10% do 70% wartości kosztów kwalifikowanych w zależności od lokalizacji inwestycji i wielkości przedsiębiorstwa
             </li>
-            <li>Długi okres korzystania – zwolnienie można wykorzystywać przez 12, 14 lub 15 lat (w zależności od lokalizacji)</li>
+            <li>Długi okres korzystania – decyzja o wsparciu ważna 12, 14 lub 15 lat (w zależności od lokalizacji)</li>
             <li>Możliwość kumulacji – wsparcie można łączyć z innymi formami pomocy publicznej</li>
             <li>Przewidywalność – jasne kryteria i przejrzysty proces uzyskania wsparcia</li>
         </ul>
         <h2>Kto może skorzystać?</h2>
         <p>Z programu PSI mogą skorzystać:</p>
         <ul>
-            <li>Wszyscy przedsiębiorcy</li>
+            <li>Przedsiębiorstwa wszystkich wielkości: mikro, małe, średnie i duże</li>
             <li>Zarówno nowe firmy rozpoczynające działalność, jak i istniejące przedsiębiorstwa rozwijające działalność</li>
             <li>Inwestorzy krajowi i zagraniczni</li>
-            <li>Firmy realizujące inwestycje w produkcji, nowoczesnych usługach dla biznesu oraz centrach badawczo-rozwojowych</li>
         </ul>
         <h2>Rodzaje wspieranych działalności</h2>
         <p>Program obejmuje szerokie spektrum branż, w tym:</p>
         <ul>
             <li>Działalność produkcyjną</li>
-            <li>Nowoczesne usługi dla biznesu (centra usług wspólnych, contact center, centra IT)</li>
-            <li>Centra badawczo-rozwojowe</li>
+            <li>Nowoczesne usługi dla biznesu (centra usług wspólnych, call center, centra IT)</li>
             <li>Działalność innowacyjną</li>
         </ul>
+        <div class="info-box">
+            <p>
+                <strong>Preferencyjne warunki dla firm MŚP oraz usług BPO</strong> – firmy MŚP oraz projekty z zakresu usług dla biznesu (BPO)
+                korzystają z obniżonych progów nakładów inwestycyjnych, co ułatwia uzyskanie decyzji o wsparciu.
+            </p>
+        </div>
         <h2>Tryb uzyskania wsparcia</h2>
         <p>
-            Zwolnienie z podatku dochodowego jest realizowane poprzez decyzję administracyjną wydawaną
-            przez zarządzającego strefą. Decyzja wydawana jest w trybie Kodeksu postępowania administracyjnego (KPA),
-            co oznacza, że:
+            Zwolnienie z podatku dochodowego jest realizowane na podstawie decyzji administracyjnej zwanej
+            decyzją o wsparciu, wydawanej przez zarządzającego strefą. Decyzja wydawana jest w trybie
+            Kodeksu postępowania administracyjnego (KPA), co oznacza, że:
         </p>
         <ul>
             <li>To nie jest konkurs – jak w przypadku funduszy unijnych</li>
@@ -170,9 +242,13 @@
             <li>Przedsiębiorca ma prawo do odwołania w przypadku decyzji negatywnej</li>
         </ul>
         <div class="article-footer">
-            <p>Sprawdź swoją ulgę – skorzystaj z naszego Kalkulatora</p>
+            <p>
+                Sprawdź swoją ulgę – skorzystaj z naszego Kalkulatora
+                <br>
+                Masz pytania? – Skontaktuj się z nami
+            </p>
             <a href="{% url 'gminy_list' %}">Baza gmin</a>
-            <span style="color: #cbd5e0;">•</span>
+            <span class="separator-dot">•</span>
             <a href="#kalkulator">Kalkulator</a>
         </div>
     </div>
