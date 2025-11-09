@@ -89,8 +89,9 @@ def api_get_powiaty(request):
         .distinct()
     )
 
-    # Sortuj w Pythonie z polskimi znakami
-    powiaty_sorted = sorted(list(powiaty), key=locale.strxfrm)
+    # Usuń duplikaty i sortuj w Pythonie z polskimi znakami
+    powiaty_unique = list(set(powiaty))
+    powiaty_sorted = sorted(powiaty_unique, key=locale.strxfrm)
 
     return JsonResponse({"powiaty": powiaty_sorted})
 
