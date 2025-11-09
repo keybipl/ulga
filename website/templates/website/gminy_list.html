@@ -822,15 +822,8 @@
 
                         // Sprawdź czy nakłady to 10, 15 lub 20 mln
                         const nakladyMln = nakladyDuza / 1000000;
-                        const pokazBonusPunkt = gmina.gmina_tracaca || nakladyMln === 10 || nakladyMln === 15 || nakladyMln === 20;
-
                         return `
                             <div class="details-content">
-                                ${pokazBonusPunkt ? `
-                                    <div class="gmina-tracaca-info">
-                                        <strong>⭐ Inwestując w tej gminie otrzymujesz punkt w kryterium jakościowym dotyczącym lokalizacji inwestycji.</strong>
-                                    </div>
-                                ` : ''}
                                 ${gmina.strefa_ekonomiczna ? `
                                     <div style="background: #e7f3ff; border-left: 4px solid #0066cc; padding: 12px 15px; margin-bottom: 20px; border-radius: 4px;">
                                         <div style="font-size: 0.85em; color: #495057; margin-bottom: 4px;">Specjalna Strefa Ekonomiczna:</div>
