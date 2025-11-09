@@ -6,13 +6,47 @@ from django.shortcuts import render
 from .models import Gmina
 
 # Ustaw polską lokalizację dla sortowania
-try:
-    locale.setlocale(locale.LC_ALL, "pl_PL.UTF-8")
-except locale.Error:
+locale_set = False
+for loc in ["pl_PL.UTF-8", "pl_PL.utf8", "Polish_Poland.1250", "pl_PL"]:
     try:
-        locale.setlocale(locale.LC_ALL, "Polish_Poland.1250")
+        locale.setlocale(locale.LC_COLLATE, loc)
+        locale_set = True
+        break
     except locale.Error:
-        pass  # Jeśli nie można ustawić, użyj domyślnego
+        continue
+
+# Jeśli nie udało się ustawić polskiego locale, użyj prostego sortowania
+if not locale_set:
+    # Fallback - prosty key function dla polskich znaków
+    def polish_sort_key(text):
+        """Sortowanie z uwzględnieniem polskich znaków"""
+        replacements = {
+            "ą": "a~",
+            "ć": "c~",
+            "ę": "e~",
+            "ł": "l~",
+            "ń": "n~",
+            "ó": "o~",
+            "ś": "s~",
+            "ź": "z~",
+            "ż": "z~~",
+            "Ą": "A~",
+            "Ć": "C~",
+            "Ę": "E~",
+            "Ł": "L~",
+            "Ń": "N~",
+            "Ó": "O~",
+            "Ś": "S~",
+            "Ź": "Z~",
+            "Ż": "Z~~",
+        }
+        result = text.lower()
+        for pl_char, replacement in replacements.items():
+            result = result.replace(pl_char.lower(), replacement)
+        return result
+
+    # Nadpisz locale.strxfrm fallbackiem
+    locale.strxfrm = polish_sort_key
 
 # Create your views here.
 
@@ -53,9 +87,12 @@ def api_get_powiaty(request):
         Gmina.objects.filter(wojewodztwo=wojewodztwo)
         .values_list("powiat", flat=True)
         .distinct()
-        .order_by("powiat")
     )
-    return JsonResponse({"powiaty": list(powiaty)})
+
+    # Sortuj w Pythonie z polskimi znakami
+    powiaty_sorted = sorted(list(powiaty), key=locale.strxfrm)
+
+    return JsonResponse({"powiaty": powiaty_sorted})
 
 
 def api_get_gminy(request):
@@ -75,11 +112,22 @@ def api_get_gminy(request):
     if search:
         gminy = gminy.filter(nazwa__icontains=search)
 
-    gminy = gminy.order_by("wojewodztwo", "powiat", "nazwa")
+    # Pobierz wszystkie gminy bez sortowania w bazie
+    gminy_list = list(gminy)
+
+    # Sortuj w Pythonie z polskimi znakami
+    gminy_sorted = sorted(
+        gminy_list,
+        key=lambda g: (
+            locale.strxfrm(g.wojewodztwo),
+            locale.strxfrm(g.powiat),
+            locale.strxfrm(g.nazwa),
+        ),
+    )
 
     # Konwertuj do listy słowników
     gminy_data = []
-    for gmina in gminy:
+    for gmina in gminy_sorted:
         gminy_data.append(
             {
                 "id": gmina.id,
