@@ -88,3 +88,14 @@ class Gmina(models.Model):
         if self.minimalne_naklady is None:
             return "-"
         return f"{self.minimalne_naklady:,.2f} PLN".replace(",", " ")
+
+    def get_liczba_kryteriow_jakosciowych(self):
+        """Zwraca liczbę kryteriów jakościowych do spełnienia na podstawie intensywności"""
+        intensywnosc = float(self.intensywnosc_pomocy)
+
+        if intensywnosc >= 50:
+            return 4
+        elif intensywnosc >= 40:
+            return 5
+        else:
+            return 6

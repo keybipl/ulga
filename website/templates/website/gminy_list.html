@@ -926,6 +926,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div style="background: #f8f9fa; border-left: 4px solid #6b4c9a; padding: 15px 20px; margin-top: 20px; border-radius: 4px;">
+                                    <div style="font-weight: 600; color: #1a2332; margin-bottom: 8px; font-size: 0.95em;">
+                                        📋 Kryteria jakościowe
+                                    </div>
+                                    <div style="color: #495057; font-size: 0.9em; line-height: 1.6;">
+                                        • ${gmina.liczba_kryteriow_jakosciowych || 6} ${gmina.liczba_kryteriow_jakosciowych === 4 ? 'punkty' : 'punktów'} z 13 kryteriów dla działalności przemysłowej<br>
+                                        • ${gmina.liczba_kryteriow_jakosciowych || 6} ${gmina.liczba_kryteriow_jakosciowych === 4 ? 'punkty' : 'punktów'} z 12 kryteriów dla działalności usługowej
+                                    </div>
+                                </div>
                                 `}
                             </div>
                         `;

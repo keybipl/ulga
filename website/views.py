@@ -142,6 +142,7 @@ def api_get_gminy(request):
                 else None,
                 "gmina_tracaca": gmina.gmina_tracaca,
                 "strefa_ekonomiczna": gmina.strefa_ekonomiczna,
+                "liczba_kryteriow_jakosciowych": gmina.get_liczba_kryteriow_jakosciowych(),
             }
         )
 
