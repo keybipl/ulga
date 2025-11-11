@@ -1,4 +1,5 @@
 {% extends "website/base.html" %}
+{% load static %}
 {% block title %}
     O Programie PSI - Polska Strefa Inwestycji
 {% endblock title %}
@@ -40,6 +41,49 @@
 
             .program-hero p {
                 font-size: 1rem;
+            }
+        }
+
+        /* Logo Section */
+        .psi-logo-section {
+            background: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .psi-logo-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .psi-logo-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .psi-logo-caption {
+            font-size: 0.95rem;
+            color: #5a5a5a;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .psi-logo-section {
+                padding: 30px 0;
+            }
+
+            .psi-logo-container img {
+                max-height: 150px;
+            }
+
+            .psi-logo-caption {
+                font-size: 0.85rem;
             }
         }
 
@@ -202,6 +246,17 @@
             <p>Kompleksowy przewodnik po zasadach i możliwościach korzystania z ulg podatkowych w ramach PSI</p>
         </div>
     </section>
+    <!-- Logo PSI Section -->
+    <section class="psi-logo-section">
+        <div class="psi-logo-container">
+            <img src="{% static 'images/psi.png' %}"
+                 width="auto"
+                 height="auto"
+                 alt="Polska Strefa Inwestycji - Oficjalne logo programu"
+                 onerror="this.src='https://kssse.pl/psi.png'" />
+            <p class="psi-logo-caption">Oficjalne logo programu rządowego Polska Strefa Inwestycji</p>
+        </div>
+    </section>
     <div class="article-content">
         <h2>Podstawy prawne programu PSI</h2>
         <p>
@@ -297,15 +352,18 @@
             <li>Wsparcie przysługuje z mocy prawa – po spełnieniu określonych warunków</li>
             <li>Proces jest przewidywalny i przejrzysty</li>
         </ul>
-        <div class="article-footer">
-            <p>
-                Sprawdź swoją ulgę – skorzystaj z naszego Kalkulatora
-                <br>
-                Masz pytania? – Skontaktuj się z nami
-            </p>
-            <a href="{% url 'gminy_list' %}">Baza gmin</a>
-            <span class="separator-dot">•</span>
-            <a href="#kalkulator">Kalkulator</a>
-        </div>
+        <h2>Potrzebujesz wsparcia?</h2>
+        <p>
+            Jeśli planujesz inwestycję i chcesz dowiedzieć się, czy możesz skorzystać z programu PSI,
+            zapraszamy do skorzystania z naszych narzędzi. W <a href="{% url 'gminy_list' %}">bazie gmin</a>
+            sprawdzisz szczegółowe parametry dla swojej lokalizacji – minimalne nakłady inwestycyjne,
+            intensywność pomocy oraz liczbę kryteriów jakościowych do spełnienia.
+        </p>
+        <p>
+            Chcesz szybko oszacować wartość ulgi? Użyj naszego <a href="#kalkulator">kalkulatora PSI</a>,
+            który pomoże Ci obliczyć potencjalne korzyści z programu. Masz pytania dotyczące swojej
+            konkretnej sytuacji? <a href="#kontakt">Skontaktuj się z nami</a> – pomożemy Ci przygotować
+            wniosek i przeprowadzimy przez cały proces uzyskania decyzji o wsparciu.
+        </p>
     </div>
 {% endblock content %}
