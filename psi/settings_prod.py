@@ -1,12 +1,13 @@
 """Production settings for ulga project."""
+# ruff: noqa: F405
 
 import os
 
-from .settings import *
+from .settings import *  # noqa: F403
 
 # Security settings
 DEBUG = os.environ.get("DEBUG", "False") == "True"
-SECRET_KEY = os.environ.get("SECRET_KEY", SECRET_KEY)
+SECRET_KEY = os.environ.get("SECRET_KEY", SECRET_KEY)  # noqa: F405
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
 
