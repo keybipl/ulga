@@ -13,6 +13,26 @@
               content="Profesjonalne doradztwo w zakresie Polskiej Strefy Inwestycji. Pomożemy uzyskać zwolnienie z podatku do 70%. Ponad 20 lat doświadczenia w SSE i PSI.">
         <meta name="keywords"
               content="Polska Strefa Inwestycji, PSI, ulga podatkowa, doradztwo PSI, zwolnienie z podatku, SSE, ekspert PSI">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://ulga-psi.pl/">
+        <meta property="og:title"
+              content="ulga-psi.pl - Ekspert Polskiej Strefy Inwestycji | Doradztwo PSI">
+        <meta property="og:description"
+              content="Profesjonalne doradztwo w zakresie Polskiej Strefy Inwestycji. Pomożemy uzyskać zwolnienie z podatku do 70%. Ponad 20 lat doświadczenia w strefach ekonomicznych.">
+        <meta property="og:image"
+              content="https://ulga-psi.pl{% static 'psi.png' %}">
+        <meta property="og:locale" content="pl_PL">
+        <meta property="og:site_name" content="ulga-psi.pl">
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:url" content="https://ulga-psi.pl/">
+        <meta name="twitter:title"
+              content="ulga-psi.pl - Ekspert Polskiej Strefy Inwestycji">
+        <meta name="twitter:description"
+              content="Profesjonalne doradztwo w zakresie Polskiej Strefy Inwestycji. Pomożemy uzyskać zwolnienie z podatku do 70%.">
+        <meta name="twitter:image"
+              content="https://ulga-psi.pl{% static 'psi.png' %}">
         <style>
             :root {
                 /* Kolory podstawowe */
@@ -1368,7 +1388,9 @@
             function setCookie(name, value, days) {
                 const date = new Date();
                 date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+                const isSecure = window.location.protocol === 'https:';
+                const secureFlag = isSecure ? ';Secure' : '';
+                document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/;SameSite=Lax" + secureFlag;
             }
 
             function getCookie(name) {
