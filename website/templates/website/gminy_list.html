@@ -926,7 +926,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="background: #f8f9fa; border-left: 4px solid #6b4c9a; padding: 15px 20px; margin-top: 20px; border-radius: 4px;">
+                                <div style="background: #f8f9fa; border-left: 4px solid #2d5016; padding: 15px 20px; margin-top: 20px; border-radius: 4px;">
                                     <div style="font-weight: 600; color: #1a2332; margin-bottom: 8px; font-size: 0.95em;">
                                         📋 Kryteria jakościowe
                                     </div>
@@ -935,6 +935,18 @@
                                         • ${gmina.liczba_kryteriow_jakosciowych || 6} ${gmina.liczba_kryteriow_jakosciowych === 4 ? 'punkty' : 'punktów'} z 12 kryteriów dla działalności usługowej
                                     </div>
                                 </div>
+                                ${(gmina.gmina_tracaca || (gmina.stopa_bezrobocia && gmina.stopa_bezrobocia >= 7.84)) ? `
+                                <div style="background: #e7f3ff; border-left: 4px solid #0066cc; padding: 15px 20px; margin-top: 15px; border-radius: 4px; display: flex; flex-direction: column; justify-content: center; min-height: 50px;">
+                                    <div style="font-weight: 600; color: #0066cc; font-size: 0.95em;">
+                                        ✓ Punkt w kryterium jakościowym za lokalizację
+                                    </div>
+                                    ${gmina.stopa_bezrobocia && gmina.stopa_bezrobocia >= 7.84 ? `
+                                    <div style="color: #495057; font-size: 0.9em; line-height: 1.6; margin-top: 8px;">
+                                        Wysoka stopa bezrobocia w powiecie: ${gmina.stopa_bezrobocia.toFixed(1)}% (próg: 7.84% - 160% średniej krajowej 4.9%)
+                                    </div>
+                                    ` : ''}
+                                </div>
+                                ` : ''}
                                 `}
                             </div>
                         `;

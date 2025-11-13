@@ -53,6 +53,14 @@ class Gmina(models.Model):
         verbose_name="Minimalne nakłady (PLN)",
         help_text="Minimalne nakłady inwestycyjne w złotych",
     )
+    stopa_bezrobocia = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        verbose_name="Stopa bezrobocia (%)",
+        help_text="Stopa bezrobocia w powiecie",
+    )
 
     # Status gminy
     gmina_tracaca = models.BooleanField(

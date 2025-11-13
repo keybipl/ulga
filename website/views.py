@@ -141,6 +141,9 @@ def api_get_gminy(request):
                 if gmina.minimalne_naklady
                 else None,
                 "gmina_tracaca": gmina.gmina_tracaca,
+                "stopa_bezrobocia": float(gmina.stopa_bezrobocia)
+                if gmina.stopa_bezrobocia
+                else None,
                 "strefa_ekonomiczna": gmina.strefa_ekonomiczna,
                 "liczba_kryteriow_jakosciowych": gmina.get_liczba_kryteriow_jakosciowych(),
             }
