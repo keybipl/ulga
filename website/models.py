@@ -1,4 +1,5 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 
 class Gmina(models.Model):
@@ -99,3 +100,38 @@ class Gmina(models.Model):
             return 5
         else:
             return 6
+
+
+class Artykul(models.Model):
+    """Model artykułu blogowego o PSI"""
+
+    tytul = models.CharField(max_length=200, verbose_name="Tytuł")
+    slug = models.SlugField(
+        max_length=200, unique=True, verbose_name="URL (slug)", blank=True
+    )
+    lead = models.TextField(verbose_name="Krótki opis (lead)", max_length=300)
+    tresc = HTMLField(verbose_name="Treść artykułu")
+
+    # Metadata
+    data_publikacji = models.DateTimeField(
+        auto_now_add=True, verbose_name="Data publikacji"
+    )
+    data_aktualizacji = models.DateTimeField(
+        auto_now=True, verbose_name="Data aktualizacji"
+    )
+    opublikowany = models.BooleanField(default=True, verbose_name="Opublikowany")
+
+    class Meta:
+        verbose_name = "Artykuł"
+        verbose_name_plural = "Artykuły"
+        ordering = ["-data_publikacji"]
+
+    def __str__(self):
+        return self.tytul
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            from django.utils.text import slugify
+
+            self.slug = slugify(self.tytul)
+        super().save(*args, **kwargs)

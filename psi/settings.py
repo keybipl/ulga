@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-avikvyjn!xj0=r%tbp^48j5&70pz11skv)+5^b!wnjdhp7tp8c"
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY", "django-insecure-avikvyjn!xj0=r%tbp^48j5&70pz11skv)+5^b!wnjdhp7tp8c"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = (
+    os.environ.get("ALLOWED_HOSTS", "").split(",")
+    if os.environ.get("ALLOWED_HOSTS")
+    else []
+)
 
 
 # Application definition
@@ -37,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "tinymce",
     "website",
 ]
 
@@ -125,3 +133,31 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# TinyMCE Configuration
+TINYMCE_DEFAULT_CONFIG = {
+    "height": 500,
+    "width": "100%",
+    "menubar": "file edit view insert format tools table help",
+    "plugins": "advlist autolink lists link image charmap print preview anchor "
+    "searchreplace visualblocks code fullscreen "
+    "insertdatetime media table paste code help wordcount",
+    "toolbar": "undo redo | bold italic underline strikethrough | "
+    "fontselect fontsizeselect formatselect | alignleft aligncenter "
+    "alignright alignjustify | outdent indent | numlist bullist | "
+    "forecolor backcolor removeformat | pagebreak | charmap emoticons | "
+    "fullscreen preview save print | insertfile image media link anchor | "
+    "ltr rtl | code",
+    "custom_undo_redo_levels": 10,
+    "language": "pl",
+    "content_style": "body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 14px; }",
+}
+
+# Production SSL and security settings (enabled when DEBUG=False)
+if not DEBUG:
+    SECURE_SSL_REDIRECT = os.environ.get("USE_SSL", "False") == "True"
+    SESSION_COOKIE_SECURE = os.environ.get("USE_SSL", "False") == "True"
+    CSRF_COOKIE_SECURE = os.environ.get("USE_SSL", "False") == "True"
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = "DENY"

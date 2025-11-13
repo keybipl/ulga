@@ -1,0 +1,122 @@
+{% extends "website/base.html" %}
+{% block title %}
+    Artykuły - PSI Ulga
+{% endblock title %}
+{% block content %}
+    <section class="hero">
+        <div class="container">
+            <h1>📰 Artykuły</h1>
+            <p>Przydatne informacje o programie PSI</p>
+        </div>
+    </section>
+    <div class="container artykuly-container">
+        {% if artykuly %}
+            <div class="artykuly-grid">
+                {% for artykul in artykuly %}
+                    <article class="artykul-card">
+                        <div class="artykul-card-inner">
+                            <div class="artykul-date">📅 {{ artykul.data_publikacji|date:"d.m.Y" }}</div>
+                            <h2 class="artykul-title">{{ artykul.tytul }}</h2>
+                            <p class="artykul-lead">{{ artykul.lead }}</p>
+                            <a href="{% url 'artykul_detail' artykul.slug %}" class="artykul-link">Czytaj więcej →</a>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-articles">
+                <p>Brak artykułów do wyświetlenia.</p>
+            </div>
+        {% endif %}
+    </div>
+    <style>
+        .hero {
+            padding: 60px 0 !important;
+        }
+
+        .artykuly-container {
+            padding: 3rem 1rem;
+        }
+
+        .artykuly-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .artykul-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .artykul-card-inner {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .artykul-date {
+            color: #6b4c9a;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .artykul-title {
+            color: #1a2332;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .artykul-lead {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .artykul-link {
+            display: inline-block;
+            background: #2d5016;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            text-align: center;
+            align-self: flex-start;
+        }
+
+        .no-articles {
+            text-align: center;
+            padding: 3rem 0;
+            color: #555;
+        }
+
+        .no-articles p {
+            font-size: 1.2rem;
+        }
+
+        .artykul-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .artykul-link:hover {
+            background: #3d6b26 !important;
+        }
+
+        @media (max-width: 768px) {
+            .artykuly-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+{% endblock content %}

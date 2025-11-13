@@ -1,9 +1,9 @@
 import locale
 
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
-from .models import Gmina
+from .models import Artykul, Gmina
 
 # Ustaw polską lokalizację dla sortowania
 locale_set = False
@@ -152,3 +152,17 @@ def api_get_gminy(request):
 def o_programie(request):
     """Widok z informacjami o programie PSI"""
     return render(request, "website/o_programie.html")
+
+
+def artykuly_list(request):
+    """Widok z listą artykułów"""
+    artykuly = Artykul.objects.filter(opublikowany=True)
+    context = {"artykuly": artykuly}
+    return render(request, "website/artykuly_list.html", context)
+
+
+def artykul_detail(request, slug):
+    """Widok pojedynczego artykułu"""
+    artykul = get_object_or_404(Artykul, slug=slug, opublikowany=True)
+    context = {"artykul": artykul}
+    return render(request, "website/artykul_detail.html", context)
