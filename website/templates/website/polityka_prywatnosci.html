@@ -1,0 +1,270 @@
+{% extends 'website/base.html' %}
+{% block title %}Polityka Prywatności - Ulga-PSI.pl{% endblock %}
+{% block content %}
+    <style>
+        .privacy-policy {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .privacy-policy h1 {
+            color: var(--navy-dark);
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+        }
+
+        .privacy-policy .last-update {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .privacy-policy h2 {
+            color: var(--navy-dark);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--gold-copper);
+            padding-bottom: 10px;
+        }
+
+        .privacy-policy h3 {
+            color: var(--navy-dark);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .privacy-policy p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .privacy-policy ul {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .privacy-policy li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .privacy-policy strong {
+            color: var(--navy-dark);
+        }
+
+        .privacy-policy .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--gold-copper);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .privacy-policy .contact-info {
+            border-left: 4px solid var(--gold-copper);
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .privacy-policy .contact-info h3 {
+            color: var(--navy-dark);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .privacy-policy .contact-info p {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-policy {
+                padding: 40px 15px;
+            }
+
+            .privacy-policy h1 {
+                font-size: 2rem;
+            }
+
+            .privacy-policy h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <div class="privacy-policy">
+        <h1>Polityka Prywatności</h1>
+        <p class="last-update">Data ostatniej aktualizacji: 13 listopada 2025</p>
+        <div class="info-box">
+            <p>
+                <strong>Szanujemy Twoją prywatność.</strong> Niniejsza Polityka Prywatności wyjaśnia, jakie dane zbieramy, w jakim celu i jakie masz prawa w związku z przetwarzaniem Twoich danych osobowych.
+            </p>
+        </div>
+        <h2>1. Administrator Danych</h2>
+        <p>Administratorem Twoich danych osobowych jest:</p>
+        <div class="contact-info">
+            <h3>Ulga-PSI.pl</h3>
+            <p>📧 E-mail: kontakt@ulga-psi.pl</p>
+            <p>📞 Telefon: +48 123 456 789</p>
+            <p>📍 Adres: Warszawa, Polska</p>
+        </div>
+        <h2>2. Jakie dane zbieramy?</h2>
+        <h3>2.1. Dane zbierane automatycznie</h3>
+        <p>Podczas korzystania z naszej strony automatycznie zbieramy:</p>
+        <ul>
+            <li>
+                <strong>Adres IP</strong> - w celach technicznych i bezpieczeństwa
+            </li>
+            <li>
+                <strong>Informacje o przeglądarce</strong> - typ, wersja, język
+            </li>
+            <li>
+                <strong>Dane o urządzeniu</strong> - system operacyjny, rozdzielczość ekranu
+            </li>
+            <li>
+                <strong>Czas i data wizyty</strong>
+            </li>
+            <li>
+                <strong>Odwiedzone podstrony</strong>
+            </li>
+        </ul>
+        <h3>2.2. Pliki cookies</h3>
+        <p>Nasza strona używa plików cookies:</p>
+        <ul>
+            <li>
+                <strong>Cookies niezbędne</strong> - zapewniają podstawowe funkcje strony (sesje, bezpieczeństwo)
+            </li>
+            <li>
+                <strong>Cookies analityczne</strong> - pomagają nam zrozumieć, jak użytkownicy korzystają ze strony (wymagają zgody)
+            </li>
+        </ul>
+        <h3>2.3. Dane z formularzy</h3>
+        <p>Jeśli skontaktujesz się z nami przez formularz lub e-mail, zbieramy:</p>
+        <ul>
+            <li>Imię i nazwisko (opcjonalnie)</li>
+            <li>Adres e-mail</li>
+            <li>Treść wiadomości</li>
+        </ul>
+        <h2>3. Cele przetwarzania danych</h2>
+        <p>Twoje dane przetwarzamy w następujących celach:</p>
+        <ul>
+            <li>
+                <strong>Świadczenie usług</strong> - zapewnienie prawidłowego działania strony (art. 6 ust. 1 lit. f RODO - prawnie uzasadniony interes)
+            </li>
+            <li>
+                <strong>Odpowiedź na zapytania</strong> - jeśli kontaktujesz się z nami (art. 6 ust. 1 lit. a RODO - zgoda)
+            </li>
+            <li>
+                <strong>Analiza statystyk</strong> - poprawa jakości serwisu (art. 6 ust. 1 lit. a RODO - zgoda)
+            </li>
+            <li>
+                <strong>Bezpieczeństwo</strong> - ochrona przed atakami i nadużyciami (art. 6 ust. 1 lit. f RODO)
+            </li>
+        </ul>
+        <h2>4. Jak długo przechowujemy dane?</h2>
+        <ul>
+            <li>
+                <strong>Dane z cookies</strong> - do 12 miesięcy lub do wycofania zgody
+            </li>
+            <li>
+                <strong>Logi serwera</strong> - do 12 miesięcy (wymogi bezpieczeństwa)
+            </li>
+            <li>
+                <strong>Korespondencja</strong> - przez czas niezbędny do załatwienia sprawy, ale nie dłużej niż 3 lata
+            </li>
+        </ul>
+        <h2>5. Udostępnianie danych</h2>
+        <p>Twoje dane możemy udostępnić:</p>
+        <ul>
+            <li>
+                <strong>Dostawcom usług IT</strong> - hosting, analityka (na podstawie umów powierzenia)
+            </li>
+            <li>
+                <strong>Organom państwowym</strong> - jeśli wymaga tego prawo
+            </li>
+        </ul>
+        <p>
+            <strong>Nie sprzedajemy Twoich danych osobowych osobom trzecim.</strong>
+        </p>
+        <h2>6. Twoje prawa</h2>
+        <p>Przysługują Ci następujące prawa:</p>
+        <ul>
+            <li>
+                <strong>Prawo dostępu</strong> - możesz uzyskać informacje o przetwarzanych danych
+            </li>
+            <li>
+                <strong>Prawo do sprostowania</strong> - możesz poprawić nieprawidłowe dane
+            </li>
+            <li>
+                <strong>Prawo do usunięcia</strong> - możesz żądać usunięcia danych ("prawo do bycia zapomnianym")
+            </li>
+            <li>
+                <strong>Prawo do ograniczenia przetwarzania</strong> - możesz ograniczyć sposób wykorzystania danych
+            </li>
+            <li>
+                <strong>Prawo do przenoszenia danych</strong> - możesz otrzymać dane w formacie elektronicznym
+            </li>
+            <li>
+                <strong>Prawo sprzeciwu</strong> - możesz sprzeciwić się przetwarzaniu danych
+            </li>
+            <li>
+                <strong>Prawo do cofnięcia zgody</strong> - w każdej chwili możesz wycofać zgodę na cookies analityczne
+            </li>
+        </ul>
+        <p>
+            Aby skorzystać z powyższych praw, skontaktuj się z nami: <strong>kontakt@ulga-psi.pl</strong>
+        </p>
+        <h2>7. Prawo do skargi</h2>
+        <p>Masz prawo wnieść skargę do organu nadzorczego:</p>
+        <div class="info-box">
+            <p>
+                <strong>Prezes Urzędu Ochrony Danych Osobowych</strong>
+                <br>
+                ul. Stawki 2, 00-193 Warszawa
+                <br>
+                <a href="https://uodo.gov.pl" target="_blank">https://uodo.gov.pl</a>
+            </p>
+        </div>
+        <h2>8. Bezpieczeństwo danych</h2>
+        <p>Stosujemy odpowiednie środki techniczne i organizacyjne, aby chronić Twoje dane:</p>
+        <ul>
+            <li>Szyfrowanie połączeń (HTTPS/SSL)</li>
+            <li>Regularne kopie zapasowe</li>
+            <li>Ograniczony dostęp do danych</li>
+            <li>Aktualizacje oprogramowania</li>
+        </ul>
+        <h2>9. Zewnętrzne usługi</h2>
+        <p>Nasza strona może korzystać z następujących usług zewnętrznych:</p>
+        <ul>
+            <li>
+                <strong>Hosting</strong> - przechowywanie strony na serwerze
+            </li>
+            <li>
+                <strong>Narzędzia analityczne</strong> - Google Analytics lub podobne (po uzyskaniu zgody)
+            </li>
+        </ul>
+        <p>Te usługi mogą zbierać dane zgodnie z własnymi politykami prywatności.</p>
+        <h2>10. Zmiany w Polityce Prywatności</h2>
+        <p>
+            Zastrzegamy sobie prawo do aktualizacji niniejszej Polityki Prywatności. O istotnych zmianach poinformujemy na stronie głównej lub przez banner.
+        </p>
+        <h2>11. Kontakt</h2>
+        <p>W razie pytań dotyczących przetwarzania danych osobowych, skontaktuj się z nami:</p>
+        <div class="contact-info">
+            <p>
+                📧 <strong>kontakt@ulga-psi.pl</strong>
+            </p>
+            <p>
+                📞 <strong>+48 123 456 789</strong>
+            </p>
+            <p>Odpowiemy w ciągu 30 dni od otrzymania zapytania.</p>
+        </div>
+        <div class="info-box" style="margin-top: 50px;">
+            <p>
+                <strong>Dziękujemy za zaufanie!</strong> Twoja prywatność jest dla nas najważniejsza.
+            </p>
+        </div>
+    </div>
+{% endblock %}

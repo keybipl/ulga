@@ -169,3 +169,8 @@ def artykul_detail(request, slug):
     artykul = get_object_or_404(Artykul, slug=slug, opublikowany=True)
     context = {"artykul": artykul}
     return render(request, "website/artykul_detail.html", context)
+
+
+def polityka_prywatnosci(request):
+    """Widok z Polityką Prywatności"""
+    return render(request, "website/polityka_prywatnosci.html")
