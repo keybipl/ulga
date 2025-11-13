@@ -581,6 +581,15 @@
                 color: var(--text-secondary);
             }
 
+            .footer-bottom a {
+                color: var(--gold-copper);
+                text-decoration: underline;
+            }
+
+            .footer-bottom a:hover {
+                color: var(--white);
+            }
+
             .legal-notice {
                 margin-top: 20px;
                 padding-top: 15px;
@@ -1156,9 +1165,7 @@
                 </div>
                 <div class="footer-bottom">
                     <p>
-                        © 2025 Ulga-PSI.pl - Wszystkie prawa zastrzeżone. | <a href="{% url 'polityka_prywatnosci' %}"
-    style="color: var(--gold-copper);
-           text-decoration: underline">Polityka Prywatności</a>
+                        © 2025 Ulga-PSI.pl - Wszystkie prawa zastrzeżone. | <a href="{% url 'polityka_prywatnosci' %}">Polityka Prywatności</a>
                     </p>
                     <div class="legal-notice">
                         <p>
