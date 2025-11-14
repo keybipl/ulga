@@ -11,6 +11,7 @@ urlpatterns = [
     path(
         "polityka-prywatnosci/", views.polityka_prywatnosci, name="polityka_prywatnosci"
     ),
+    path("uslugi-doradcze/", views.uslugi_doradcze, name="uslugi_doradcze"),
     # API endpoints dla AJAX
     path("api/powiaty/", views.api_get_powiaty, name="api_get_powiaty"),
     path("api/gminy/", views.api_get_gminy, name="api_get_gminy"),

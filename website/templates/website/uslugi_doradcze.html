@@ -1,0 +1,655 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block title %}
+    Usługi Doradcze PSI - Profesjonalne Doradztwo | ulga-psi.pl
+{% endblock title %}
+{% block content %}
+    <style>
+        /* Hero Section dla Usług Doradczych */
+        .services-hero {
+            background: linear-gradient(135deg, #1a2332 0%, #2c3947 50%, #f5f5f5 100%);
+            color: #ffffff;
+            padding: 80px 0 60px;
+            text-align: center;
+            border-bottom: 3px solid #d4a574;
+        }
+
+        .services-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .services-hero p {
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+
+        .services-hero .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #d4a574;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.95rem;
+            color: #f5f5f5;
+            margin-top: 5px;
+        }
+
+        /* Content Section */
+        .services-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            background: #f5f5f5;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .service-card {
+            background: #ffffff;
+            padding: 35px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 3px solid #d4a574;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-card h3 {
+            color: #1a2332;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #2c2c2c;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .service-card ul li {
+            color: #2c2c2c;
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .service-card ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2d5016;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: #ffffff;
+            padding: 50px 30px;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .process-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1a2332;
+            margin-bottom: 40px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 25px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2d5016 0%, #3d6b26 100%);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+        }
+
+        .process-step h3 {
+            color: #1a2332;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .process-step p {
+            color: #5a5a5a;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Why Choose Us Section */
+        .why-us-section {
+            background: #ffffff;
+            padding: 50px 30px;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .why-us-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1a2332;
+            margin-bottom: 40px;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .why-us-item {
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #d4a574;
+            transition: all 0.3s ease;
+        }
+
+        .why-us-item:hover {
+            background: #ffffff;
+            border-left-color: #2d5016;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .why-us-item h3 {
+            color: #1a2332;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .why-us-item h3 span {
+            font-size: 1.5rem;
+        }
+
+        .why-us-item p {
+            color: #2c2c2c;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-contact {
+            background: linear-gradient(135deg, #1a2332 0%, #2d5016 100%);
+            color: #ffffff;
+            padding: 60px 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-contact h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .cta-contact p {
+            font-size: 1.2rem;
+            color: #f5f5f5;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-contact .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.1rem;
+            color: #f5f5f5;
+        }
+
+        .contact-item a {
+            color: #d4a574;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #ffffff;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: #d4a574;
+            color: #ffffff;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-cta:hover {
+            background: #c9934a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 165, 116, 0.4);
+            color: #ffffff;
+        }
+
+        /* Testimonials Section (optional for future) */
+        .testimonials-section {
+            background: #ffffff;
+            padding: 50px 30px;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonials-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1a2332;
+            margin-bottom: 40px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #5a5a5a;
+            max-width: 800px;
+            margin: -20px auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .services-hero {
+                padding: 50px 20px 40px;
+            }
+
+            .services-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .services-hero p {
+                font-size: 1rem;
+            }
+
+            .hero-stat-number {
+                font-size: 2rem;
+            }
+
+            .services-content {
+                padding: 40px 20px;
+            }
+
+            .services-grid,
+            .process-steps,
+            .why-us-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-section h2,
+            .why-us-section h2,
+            .testimonials-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .cta-contact h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-contact p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="container">
+            <h1>💼 Usługi Doradcze PSI</h1>
+            <p>
+                Profesjonalne wsparcie w uzyskaniu zwolnienia z podatku w ramach Polskiej Strefy Inwestycji.
+                Ponad 20 lat doświadczenia w obsłudze SSE i PSI.
+            </p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">20+</span>
+                    <span class="hero-stat-label">lat doświadczenia</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">100+</span>
+                    <span class="hero-stat-label">obsłużonych projektów</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">98%</span>
+                    <span class="hero-stat-label">skuteczność wniosków</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="services-content">
+        <!-- Services Grid -->
+        <h2 style="text-align: center; font-size: 2.2rem; color: #1a2332; margin-bottom: 20px;">
+            Nasze Usługi
+        </h2>
+        <p class="section-subtitle">
+            Oferujemy kompleksowe wsparcie na każdym etapie – od analizy wstępnej, przez przygotowanie wniosku,
+            aż po monitoring realizacji projektu i bieżące doradztwo w trakcie trwania decyzji o wsparciu.
+        </p>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🔍</span>
+                <h3>Audyt i Analiza Projektów</h3>
+                <p>Przeprowadzamy kompleksową analizę Twojej inwestycji pod kątem możliwości uzyskania wsparcia PSI.</p>
+                <ul>
+                    <li>Analiza kwalifikowalności projektu</li>
+                    <li>Ocena spełnienia kryteriów ilościowych i jakościowych</li>
+                    <li>Obliczenie potencjalnej wartości ulgi</li>
+                    <li>Identyfikacja optymalnej lokalizacji</li>
+                    <li>Analiza ryzyk i możliwości</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">📋</span>
+                <h3>Przygotowanie Wniosku o Wsparcie</h3>
+                <p>Profesjonalne przygotowanie całej dokumentacji niezbędnej do uzyskania decyzji o wsparciu.</p>
+                <ul>
+                    <li>Kompletne opracowanie wniosku</li>
+                    <li>Przygotowanie biznesplanu inwestycji</li>
+                    <li>Dokumentacja spełnienia kryteriów jakościowych</li>
+                    <li>Kalkulacja kosztów kwalifikowalnych</li>
+                    <li>Reprezentacja przed zarządzającym strefą</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">⚖️</span>
+                <h3>Doradztwo Prawno-Podatkowe</h3>
+                <p>Specjalistyczne doradztwo w zakresie interpretacji przepisów i optymalizacji podatkowej.</p>
+                <ul>
+                    <li>Interpretacja przepisów ustawy PSI</li>
+                    <li>Strategia optymalizacji podatkowej</li>
+                    <li>Opinie prawne i analizy ryzyk</li>
+                    <li>Wsparcie w kontrolach i postępowaniach</li>
+                    <li>Konsultacje bieżące w trakcie projektu</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">📊</span>
+                <h3>Monitoring i Rozliczanie Projektu</h3>
+                <p>Bieżący monitoring realizacji inwestycji i wsparcie w prawidłowym rozliczaniu ulgi.</p>
+                <ul>
+                    <li>Monitoring postępu realizacji projektu</li>
+                    <li>Weryfikacja spełnienia warunków decyzji</li>
+                    <li>Przygotowanie raportów okresowych</li>
+                    <li>Wsparcie w rozliczeniach podatkowych</li>
+                    <li>Doradztwo przy zmianach w projekcie</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🎯</span>
+                <h3>Optymalizacja Struktury Inwestycji</h3>
+                <p>Doradztwo w zakresie optymalnego strukturyzowania projektu dla maksymalizacji korzyści.</p>
+                <ul>
+                    <li>Analiza różnych scenariuszy realizacji</li>
+                    <li>Optymalizacja wyboru kosztów kwalifikowalnych</li>
+                    <li>Strategia etapowania inwestycji</li>
+                    <li>Kumulacja z innymi formami wsparcia</li>
+                    <li>Analiza wpływu na strukturę grupy kapitałowej</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🤝</span>
+                <h3>Kompleksowa Obsługa Due Diligence</h3>
+                <p>Profesjonalne wsparcie w procesach inwestycyjnych i transakcjach M&A z perspektywy PSI.</p>
+                <ul>
+                    <li>Due diligence decyzji o wsparciu</li>
+                    <li>Weryfikacja prawidłowości rozliczeń</li>
+                    <li>Analiza ryzyk w transakcjach</li>
+                    <li>Wsparcie przy sukcesji decyzji</li>
+                    <li>Opinie dla inwestorów</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Process Section -->
+        <div class="process-section">
+            <h2>🚀 Jak wygląda współpraca?</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Bezpłatna Konsultacja</h3>
+                    <p>
+                        Poznajemy Twój projekt, omawiamy cele i wstępnie oceniamy możliwość
+                        skorzystania z PSI. Bez zobowiązań.
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Audyt i Oferta</h3>
+                    <p>
+                        Przeprowadzamy szczegółową analizę projektu i przedstawiamy ofertę
+                        współpracy dopasowaną do Twoich potrzeb.
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Przygotowanie Dokumentacji</h3>
+                    <p>
+                        Kompleksowo przygotowujemy wniosek i całą niezbędną dokumentację
+                        do złożenia w strefie ekonomicznej.
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Złożenie Wniosku</h3>
+                    <p>
+                        Składamy wniosek o wydanie decyzji o wsparciu i reprezentujemy
+                        Cię w postępowaniu administracyjnym.
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>Uzyskanie Decyzji</h3>
+                    <p>
+                        Wspieramy proces uzyskania decyzji, odpowiadamy na wezwania
+                        i prowadzimy komunikację ze strefą.
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h3>Monitoring i Wsparcie</h3>
+                    <p>
+                        Pomagamy w realizacji projektu, monitorujemy spełnienie warunków
+                        i wspieramy w rozliczeniach podatkowych.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Why Choose Us Section -->
+        <div class="why-us-section">
+            <h2>Dlaczego warto z nami współpracować?</h2>
+            <div class="why-us-grid">
+                <div class="why-us-item">
+                    <h3>
+                        <span>🎓</span> Doświadczenie i Wiedza
+                    </h3>
+                    <p>
+                        Ponad 20 lat praktyki w obsłudze Specjalnych Stref Ekonomicznych i programu PSI.
+                        Znamy zasady działania systemu od podszewki.
+                    </p>
+                </div>
+                <div class="why-us-item">
+                    <h3>
+                        <span>✅</span> Wysoka Skuteczność
+                    </h3>
+                    <p>
+                        98% przygotowanych przez nas wniosków kończy się uzyskaniem decyzji o wsparciu.
+                        Dbamy o każdy szczegół i minimalizujemy ryzyko odmowy.
+                    </p>
+                </div>
+                <div class="why-us-item">
+                    <h3>
+                        <span>🔗</span> Relacje ze Strefami
+                    </h3>
+                    <p>
+                        Wieloletnia współpraca z zarządzającymi wszystkimi strefami ekonomicznymi w Polsce.
+                        Znamy procedury i wymagania każdej strefy.
+                    </p>
+                </div>
+                <div class="why-us-item">
+                    <h3>
+                        <span>💡</span> Indywidualne Podejście
+                    </h3>
+                    <p>
+                        Każdy projekt traktujemy indywidualnie. Dostosowujemy strategię do specyfiki
+                        Twojego biznesu i celów inwestycyjnych.
+                    </p>
+                </div>
+                <div class="why-us-item">
+                    <h3>
+                        <span>⚡</span> Kompleksowość
+                    </h3>
+                    <p>
+                        Od analizy wstępnej po monitoring realizacji – oferujemy pełne spektrum usług
+                        związanych z PSI w jednym miejscu.
+                    </p>
+                </div>
+                <div class="why-us-item">
+                    <h3>
+                        <span>📱</span> Stała Dostępność
+                    </h3>
+                    <p>
+                        Jesteśmy do Twojej dyspozycji przez cały okres realizacji projektu.
+                        Szybko odpowiadamy na pytania i reagujemy na bieżące potrzeby.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- CTA Contact Section -->
+        <div class="cta-contact">
+            <h2>🎯 Zacznijmy współpracę!</h2>
+            <p>
+                Skontaktuj się z nami, aby umówić bezpłatną konsultację. Omówimy Twój projekt
+                i przedstawimy możliwości skorzystania z ulgi PSI.
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="mailto:kontakt@ulga-psi.pl">kontakt@ulga-psi.pl</a>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <a href="tel:+48123456789">+48 123 456 789</a>
+                </div>
+            </div>
+            <a href="mailto:kontakt@ulga-psi.pl" class="btn-cta">Napisz do nas</a>
+        </div>
+        <!-- Additional info -->
+        <div style="margin-top: 40px; padding: 30px; background: #ffffff; border-radius: 8px; border-left: 4px solid #2d5016;">
+            <h3 style="color: #1a2332; margin-bottom: 15px; font-size: 1.3rem;">
+                💡 Nie masz jeszcze gotowego projektu inwestycyjnego?
+            </h3>
+            <p style="color: #2c2c2c; line-height: 1.7; font-size: 1.05rem;">
+                Nie ma problemu! Pomożemy Ci od początku – od identyfikacji możliwości, przez opracowanie koncepcji inwestycji,
+                aż po pełne wdrożenie projektu PSI. Zapraszamy do kontaktu na etapie planowania – to najlepszy moment,
+                aby optymalnie zaprojektować inwestycję pod kątem maksymalizacji korzyści z programu.
+            </p>
+        </div>
+        <!-- Link to database -->
+        <div style="margin-top: 30px; text-align: center; padding: 40px; background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%); border-radius: 10px;">
+            <h3 style="color: #1a2332; margin-bottom: 15px; font-size: 1.5rem;">
+                🗺️ Sprawdź parametry PSI dla Twojej lokalizacji
+            </h3>
+            <p style="color: #5a5a5a; margin-bottom: 25px; font-size: 1.05rem;">
+                Przed podjęciem decyzji o inwestycji, sprawdź szczegółowe informacje o warunkach PSI w bazie gmin
+            </p>
+            <a href="{% url 'gminy_list' %}"
+               class="btn-large btn-white"
+               style="display: inline-block;
+                      background: #2d5016;
+                      color: #ffffff;
+                      padding: 15px 40px;
+                      border-radius: 30px;
+                      text-decoration: none;
+                      font-weight: 600;
+                      transition: all 0.3s ease;">Przejdź do Bazy Gmin</a>
+        </div>
+    </div>
+{% endblock content %}
+

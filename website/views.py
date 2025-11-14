@@ -174,3 +174,8 @@ def artykul_detail(request, slug):
 def polityka_prywatnosci(request):
     """Widok z Polityką Prywatności"""
     return render(request, "website/polityka_prywatnosci.html")
+
+
+def uslugi_doradcze(request):
+    """Widok z usługami doradczymi"""
+    return render(request, "website/uslugi_doradcze.html")

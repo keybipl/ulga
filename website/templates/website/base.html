@@ -1027,7 +1027,7 @@
                             <a href="#kontakt">Kontakt</a>
                         </li>
                         <li>
-                            <a href="#uslugi" class="btn-primary">Usługi Doradcze</a>
+                            <a href="{% url 'uslugi_doradcze' %}" class="btn-primary">Usługi Doradcze</a>
                         </li>
                     </ul>
                 </div>
@@ -1045,7 +1045,7 @@
                     </p>
                     <div class="hero-buttons">
                         <a href="{% url 'gminy_list' %}" class="btn-large btn-white">🗺️ Baza Gmin</a>
-                        <a href="#uslugi" class="btn-large btn-outline">📞 Skontaktuj się z nami</a>
+                        <a href="{% url 'uslugi_doradcze' %}" class="btn-large btn-outline">📞 Usługi Doradcze</a>
                     </div>
                 </div>
             </section>
@@ -1128,10 +1128,10 @@
                         <h3>Zasoby</h3>
                         <ul>
                             <li>
-                                <a href="#publikacje">Publikacje</a>
+                                <a href="{% url 'artykuly_list' %}">Publikacje</a>
                             </li>
                             <li>
-                                <a href="#uslugi">Usługi doradcze</a>
+                                <a href="{% url 'uslugi_doradcze' %}">Usługi doradcze</a>
                             </li>
                             <li>
                                 <a href="{% url 'o_programie' %}">O programie PSI</a>
