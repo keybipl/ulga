@@ -137,13 +137,13 @@ def api_get_gminy(request):
                 "powiat": gmina.powiat,
                 "rodzaj": gmina.rodzaj,
                 "intensywnosc_pomocy": float(gmina.intensywnosc_pomocy),
-                "minimalne_naklady": float(gmina.minimalne_naklady)
-                if gmina.minimalne_naklady
-                else None,
+                "minimalne_naklady": (
+                    float(gmina.minimalne_naklady) if gmina.minimalne_naklady else None
+                ),
                 "gmina_tracaca": gmina.gmina_tracaca,
-                "stopa_bezrobocia": float(gmina.stopa_bezrobocia)
-                if gmina.stopa_bezrobocia
-                else None,
+                "stopa_bezrobocia": (
+                    float(gmina.stopa_bezrobocia) if gmina.stopa_bezrobocia else None
+                ),
                 "strefa_ekonomiczna": gmina.strefa_ekonomiczna,
                 "liczba_kryteriow_jakosciowych": gmina.get_liczba_kryteriow_jakosciowych(),
             }

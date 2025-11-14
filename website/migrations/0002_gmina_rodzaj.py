@@ -6,13 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('website', '0001_initial'),
+        ("website", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='gmina',
-            name='rodzaj',
-            field=models.CharField(choices=[('GW', 'Gmina wiejska'), ('GM', 'Gmina miejska'), ('GMW', 'Gmina miejsko-wiejska'), ('MNP', 'Miasto na prawach powiatu')], default='GMW', help_text='GW - wiejska, GM - miejska, GMW - miejsko-wiejska, MNP - miasto na prawach powiatu', max_length=3, verbose_name='Rodzaj gminy'),
+            model_name="gmina",
+            name="rodzaj",
+            field=models.CharField(
+                choices=[
+                    ("GW", "Gmina wiejska"),
+                    ("GM", "Gmina miejska"),
+                    ("GMW", "Gmina miejsko-wiejska"),
+                    ("MNP", "Miasto na prawach powiatu"),
+                ],
+                default="GMW",
+                help_text="GW - wiejska, GM - miejska, GMW - miejsko-wiejska, MNP - miasto na prawach powiatu",
+                max_length=3,
+                verbose_name="Rodzaj gminy",
+            ),
         ),
     ]

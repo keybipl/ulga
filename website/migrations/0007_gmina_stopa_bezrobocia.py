@@ -6,13 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('website', '0006_alter_artykul_tresc'),
+        ("website", "0006_alter_artykul_tresc"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='gmina',
-            name='stopa_bezrobocia',
-            field=models.DecimalField(blank=True, decimal_places=2, help_text='Stopa bezrobocia w powiecie', max_digits=5, null=True, verbose_name='Stopa bezrobocia (%)'),
+            model_name="gmina",
+            name="stopa_bezrobocia",
+            field=models.DecimalField(
+                blank=True,
+                decimal_places=2,
+                help_text="Stopa bezrobocia w powiecie",
+                max_digits=5,
+                null=True,
+                verbose_name="Stopa bezrobocia (%)",
+            ),
         ),
     ]

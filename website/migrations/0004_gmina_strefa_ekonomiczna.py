@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('website', '0003_alter_gmina_minimalne_naklady'),
+        ("website", "0003_alter_gmina_minimalne_naklady"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='gmina',
-            name='strefa_ekonomiczna',
-            field=models.CharField(blank=True, help_text='Nazwa SSE zarządzającej tym obszarem', max_length=200, null=True, verbose_name='Specjalna Strefa Ekonomiczna'),
+            model_name="gmina",
+            name="strefa_ekonomiczna",
+            field=models.CharField(
+                blank=True,
+                help_text="Nazwa SSE zarządzającej tym obszarem",
+                max_length=200,
+                null=True,
+                verbose_name="Specjalna Strefa Ekonomiczna",
+            ),
         ),
     ]

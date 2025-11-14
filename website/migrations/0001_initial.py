@@ -7,29 +7,91 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Gmina',
+            name="Gmina",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('kod_teryt', models.CharField(help_text='Unikalny kod terytorialny gminy', max_length=10, unique=True, verbose_name='Kod TERYT')),
-                ('nazwa', models.CharField(max_length=100, verbose_name='Nazwa gminy')),
-                ('powiat', models.CharField(max_length=100, verbose_name='Powiat')),
-                ('wojewodztwo', models.CharField(max_length=50, verbose_name='Województwo')),
-                ('intensywnosc_pomocy', models.DecimalField(decimal_places=2, help_text='Maksymalny procent kosztów kwalifikowanych (np. 50.00)', max_digits=5, verbose_name='Intensywność pomocy (%)')),
-                ('minimalne_naklady', models.DecimalField(decimal_places=2, help_text='Minimalne nakłady inwestycyjne w złotych', max_digits=12, verbose_name='Minimalne nakłady (PLN)')),
-                ('gmina_tracaca', models.BooleanField(default=False, help_text='Czy gmina traci funkcje społeczno-gospodarcze', verbose_name='Gmina tracąca funkcje')),
-                ('data_aktualizacji', models.DateTimeField(auto_now=True, verbose_name='Data aktualizacji')),
-                ('data_dodania', models.DateTimeField(auto_now_add=True, verbose_name='Data dodania')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "kod_teryt",
+                    models.CharField(
+                        help_text="Unikalny kod terytorialny gminy",
+                        max_length=10,
+                        unique=True,
+                        verbose_name="Kod TERYT",
+                    ),
+                ),
+                ("nazwa", models.CharField(max_length=100, verbose_name="Nazwa gminy")),
+                ("powiat", models.CharField(max_length=100, verbose_name="Powiat")),
+                (
+                    "wojewodztwo",
+                    models.CharField(max_length=50, verbose_name="Województwo"),
+                ),
+                (
+                    "intensywnosc_pomocy",
+                    models.DecimalField(
+                        decimal_places=2,
+                        help_text="Maksymalny procent kosztów kwalifikowanych (np. 50.00)",
+                        max_digits=5,
+                        verbose_name="Intensywność pomocy (%)",
+                    ),
+                ),
+                (
+                    "minimalne_naklady",
+                    models.DecimalField(
+                        decimal_places=2,
+                        help_text="Minimalne nakłady inwestycyjne w złotych",
+                        max_digits=12,
+                        verbose_name="Minimalne nakłady (PLN)",
+                    ),
+                ),
+                (
+                    "gmina_tracaca",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Czy gmina traci funkcje społeczno-gospodarcze",
+                        verbose_name="Gmina tracąca funkcje",
+                    ),
+                ),
+                (
+                    "data_aktualizacji",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Data aktualizacji"
+                    ),
+                ),
+                (
+                    "data_dodania",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Data dodania"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Gmina',
-                'verbose_name_plural': 'Gminy',
-                'ordering': ['wojewodztwo', 'powiat', 'nazwa'],
-                'indexes': [models.Index(fields=['kod_teryt'], name='website_gmi_kod_ter_fecdda_idx'), models.Index(fields=['wojewodztwo'], name='website_gmi_wojewod_31760f_idx'), models.Index(fields=['intensywnosc_pomocy'], name='website_gmi_intensy_45ec7b_idx')],
+                "verbose_name": "Gmina",
+                "verbose_name_plural": "Gminy",
+                "ordering": ["wojewodztwo", "powiat", "nazwa"],
+                "indexes": [
+                    models.Index(
+                        fields=["kod_teryt"], name="website_gmi_kod_ter_fecdda_idx"
+                    ),
+                    models.Index(
+                        fields=["wojewodztwo"], name="website_gmi_wojewod_31760f_idx"
+                    ),
+                    models.Index(
+                        fields=["intensywnosc_pomocy"],
+                        name="website_gmi_intensy_45ec7b_idx",
+                    ),
+                ],
             },
         ),
     ]
