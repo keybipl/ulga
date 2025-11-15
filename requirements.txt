@@ -1,6 +1,11 @@
 Django==5.2.7
 gunicorn==22.0.0
 
-# Optional: Data processing (used in archived scripts)
+# Django extensions and tools
+django-debug-toolbar
+django-extensions
+django-tinymce
+
+# Data processing
 pandas
 openpyxl
