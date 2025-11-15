@@ -399,7 +399,7 @@ nav {
 
 /* Features Section */
 .features {
-    padding: 80px 0;
+    padding: 20px 0 80px;
     background: var(--gray-light);
 }
 
@@ -468,6 +468,8 @@ nav {
     padding: 80px 0;
     text-align: center;
     border-top: 3px solid var(--gold-copper);
+    border-bottom: 3px solid var(--gold-copper);
+    margin-bottom: 40px;
 }
 
 .cta-section h2 {
@@ -486,12 +488,13 @@ nav {
 .disclaimer {
     background: var(--gray-light);
     color: var(--text-secondary);
-    padding: 20px;
+    padding: 15px 20px 10px;
     text-align: center;
     font-size: 12px;
     font-style: italic;
     border-top: 1px solid #e0e0e0;
     line-height: 1.6;
+    margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
@@ -506,6 +509,7 @@ footer {
     background: var(--navy-dark);
     color: var(--gray-light);
     padding: 40px 0 20px;
+    margin-top: 0;
 }
 
 .footer-content {

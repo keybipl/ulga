@@ -78,12 +78,6 @@
     box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
 }
 
-.service-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    display: block;
-}
-
 .service-card h3 {
     color: #1a2332;
     font-size: 1.5rem;
@@ -234,13 +228,14 @@
 
 /* CTA Section */
 .cta-contact {
-    background: linear-gradient(135deg, #1a2332 0%, #2d5016 100%);
+    background: linear-gradient(135deg, #1a2332 0%, #2c3947 100%);
     color: #ffffff;
     padding: 60px 30px;
     text-align: center;
     border-radius: 10px;
     margin: 40px 0;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border-top: 3px solid #d4a574;
 }
 
 .cta-contact h2 {
