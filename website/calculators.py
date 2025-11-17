@@ -108,6 +108,13 @@ class PSICalculator:
         if self.gmina.intensywnosc_pomocy == 0:
             return False
 
+        # Duże przedsiębiorstwa w istniejących zakładach w województwie wielkopolskim i dolnośląskim
+        # nie mogą otrzymać wsparcia
+        if (self.wielkosc_firmy == 'duza' and
+            not self.nowy_zaklad and
+            self.gmina.wojewodztwo.lower() in ['wielkopolskie', 'dolnośląskie']):
+            return False
+
         minimalne_naklady = self.oblicz_minimalne_naklady()
 
         return self.wartosc_inwestycji >= minimalne_naklady
@@ -175,6 +182,10 @@ class PSICalculator:
         if not kwalifikuje_sie:
             if self.gmina.intensywnosc_pomocy == 0:
                 wyniki['komunikat'] = 'Wybrana gmina nie kwalifikuje się do wsparcia w ramach PSI (intensywność pomocy 0%).'
+            elif (self.wielkosc_firmy == 'duza' and
+                  not self.nowy_zaklad and
+                  self.gmina.wojewodztwo.lower() in ['wielkopolskie', 'dolnośląskie']):
+                wyniki['komunikat'] = f'Wsparcie nie jest możliwe dla dużych przedsiębiorstw w istniejących zakładach w tym województwie. Duże przedsiębiorstwa mogą otrzymać wsparcie tylko dla nowych zakładów w tej lokalizacji.'
             else:
                 wyniki['komunikat'] = f'Wartość inwestycji ({self.wartosc_inwestycji:,.2f} PLN) jest niższa niż wymagane minimalne nakłady ({minimalne_naklady:,.2f} PLN).'
 
