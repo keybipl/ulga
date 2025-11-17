@@ -1,0 +1,240 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/kalkulator_psi.css' %}">
+{% endblock extra_css %}
+{% block title %}
+    Kalkulator PSI - Sprawdź swoją kwalifikowalność
+{% endblock title %}
+{% block content %}
+    <!-- Hero Section -->
+    <section class="kalkulator-hero">
+        <div class="container">
+            <h1>Kalkulator Polskiej Strefy Inwestycji</h1>
+            <p>
+                Sprawdź, czy Twój projekt inwestycyjny kwalifikuje się do wsparcia w ramach PSI
+                i oblicz maksymalną kwotę pomocy publicznej
+            </p>
+        </div>
+    </section>
+    <div class="psi-page">
+        <div class="kalkulator-wrapper">
+            <div class="kalkulator-container">
+                <!-- Informacja o kosztach kwalifikowanych -->
+                <div class="info-box">
+                    <h3>Informacja o kosztach kwalifikowanych</h3>
+                    <p>
+                        <strong>Koszty kwalifikowane</strong> w ramach Polskiej Strefy Inwestycji to:
+                    </p>
+                    <ul>
+                        <li><strong>Inwestycje w środki trwałe</strong> – wydatki na nabycie lub wytworzenie środków trwałych związanych z projektem (nieruchomości, maszyny, urządzenia)</li>
+                        <li><strong>Dwuletnie koszty pracy nowych pracowników</strong> – koszty zatrudnienia osób w związku z realizacją projektu inwestycyjnego (alternatywny sposób obliczenia pomocy)</li>
+                    </ul>
+                    <p class="info-note">
+                        Więcej szczegółowych informacji znajdziesz w naszym artykule poświęconym kosztom kwalifikowanym.
+                    </p>
+                </div>
+
+                <!-- Formularz kalkulatora -->
+                <div class="kalkulator-form-container">
+                    <h2>Wprowadź dane projektu</h2>
+                    <form method="post" id="kalkulatorForm" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Lokalizacja -->
+                        <fieldset class="form-section">
+                            <legend>Lokalizacja projektu</legend>
+                            <div>
+                                <div class="form-group">
+                                    <label for="{{ form.wojewodztwo.id_for_label }}">{{ form.wojewodztwo.label }}</label>
+                                    {{ form.wojewodztwo }}
+                                    {% if form.wojewodztwo.errors %}
+                                        <div class="error-message">{{ form.wojewodztwo.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="{{ form.powiat.id_for_label }}">{{ form.powiat.label }}</label>
+                                    {{ form.powiat }}
+                                    {% if form.powiat.errors %}
+                                        <div class="error-message">{{ form.powiat.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="{{ form.gmina.id_for_label }}">{{ form.gmina.label }}</label>
+                                    {{ form.gmina }}
+                                    {% if form.gmina.errors %}
+                                        <div class="error-message">{{ form.gmina.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Parametry firmy -->
+                        <fieldset class="form-section">
+                            <legend>Parametry przedsiębiorstwa</legend>
+                            <div>
+                                <div class="form-group">
+                                    <label for="{{ form.wielkosc_firmy.id_for_label }}">{{ form.wielkosc_firmy.label }}</label>
+                                    {{ form.wielkosc_firmy }}
+                                    {% if form.wielkosc_firmy.errors %}
+                                        <div class="error-message">{{ form.wielkosc_firmy.errors.0 }}</div>
+                                    {% endif %}
+                                    <small class="form-help">
+                                        Wielkość przedsiębiorstwa określa się zgodnie z definicjami UE
+                                    </small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ form.nowy_zaklad.label }}</label>
+                                    <div class="radio-group">
+                                        {% for radio in form.nowy_zaklad %}
+                                            <label class="radio-label">
+                                                {{ radio.tag }}
+                                                <span>{{ radio.choice_label }}</span>
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                    {% if form.nowy_zaklad.errors %}
+                                        <div class="error-message">{{ form.nowy_zaklad.errors.0 }}</div>
+                                    {% endif %}
+                                    <small class="form-help">
+                                        <strong>Nowy zakład</strong>: pierwszy projekt w danej lokalizacji<br>
+                                        <strong>Istniejący zakład</strong>: rozbudowa/modernizacja (próg nakładów niższy o 50%)
+                                    </small>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Parametry inwestycji -->
+                        <fieldset class="form-section">
+                            <legend>Parametry inwestycji</legend>
+                            <div>
+                                <div class="form-group">
+                                    <label for="{{ form.wartosc_inwestycji.id_for_label }}">{{ form.wartosc_inwestycji.label }}</label>
+                                    {{ form.wartosc_inwestycji }}
+                                    {% if form.wartosc_inwestycji.errors %}
+                                        <div class="error-message">{{ form.wartosc_inwestycji.errors.0 }}</div>
+                                    {% endif %}
+                                    {% if form.wartosc_inwestycji.help_text %}
+                                        <small class="form-help">{{ form.wartosc_inwestycji.help_text }}</small>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="checkbox-wrapper">
+                                        {{ form.tylko_bpo }}
+                                        <label for="{{ form.tylko_bpo.id_for_label }}" class="checkbox-label">
+                                            {{ form.tylko_bpo.label }}
+                                        </label>
+                                    </div>
+                                    {% if form.tylko_bpo.errors %}
+                                        <div class="error-message">{{ form.tylko_bpo.errors.0 }}</div>
+                                    {% endif %}
+                                    {% if form.tylko_bpo.help_text %}
+                                        <small class="form-help">{{ form.tylko_bpo.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Przycisk submit -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary btn-large">Oblicz wsparcie</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Wyniki obliczeń -->
+                {% if wyniki %}
+                    <div class="wyniki-container" id="wynikiContainer">
+                        <h2>Wyniki obliczeń</h2>
+
+                        <!-- Status kwalifikacji -->
+                        {% if wyniki.kwalifikuje_sie %}
+                            <div class="status-box status-success">
+                                <div class="status-content">
+                                    <h3>Projekt się kwalifikuje!</h3>
+                                    <p>Twój projekt spełnia minimalne wymagania dla wsparcia w ramach PSI</p>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="status-box status-error">
+                                <div class="status-content">
+                                    <h3>Projekt nie kwalifikuje się</h3>
+                                    <p>{{ wyniki.komunikat }}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <!-- Szczegóły lokalizacji -->
+                        <div class="wyniki-section">
+                            <h3>Wybrana lokalizacja</h3>
+                            <div class="wyniki-grid">
+                                <div class="wynik-item">
+                                    <span class="wynik-label">Gmina:</span>
+                                    <span class="wynik-value">{{ wyniki.gmina.nazwa }}</span>
+                                </div>
+                                <div class="wynik-item">
+                                    <span class="wynik-label">Powiat:</span>
+                                    <span class="wynik-value">{{ wyniki.gmina.powiat }}</span>
+                                </div>
+                                <div class="wynik-item">
+                                    <span class="wynik-label">Województwo:</span>
+                                    <span class="wynik-value">{{ wyniki.gmina.wojewodztwo }}</span>
+                                </div>
+                                <div class="wynik-item">
+                                    <span class="wynik-label">Bazowa intensywność pomocy:</span>
+                                    <span class="wynik-value highlight">{{ wyniki.gmina.intensywnosc_bazowa }}%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if wyniki.kwalifikuje_sie %}
+                            <!-- Główne wyniki -->
+                            <div class="wyniki-section wyniki-main">
+                                <h3>Kluczowe informacje</h3>
+                                <div class="wyniki-highlight-grid">
+                                    <div class="wynik-highlight">
+                                        <div class="wynik-highlight-label">Maksymalna pomoc</div>
+                                        <div class="wynik-highlight-value">{{ wyniki.wyniki_obliczen.maksymalna_pomoc|floatformat:2 }} PLN</div>
+                                        <div class="wynik-highlight-desc">Maksymalna kwota wsparcia dla Twojego projektu</div>
+                                    </div>
+                                    <div class="wynik-highlight">
+                                        <div class="wynik-highlight-label">Intensywność pomocy</div>
+                                        <div class="wynik-highlight-value">{{ wyniki.wyniki_obliczen.intensywnosc_pomocy }}%</div>
+                                        <div class="wynik-highlight-desc">Procent kosztów kwalifikowanych objętych wsparciem</div>
+                                    </div>
+                                    <div class="wynik-highlight">
+                                        <div class="wynik-highlight-label">Okres ważności decyzji</div>
+                                        <div class="wynik-highlight-value">{{ wyniki.wyniki_obliczen.okres_waznosci }} lat</div>
+                                        <div class="wynik-highlight-desc">Czas obowiązywania decyzji o wsparciu</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kryteria jakościowe -->
+                            <div class="wyniki-section">
+                                <h3>Kryteria jakościowe</h3>
+                                <div class="kryteria-info">
+                                    <p>
+                                        Aby uzyskać wsparcie, Twój projekt musi spełnić
+                                        <strong>{{ wyniki.wyniki_obliczen.liczba_kryteriow }}</strong> kryteriów jakościowych
+                                        z dostępnych {% if wyniki.gmina.intensywnosc_bazowa >= 50 %}13 (przemysł) lub 12 (usługi){% elif wyniki.gmina.intensywnosc_bazowa >= 40 %}13 (przemysł) lub 12 (usługi){% else %}13 (przemysł) lub 12 (usługi){% endif %}.
+                                    </p>
+                                    <p class="kryteria-note">
+                                        Szczegółową listę kryteriów znajdziesz w zakładce
+                                        <a href="{% url 'o_programie' %}#kryteria-jakosciowe">O Programie</a>.
+                                    </p>
+                                </div>
+                            </div>
+
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/kalkulator_psi.js' %}"></script>
+{% endblock content %}

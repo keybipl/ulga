@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 
 from .models import Artykul, Gmina
+from .forms import KalkulatorPSIForm
+from .calculators import PSICalculator
 
 # Ustaw polską lokalizację dla sortowania
 locale_set = False
@@ -179,3 +181,38 @@ def polityka_prywatnosci(request):
 def uslugi_doradcze(request):
     """Widok z usługami doradczymi"""
     return render(request, "website/uslugi_doradcze.html")
+
+
+def kalkulator_psi(request):
+    """Widok kalkulatora PSI"""
+    wyniki = None
+
+    if request.method == 'POST':
+        form = KalkulatorPSIForm(request.POST)
+        if form.is_valid():
+            # Pobierz dane z formularza
+            gmina = form.cleaned_data['gmina']
+            wielkosc_firmy = form.cleaned_data['wielkosc_firmy']
+            nowy_zaklad = form.cleaned_data['nowy_zaklad']
+            wartosc_inwestycji = form.cleaned_data['wartosc_inwestycji']
+            tylko_bpo = form.cleaned_data['tylko_bpo']
+
+            # Wykonaj obliczenia
+            kalkulator = PSICalculator(
+                gmina=gmina,
+                wielkosc_firmy=wielkosc_firmy,
+                nowy_zaklad=nowy_zaklad,
+                wartosc_inwestycji=wartosc_inwestycji,
+                tylko_bpo=tylko_bpo
+            )
+
+            wyniki = kalkulator.oblicz_wyniki()
+    else:
+        form = KalkulatorPSIForm()
+
+    context = {
+        'form': form,
+        'wyniki': wyniki,
+    }
+
+    return render(request, 'website/kalkulator_psi.html', context)
