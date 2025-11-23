@@ -137,6 +137,7 @@ def api_get_gminy(request):
                 "nazwa": gmina.nazwa,
                 "wojewodztwo": gmina.wojewodztwo,
                 "powiat": gmina.powiat,
+                "kod_teryt": gmina.kod_teryt,
                 "rodzaj": gmina.rodzaj,
                 "intensywnosc_pomocy": float(gmina.intensywnosc_pomocy),
                 "minimalne_naklady": (

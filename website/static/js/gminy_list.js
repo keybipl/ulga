@@ -208,6 +208,7 @@ function renderDetailsContent(gmina) {
     const nakladyMln = nakladyDuza / 1000000;
     return `
         <div class="details-content">
+            ${gmina.kod_teryt ? `<div style="font-size:0.85em;color:#6b6b6b;margin-bottom:8px;">Kod TERYT: <strong style="font-weight:600;color:#1a2332;">${gmina.kod_teryt}</strong></div>` : ''}
             ${gmina.strefa_ekonomiczna ? `
                 <div style="background: #e7f3ff; border-left: 4px solid #0066cc; padding: 12px 15px; margin-bottom: 20px; border-radius: 4px;">
                     <div style="font-size: 0.85em; color: #495057; margin-bottom: 4px;">Specjalna Strefa Ekonomiczna:</div>

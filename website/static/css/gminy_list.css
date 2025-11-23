@@ -273,6 +273,14 @@ td {
     font-size: 0.95em;
 }
 
+/* Dyskretny kod TERYT w tabeli */
+.teryt-kod {
+    font-size: 0.75em;
+    color: #6b6b6b;
+    opacity: 0.9;
+    white-space: nowrap;
+}
+
 .badge {
     display: inline-block;
     padding: 6px 12px;
