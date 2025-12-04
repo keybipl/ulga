@@ -21,9 +21,15 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
     color: var(--text-main);
     background: var(--gray-light);
 }
@@ -47,7 +53,7 @@ header.scrolled {
 .header-top {
     background: var(--white);
     padding: 10px 0;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--text-secondary);
     border-bottom: 1px solid #f0f0f0;
 }
@@ -79,7 +85,7 @@ header.scrolled {
 
 .contact-info .icon {
     color: var(--gold-copper);
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .contact-info a {
@@ -96,7 +102,7 @@ header.scrolled {
 .free-consultation {
     color: var(--green-bottle);
     font-weight: 600;
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 nav {
@@ -139,12 +145,12 @@ nav {
 .nav-menu>li>a {
     color: var(--navy-dark);
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     border-radius: 5px;
     transition: all 0.3s ease;
     font-weight: 500;
-    font-size: 16px;
-    font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    font-family: 'Montserrat', 'Inter', sans-serif;
     display: block;
 }
 
@@ -156,6 +162,13 @@ nav {
 /* Wyjątek dla przycisku - biały tekst */
 .nav-menu>li>a.btn-primary {
     color: var(--white);
+}
+
+/* Upewnij się, że przycisk zachowuje prawidłowe kolory nawet w stanie active */
+.nav-menu>li>a.btn-primary.active,
+.nav-menu>li>a.btn-primary:hover {
+    color: var(--white);
+    background: var(--green-hover);
 }
 
 /* Dropdown Styles */
@@ -171,7 +184,7 @@ nav {
 }
 
 .dropdown-arrow {
-    font-size: 12px;
+    font-size: 0.75rem;
     transition: transform 0.2s ease;
 }
 
@@ -210,8 +223,8 @@ nav {
 
 .dropdown-menu li>a {
     color: var(--text-main);
-    font-size: 15px;
-    padding: 12px 25px;
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.5625rem;
     display: block;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -220,7 +233,7 @@ nav {
 .dropdown-menu li>a:hover {
     background: var(--gray-light);
     color: var(--gold-copper);
-    padding-left: 30px;
+    padding-left: 1.875rem;
 }
 
 /* Submenu Styles */
@@ -230,8 +243,8 @@ nav {
 
 .submenu-arrow {
     float: right;
-    font-size: 12px;
-    margin-left: 10px;
+    font-size: 0.75rem;
+    margin-left: 0.625rem;
 }
 
 .submenu {
@@ -264,8 +277,8 @@ nav {
 
 .submenu li>a {
     color: var(--text-main);
-    font-size: 14px;
-    padding: 10px 25px;
+    font-size: 0.875rem;
+    padding: 0.625rem 1.5625rem;
     display: block;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -274,7 +287,7 @@ nav {
 .submenu li>a:hover {
     background: var(--gray-light);
     color: var(--gold-copper);
-    padding-left: 30px;
+    padding-left: 1.875rem;
 }
 
 /* Hamburger Menu */
@@ -310,15 +323,16 @@ nav {
 .btn-primary {
     background: var(--green-bottle);
     color: var(--white);
-    padding: 12px 25px;
+    padding: 0.75rem 1.5625rem;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
     border: none;
-    font-size: 16px;
+    font-size: 1.125rem;
     cursor: pointer;
     display: inline-block;
+    font-family: 'Montserrat', 'Inter', sans-serif;
 }
 
 .btn-primary:hover {
@@ -338,15 +352,19 @@ nav {
 }
 
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-size: 2.75rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
     color: var(--white);
+    line-height: 1.2;
 }
 
 .hero p {
-    font-size: 1.3rem;
-    margin-bottom: 30px;
+    font-size: 1.125rem;
+    margin-bottom: 1.875rem;
     color: var(--gray-light);
+    line-height: 1.6;
 }
 
 .hero-buttons {
@@ -357,11 +375,12 @@ nav {
 }
 
 .btn-large {
-    padding: 15px 40px;
-    font-size: 1.1rem;
+    padding: 0.9375rem 2.5rem;
+    font-size: 1.25rem;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
+    font-family: 'Montserrat', 'Inter', sans-serif;
     transition: all 0.3s;
 }
 
@@ -382,9 +401,11 @@ nav {
     background: var(--gold-copper);
     color: var(--white);
     border: none;
-    padding: 15px 40px;
+    padding: 0.9375rem 2.5rem;
     border-radius: 30px;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 1.25rem;
+    font-family: 'Montserrat', 'Inter', sans-serif;
     transition: all 0.3s ease;
     text-align: center;
     display: inline-block;
@@ -405,9 +426,12 @@ nav {
 
 .section-title {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 50px;
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 3.125rem;
     color: var(--navy-dark);
+    line-height: 1.2;
 }
 
 .features-grid {
@@ -445,20 +469,23 @@ nav {
 
 .feature-icon {
     font-size: 2.5rem;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
     color: var(--gold-copper);
 }
 
 .feature-card h3 {
     color: var(--navy-dark);
-    margin-bottom: 12px;
-    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.375rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .feature-card p {
     color: var(--text-secondary);
     line-height: 1.6;
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
 /* CTA Section */
@@ -473,24 +500,28 @@ nav {
 }
 
 .cta-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
     color: var(--navy-dark);
+    line-height: 1.2;
 }
 
 .cta-section p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    font-size: 1.125rem;
+    margin-bottom: 1.875rem;
     color: var(--text-secondary);
+    line-height: 1.5;
 }
 
 /* Disclaimer Section */
 .disclaimer {
     background: var(--gray-light);
     color: var(--text-secondary);
-    padding: 15px 20px 10px;
+    padding: 0.9375rem 1.25rem 0.625rem;
     text-align: center;
-    font-size: 12px;
+    font-size: 0.875rem;
     font-style: italic;
     border-top: 1px solid #e0e0e0;
     line-height: 1.6;
@@ -499,8 +530,8 @@ nav {
 
 @media (max-width: 768px) {
     .disclaimer {
-        padding: 15px;
-        font-size: 11px;
+        padding: 0.9375rem;
+        font-size: 0.8125rem;
     }
 }
 
@@ -520,8 +551,11 @@ footer {
 }
 
 .footer-section h3 {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     color: var(--gold-copper);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
 }
 
 .footer-section ul {
@@ -559,10 +593,10 @@ footer {
 }
 
 .legal-notice {
-    margin-top: 20px;
-    padding-top: 15px;
+    margin-top: 1.25rem;
+    padding-top: 0.9375rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 11px;
+    font-size: 0.8125rem;
     color: #999999;
     line-height: 1.6;
 }
@@ -617,14 +651,16 @@ footer {
 }
 
 .cookie-text h4 {
-    margin: 0 0 8px 0;
+    margin: 0 0 0.5rem 0;
     color: var(--gold-copper);
-    font-size: 1.1rem;
+    font-size: 1.125rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .cookie-text p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.9375rem;
     line-height: 1.5;
     color: #d0d0d0;
 }
@@ -641,12 +677,13 @@ footer {
 }
 
 .cookie-btn {
-    padding: 10px 20px;
+    padding: 0.625rem 1.25rem;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.9375rem;
+    font-family: 'Montserrat', 'Inter', sans-serif;
     transition: all 0.3s ease;
 }
 
@@ -671,15 +708,23 @@ footer {
 }
 
 @media (max-width: 1024px) {
+    html {
+        font-size: 18px;
+    }
+
+    body {
+        font-size: 1rem;
+    }
+
     .header-top {
-        padding: 8px 0;
-        font-size: 12px;
+        padding: 0.5rem 0;
+        font-size: 0.8333rem;
     }
 
     .contact-info {
         flex-direction: column;
-        gap: 5px;
-        font-size: 12px;
+        gap: 0.3125rem;
+        font-size: 0.8333rem;
     }
 
     .hamburger {
@@ -765,11 +810,11 @@ footer {
 
     .nav-menu>li>a {
         display: block;
-        padding: 15px 25px;
+        padding: 0.8333rem 1.3889rem;
         border-radius: 0;
         color: var(--navy-dark);
         border-bottom: none;
-        font-size: 16px;
+        font-size: 1rem;
         position: relative;
         text-align: center;
     }
@@ -811,8 +856,8 @@ footer {
     }
 
     .dropdown-menu li>a {
-        padding: 12px 40px;
-        font-size: 15px;
+        padding: 0.6667rem 2.2222rem;
+        font-size: 0.9444rem;
     }
 
     /* Submenu styles */
@@ -847,8 +892,8 @@ footer {
     }
 
     .submenu li>a {
-        padding: 10px 55px;
-        font-size: 14px;
+        padding: 0.5556rem 3.0556rem;
+        font-size: 0.8889rem;
     }
 
     nav {
@@ -863,7 +908,7 @@ footer {
     }
 
     .hero {
-        padding: 60px 0 40px;
+        padding: 3.3333rem 0 2.2222rem;
     }
 
     .hero h1 {
@@ -872,34 +917,34 @@ footer {
 
     .hero p {
         font-size: 1rem;
-        margin-bottom: 20px;
+        margin-bottom: 1.1111rem;
     }
 
     .btn-large {
-        padding: 12px 25px;
-        font-size: 1rem;
+        padding: 0.6667rem 1.3889rem;
+        font-size: 1.1111rem;
     }
 
     .features {
-        padding: 50px 0;
+        padding: 2.7778rem 0;
     }
 
     .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
+        font-size: 1.6667rem;
+        margin-bottom: 1.6667rem;
     }
 
     .feature-card {
-        padding: 25px 20px;
+        padding: 1.3889rem 1.1111rem;
         min-height: auto;
     }
 
     .cta-section {
-        padding: 50px 0;
+        padding: 2.7778rem 0;
     }
 
     .cta-section h2 {
-        font-size: 1.8rem;
+        font-size: 1.6667rem;
     }
 
     .cta-section p {
@@ -907,12 +952,7 @@ footer {
     }
 
     .footer-content {
-        gap: 30px;
+        gap: 1.6667rem;
     }
-}
-
-/* Smooth scroll */
-html {
-    scroll-behavior: smooth;
 }
 

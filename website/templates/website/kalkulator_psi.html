@@ -86,7 +86,7 @@
                                     {% endif %}
                                     <small class="form-help">
                                         <strong>Nowy zakład</strong>: pierwszy projekt w danej lokalizacji<br>
-                                        <strong>Istniejący zakład</strong>: rozbudowa/modernizacja (próg nakładów niższy o 50%)
+                                        <strong>Istniejący zakład</strong>: zwiększenie zdolności produkcyjnej (próg nakładów niższy o 50%)
                                     </small>
                                 </div>
                             </div>
@@ -169,10 +169,6 @@
                                     <span class="wynik-label">Województwo:</span>
                                     <span class="wynik-value">{{ wyniki.gmina.wojewodztwo }}</span>
                                 </div>
-                                <div class="wynik-item">
-                                    <span class="wynik-label">Bazowa intensywność pomocy:</span>
-                                    <span class="wynik-value highlight">{{ wyniki.gmina.intensywnosc_bazowa }}%</span>
-                                </div>
                             </div>
                         </div>
 
@@ -183,7 +179,7 @@
                                 <div class="wyniki-highlight-grid">
                                     <div class="wynik-highlight">
                                         <div class="wynik-highlight-label">Maksymalna pomoc</div>
-                                        <div class="wynik-highlight-value">{{ wyniki.wyniki_obliczen.maksymalna_pomoc|floatformat:2 }} PLN</div>
+                                        <div class="wynik-highlight-value">{{ wyniki.wyniki_obliczen.maksymalna_pomoc|floatformat:"0" }} PLN</div>
                                         <div class="wynik-highlight-desc">Maksymalna kwota wsparcia dla Twojego projektu</div>
                                     </div>
                                     <div class="wynik-highlight">

@@ -9,7 +9,7 @@
 
 .article-date {
     color: #d4a574;
-    font-size: 0.9rem;
+    font-size: 0.9375rem;
     margin-bottom: 1rem;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.125rem;
     line-height: 1.6;
 }
 
@@ -39,13 +39,15 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     color: #333;
-    line-height: 1.8;
-    font-size: 1.05rem;
+    line-height: 1.6;
+    font-size: 1.0625rem;
 }
 
 .article-content h1 {
     color: #1a2332;
-    font-size: 2rem;
+    font-size: 2.25rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     margin-top: 2rem;
     margin-bottom: 1rem;
     line-height: 1.2;
@@ -53,7 +55,9 @@
 
 .article-content h2 {
     color: #1a2332;
-    font-size: 1.8rem;
+    font-size: 1.75rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     margin-top: 2rem;
     margin-bottom: 1rem;
     border-bottom: 2px solid #d4a574;
@@ -62,14 +66,18 @@
 
 .article-content h3 {
     color: #1a2332;
-    font-size: 1.4rem;
+    font-size: 1.375rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     margin-top: 1.5rem;
     margin-bottom: 0.8rem;
 }
 
 .article-content h4 {
     color: #2d5016;
-    font-size: 1.2rem;
+    font-size: 1.125rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
@@ -152,7 +160,9 @@
     padding: 0.75rem 2rem;
     border-radius: 4px;
     text-decoration: none;
-    font-weight: 500;
+    font-size: 1rem;
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    font-weight: 600;
     transition: background 0.3s ease;
 }
 
@@ -162,7 +172,7 @@
 
 @media (max-width: 768px) {
     .hero h1 {
-        font-size: 1.8rem !important;
+        font-size: 1.6667rem !important;
     }
 
     .hero p {
@@ -171,6 +181,23 @@
 
     .article-content {
         padding: 1.5rem;
+        font-size: 1rem;
+    }
+
+    .article-content h1 {
+        font-size: 1.8889rem;
+    }
+
+    .article-content h2 {
+        font-size: 1.5556rem;
+    }
+
+    .article-content h3 {
+        font-size: 1.2222rem;
+    }
+
+    .article-content h4 {
+        font-size: 1.0556rem;
     }
 
     .article-container {

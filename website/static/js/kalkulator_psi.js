@@ -146,9 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (text.includes('PLN')) {
                 const number = text.replace(/[^\d.,]/g, '');
                 if (number) {
-                    const formatted = parseFloat(number.replace(',', '')).toLocaleString('pl-PL', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
+                    const formatted = parseFloat(number.replace(',', '').replace('.', '')).toLocaleString('pl-PL', {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0
                     });
                     element.textContent = formatted + ' PLN';
                 }
