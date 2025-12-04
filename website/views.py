@@ -184,6 +184,11 @@ def uslugi_doradcze(request):
     return render(request, "website/uslugi_doradcze.html")
 
 
+def kryteria_ilosciowe(request):
+    """Widok z informacjami o kryteriach ilościowych PSI"""
+    return render(request, "website/kryteria_ilosciowe.html")
+
+
 def kalkulator_psi(request):
     """Widok kalkulatora PSI"""
     wyniki = None

@@ -7,6 +7,7 @@ urlpatterns = [
     path("gminy/", views.gminy_list, name="gminy_list"),
     path("kalkulator-psi/", views.kalkulator_psi, name="kalkulator_psi"),
     path("o-programie/", views.o_programie, name="o_programie"),
+    path("kryteria-ilosciowe/", views.kryteria_ilosciowe, name="kryteria_ilosciowe"),
     path("artykuly/", views.artykuly_list, name="artykuly_list"),
     path("artykuly/<slug:slug>/", views.artykul_detail, name="artykul_detail"),
     path(

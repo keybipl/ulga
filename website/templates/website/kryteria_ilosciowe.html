@@ -1,0 +1,177 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/kryteria_ilosciowe.css' %}">
+{% endblock extra_css %}
+{% block title %}
+    Kryteria ilościowe w Polskiej Strefie Inwestycji - ulga-psi.pl
+{% endblock title %}
+{% block content %}
+    <!-- Hero Section -->
+    <section class="criteria-hero">
+        <div class="container">
+            <h1>Kryteria ilościowe w Polskiej Strefie Inwestycji</h1>
+            <p>Co musisz wiedzieć o minimalnych nakładach inwestycyjnych</p>
+        </div>
+    </section>
+    <div class="article-content">
+        <h2>Czym są kryteria ilościowe?</h2>
+        <p>
+            <strong>Kryteria ilościowe to minimalna wymagana kwota kosztów kwalifikowanych, którą przedsiębiorca musi zobowiązać się ponieść, aby móc ubiegać się o decyzję o wsparciu w ramach Polskiej Strefy Inwestycji.</strong>
+        </p>
+        <h2>Wysokość wymaganych kosztów kwalifikowanych</h2>
+        <p>
+            Zgodnie z <strong>Rozporządzeniem Rady Ministrów z dnia 27 grudnia 2022 r. w sprawie pomocy publicznej udzielanej niektórym przedsiębiorcom na realizację nowych inwestycji</strong>, minimalna kwota kosztów kwalifikowanych zależy od stopy bezrobocia w powiecie, w którym realizowana jest inwestycja:
+        </p>
+        <div class="costs-table">
+            <div class="cost-row">
+                <div class="cost-amount">100 mln zł</div>
+                <div class="cost-condition">
+                    w powiatach, gdzie stopa bezrobocia jest równa lub niższa od 60% przeciętnej stopy bezrobocia w kraju
+                </div>
+            </div>
+            <div class="cost-row">
+                <div class="cost-amount">80 mln zł</div>
+                <div class="cost-condition">gdzie stopa bezrobocia jest wyższa od 60%, lecz nie wyższa niż przeciętna krajowa</div>
+            </div>
+            <div class="cost-row">
+                <div class="cost-amount">60 mln zł</div>
+                <div class="cost-condition">gdzie stopa bezrobocia jest wyższa od przeciętnej krajowej, lecz nie wyższa niż 130%</div>
+            </div>
+            <div class="cost-row">
+                <div class="cost-amount">40 mln zł</div>
+                <div class="cost-condition">gdzie stopa bezrobocia wynosi od 130% do 160% przeciętnej krajowej</div>
+            </div>
+            <div class="cost-row">
+                <div class="cost-amount">20 mln zł</div>
+                <div class="cost-condition">gdzie stopa bezrobocia wynosi od 160% do 200% przeciętnej krajowej</div>
+            </div>
+            <div class="cost-row">
+                <div class="cost-amount">15 mln zł</div>
+                <div class="cost-condition">gdzie stopa bezrobocia wynosi od 200% do 250% przeciętnej krajowej</div>
+            </div>
+            <div class="cost-row highlight">
+                <div class="cost-amount">10 mln zł</div>
+                <div class="cost-condition">gdzie stopa bezrobocia przekracza 250% przeciętnej krajowej</div>
+            </div>
+        </div>
+
+        <h3>Szczególne uregulowania dla gmin tracących funkcje społeczno-gospodarcze i wybranych powiatów</h3>
+        <div class="special-info-box">
+            <p>
+                <strong>Niezależnie od stopy bezrobocia w powiecie</strong>, minimalna kwota kosztów kwalifikowanych wynosi <strong>10 mln zł</strong> w przypadku, gdy większa część terenu inwestycji jest położona w:
+            </p>
+            <ul>
+                <li>
+                    <strong>Mieście średnim tracącym funkcje społeczno-gospodarcze</strong> wymienionym w tabeli nr 3 w załączniku nr 1 do rozporządzenia
+                </li>
+                <li>Gminie, na terenie której położone jest miasto tracące funkcje społeczno-gospodarcze</li>
+                <li>Gminie graniczącej z gminą, w której znajduje się miasto tracące funkcje społeczno-gospodarcze</li>
+                <li>
+                    <strong>Gminie znajdującej się na terenie wybranych powiatów wschodnich</strong>: augustowskiego, bartoszyckiego, bialskiego, białostockiego, bieszczadzkiego, braniewskiego, chełmskiego, gołdapskiego, hajnowskiego, hrubieszowskiego, jarosławskiego, kętrzyńskiego, lubaczowskiego, przemyskiego, sejneńskiego, siemiatyckiego, sokólskiego, suwalskiego, tomaszowskiego, węgorzewskiego lub włodawskiego
+                </li>
+                <li>
+                    <strong>Mieście Suwałki</strong>
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <p>
+                <strong>Jak sprawdzić wymagania dla konkretnej gminy?</strong>
+                <br>
+                Poziom przeciętnej stopy bezrobocia przyjmuje się zgodnie z danymi aktualnymi na dzień złożenia wniosku, ogłoszonymi przez Prezesa GUS w Monitorze Polskim. Minimalne wymagania dla poszczególnych gmin można sprawdzić w naszej <a href="{% url 'gminy_list' %}">bazie gmin</a>.
+            </p>
+        </div>
+        <h2>Obniżenie wymaganych kosztów kwalifikowanych</h2>
+        <p>
+            Przepisy przewidują możliwość obniżenia minimalnych progów kosztów kwalifikowanych w zależności od wielkości przedsiębiorcy i rodzaju działalności. Poniższe wartości procentowe oznaczają <strong>obniżenie o daną wartość</strong>, czyli np. dla mikroprzedsiębiorcy próg zostaje pomniejszony o 98% jego wartości.
+        </p>
+        <h3>Ze względu na wielkość przedsiębiorcy</h3>
+        <ul>
+            <li>
+                <strong>o 98%</strong> – dla mikroprzedsiębiorców
+            </li>
+            <li>
+                <strong>o 95%</strong> – dla małych przedsiębiorców
+            </li>
+            <li>
+                <strong>o 90%</strong> – dla średnich przedsiębiorców
+            </li>
+        </ul>
+        <h3>Ze względu na rodzaj działalności</h3>
+        <ul>
+            <li>
+                <strong>o 95%</strong> – dla dużych i średnich przedsiębiorców prowadzących określone usługi (m.in. IT, księgowe, audytowe, doradcze, architektoniczne, call center), pod warunkiem że są to główne działalności określone w decyzji o wsparciu
+            </li>
+        </ul>
+        <h3>Ze względu na charakter inwestycji</h3>
+        <ul>
+            <li>
+                <strong>o 50%</strong> – w przypadku inwestycji związanych ze zwiększeniem zdolności produkcyjnej istniejącego zakładu, dywersyfikacją produkcji lub zasadniczą zmianą procesu produkcyjnego
+            </li>
+        </ul>
+        <div class="info-box">
+            <p>
+                <strong>Przykład praktyczny:</strong>
+                <br>
+                Mikroprzedsiębiorca planujący inwestycję w gminie, gdzie wymagane jest 10 mln zł, korzysta z obniżenia o 98%. Oznacza to: 10 mln zł - (10 mln zł × 98%) = 10 mln zł - 9,8 mln zł = <strong>200 tys. zł</strong> kosztów kwalifikowanych.
+            </p>
+        </div>
+        <h2>Co to są koszty kwalifikowane?</h2>
+        <p>Koszty kwalifikowane obejmują dwie główne kategorie:</p>
+        <div class="categories-grid">
+            <div class="category-card">
+                <h3>1. Dwuletnie koszty nowo zatrudnionych pracowników</h3>
+                <p>
+                    Koszty wynagrodzenia brutto wraz z pochodnymi przez pierwsze dwa lata zatrudnienia pracowników związanych bezpośrednio z nową inwestycją.
+                </p>
+            </div>
+            <div class="category-card">
+                <h3>2. Inwestycje w rzeczowe aktywa trwałe</h3>
+                <ul>
+                    <li>Koszty nabycia gruntów lub prawa ich użytkowania wieczystego</li>
+                    <li>Cena nabycia lub koszt wytworzenia środków trwałych</li>
+                    <li>Koszty rozbudowy lub modernizacji istniejących środków trwałych</li>
+                    <li>Cena nabycia wartości niematerialnych i prawnych (patenty, licencje, know-how)</li>
+                    <li>Koszty najmu lub dzierżawy gruntów, budynków i budowli (przy umowach minimum 5-letnich, dla MŚP – 3 lata)</li>
+                    <li>Cena nabycia aktywów objętych leasingiem finansowym</li>
+                </ul>
+            </div>
+        </div>
+        <div class="info-box">
+            <p>
+                <strong>Ważne:</strong> Wszystkie powyższe koszty pomniejsza się o VAT oraz akcyzę, jeżeli przysługuje prawo do ich odliczenia.
+            </p>
+        </div>
+        <h2>Konsekwencje niespełnienia kryterium</h2>
+        <div class="warning-box">
+            <p>
+                <strong>⚠️ Uwaga:</strong> Jeżeli planowane koszty inwestycji będą niższe od wymaganego progu, organ prowadzący strefę (SSE) odrzuci wniosek o wsparcie. Dlatego przed złożeniem wniosku warto dokładnie przeliczyć planowane wydatki i upewnić się, że spełniają one minimalne wymogi dla danej lokalizacji.
+            </p>
+        </div>
+        <h2>Narzędzia pomocnicze</h2>
+        <div class="tools-section">
+            <div class="tool-card">
+                <h3>🗺️ Baza Gmin</h3>
+                <p>Sprawdź minimalne wymagania dla konkretnej lokalizacji inwestycji</p>
+                <a href="{% url 'gminy_list' %}" class="btn-tool">Przejdź do bazy gmin</a>
+            </div>
+            <div class="tool-card">
+                <h3>🧮 Kalkulator PSI</h3>
+                <p>Oszacuj wartość potencjalnej ulgi i sprawdź opłacalność inwestycji</p>
+                <a href="{% url 'kalkulator_psi' %}" class="btn-tool">Oblicz ulgę</a>
+            </div>
+            <div class="tool-card">
+                <h3>💼 Doradztwo</h3>
+                <p>Potrzebujesz pomocy w przygotowaniu wniosku? Skontaktuj się z nami</p>
+                <a href="{% url 'uslugi_doradcze' %}" class="btn-tool">Usługi doradcze</a>
+            </div>
+        </div>
+        <div class="article-footer">
+            <p>Masz pytania dotyczące kryteriów ilościowych lub chcesz dowiedzieć się więcej o programie PSI?</p>
+            <a href="{% url 'o_programie' %}">Wróć do informacji o programie</a> |
+            <a href="{% url 'uslugi_doradcze' %}">Skontaktuj się z ekspertem</a>
+        </div>
+    </div>
+{% endblock content %}
