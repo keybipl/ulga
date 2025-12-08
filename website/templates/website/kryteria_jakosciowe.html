@@ -1,0 +1,914 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/kryteria_jakosciowe.css' %}">
+{% endblock extra_css %}
+{% block title %}
+    Kryteria jakościowe w Polskiej Strefie Inwestycji - ulga-psi.pl
+{% endblock title %}
+{% block content %}
+    <!-- Hero Section -->
+    <section class="criteria-hero">
+        <div class="container">
+            <h1>Kryteria jakościowe w Polskiej Strefie Inwestycji</h1>
+            <p>Punkty kluczowe dla uzyskania decyzji o wsparciu</p>
+        </div>
+    </section>
+    <div class="article-content">
+        <h2>Czym są kryteria jakościowe?</h2>
+        <p>
+            <strong>Decyzja o wsparciu w ramach Polskiej Strefy Inwestycji wymaga spełnienia dwóch rodzajów kryteriów: ilościowych oraz jakościowych.</strong> Oba typy zostają wpisane do decyzji administracyjnej i stanowią wiążące zobowiązanie przedsiębiorcy przez cały okres korzystania ze zwolnienia podatkowego.
+        </p>
+        <h2>Dwa zestawy kryteriów</h2>
+        <p>W zależności od rodzaju prowadzonej działalności stosuje się odpowiedni zestaw kryteriów jakościowych.</p>
+        <h3>Kryteria dla sektora przemysłowego (13 kryteriów)</h3>
+        <div class="criteria-list">
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Inwestycja w projekty wspierające branże zgodne z aktualną polityką rozwojową kraju, w których Rzeczpospolita Polska może uzyskać przewagę konkurencyjną lub z inteligentnymi specjalizacjami województwa, w którym jest planowana realizacja inwestycji</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Inwestycja w projekty wspierające branże zgodne z aktualną polityką rozwojową kraju, w których Rzeczpospolita Polska może uzyskać przewagę konkurencyjną, obejmujące inwestycję w ramach sektorów strategicznych zgodnych ze Strategią na rzecz Odpowiedzialnego Rozwoju:
+                    </p>
+                    <ul>
+                        <li>
+                            sektor żywności wysokiej jakości (PKWiU: 10.3, 10.7, 10.8, 11.07, 17.21, 20.15.3, 20.15.4, 20.15.5, 20.15.6, 20.15.7, 20.15.8, 20.2)
+                        </li>
+                        <li>
+                            sektor środków transportu (PKWiU: 13.96, 20.16.5, 20.17, 22.11, 22.19.4, 24.42, 25.5, 25.61, 29.1, 29.2, 29.3, 30.2, 33.17)
+                        </li>
+                        <li>
+                            sektor profesjonalnych urządzeń elektrycznych i elektronicznych (PKWiU: 20.11, 20.13.23, 20.13.5, 20.13.64, 23.43, 24.41, 24.45, 25.3, 26.1, 26.2, 26.3, 26.51, 26.70.23, 26.70.24, 27.11, 27.12, 27.20.2, 27.31, 27.32, 27.4, 27.9)
+                        </li>
+                        <li>sektor lotniczo-kosmiczny (PKWiU: 30.3, 33.16)</li>
+                        <li>
+                            sektor produktów higienicznych, leków i wyrobów medycznych (PKWiU: 17.22, 20.42, 20.53, 21.1, 21.2, 26.6, 30.92, 32.5)
+                        </li>
+                        <li>
+                            sektor maszynowy (PKWiU: 25.73.5, 28.11, 28.12, 28.13, 28.21, 28.22.18, 28.25, 28.29.43, 28.3, 28.4, 28.9, 33.12.2, 33.2)
+                        </li>
+                        <li>sektor odzysku materiałowego surowców i nowoczesnych tworzyw (PKWiU: 20.16.4, 38.3)</li>
+                        <li>
+                            sektor ekobudownictwa (PKWiU: 31.0, 27.5, 16.21, 16.22, 16.23.11, 17.24, 20.3, 20.52, 22.23.14, 23.11, 23.12, 23.31, 23.42)
+                        </li>
+                        <li>sektor usług specjalistycznych (PKWiU: 62.03, 63.11.11, 70.22.1, 71.1, 72, 74.1)</li>
+                        <li>sektor specjalistycznych usług teleinformatycznych (PKWiU: 58.21, 62.02.2, 62.01 z wyłączeniem 62.01.2)</li>
+                    </ul>
+                    <p>lub z inteligentnymi specjalizacjami województwa, w którym jest planowana realizacja inwestycji.</p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja w każdym roku okresu utrzymania w zakresie kodu głównego działalności prowadzonej w ramach nowej inwestycji w okresie utrzymania inwestycji (ze wskazaniem klasyfikacji PKWiU).
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Wykorzystanie potencjału zasobów ludzkich</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Aktywizacja zawodowa przez:</p>
+                    <ul>
+                        <li>
+                            tworzenie lub zlecenie utworzenia i prowadzenia podmiotowi zewnętrznemu przyzakładowego żłobka, klubu dziecięcego lub przedszkola, lub
+                        </li>
+                        <li>zatrudnienie lub zlecenia zatrudnienia podmiotowi zewnętrznemu przyzakładowego dziennego opiekuna, lub</li>
+                        <li>
+                            pokrywanie 80% kosztów związanych z pobytem w żłobku, klubie dziecięcym lub u dziennego opiekuna lub placówce wychowania przedszkolnego, oddziale przedszkolnym w szkole podstawowej, zespole wychowania przedszkolnego, punkcie przedszkolnym dziecka do lat 6, przy założeniu, że minimum 20% wszystkich pracowników zatrudnionych w ramach nowej inwestycji chce korzystać ze świadczenia, lub
+                        </li>
+                        <li>
+                            zatrudnienie w związku z realizacją nowej inwestycji w zakładzie co najmniej 4% osób (w odniesieniu do ogólnej liczby nowo zatrudnionych pracowników) z orzeczeniem o stopniu niepełnosprawności, lecz nie mniej niż jednego pracownika.
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja w każdym roku okresu utrzymania, że w okresie utrzymania inwestycji:
+                    </p>
+                    <ul>
+                        <li>
+                            będzie prowadził przyzakładowy żłobek, klub dziecięcy lub przedszkole lub zleci jego utworzenie i prowadzenie podmiotowi zewnętrznemu, lub
+                        </li>
+                        <li>zatrudni lub zleci zatrudnienie podmiotowi zewnętrznemu przyzakładowego dziennego opiekuna, lub</li>
+                        <li>będzie pokrywać koszty związane z opieką nad dziećmi do lat 6 pracowników zatrudnionych w zakładzie, lub</li>
+                        <li>była zatrudniona wskazana w decyzji o wsparciu liczba pracowników z orzeczeniem o stopniu niepełnosprawności.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Tworzenie powiązań regionalnych</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Współpraca z dostawcami, kooperantami w ramach realizacji nowej inwestycji.</p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w ramach nowej inwestycji:
+                    </p>
+                    <ul>
+                        <li>
+                            Przekaże w ramach zawartych umów kooperantom środki trwałe, których łączna wartość w każdym roku utrzymania nowej inwestycji wyniesie 0,5% kosztów kwalifikowanych
+                        </li>
+                        <li>
+                            Środki te będą wykorzystywane przez kooperantów nienależących do tej samej grupy kapitałowej wyłącznie do wytwarzania produktów niezbędnych w procesie produkcji wynikającym z wydanej decyzji o wsparciu
+                        </li>
+                        <li>
+                            Przedsiębiorca w każdym roku utrzymania inwestycji będzie współpracował w ramach nowej inwestycji z co najmniej trzema kooperantami prowadzącymi działalność w tym samym podregionie (NUTS 3), w którym realizowana będzie nowa inwestycja
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Robotyzacja i automatyzacja procesów prowadzonych w ramach nowej inwestycji</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Zakup w ramach nowej inwestycji co najmniej jednego:</p>
+                    <ul>
+                        <li>
+                            <strong>Manipulacyjnego robota przemysłowego</strong> (definicja zgodna z normą PN-EN ISO 8373:2021) - który jest automatycznie sterowaną, programowalną, wielozadaniową maszyną manipulacyjną o wielu stopniach swobody, posiadającą właściwości manipulacyjne lub lokomocyjne, stacjonarną lub mobilną, dla ważnych zastosowań przemysłowych, lub
+                        </li>
+                        <li>
+                            <strong>Innego urządzenia</strong> (zgodnie z pozycją 489 KŚT) stanowiącego zestaw przeprogramowywanych manipulatorów i urządzeń sterujących, służącego do wykonywania funkcji ruchowych, dysponującego możliwością swobodnego programowania zmian pozycji i kolejności operacji roboczych.
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w każdym roku okresu utrzymania inwestycji:
+                    </p>
+                    <ul>
+                        <li>Utrzyma odpowiednią liczbę robotów przemysłowych lub innych urządzeń zakupionych w ramach nowej inwestycji</li>
+                        <li>
+                            Zgodność z wymaganą normą będzie potwierdzona stosownym certyfikatem wydanym przez producenta danego robota lub urządzenia
+                        </li>
+                        <li>
+                            W przypadku innego urządzenia zgodnego z poz. 489 KŚT przedsiębiorca oświadcza, że utrzyma własność co najmniej jednego takiego urządzenia zakupionego w ramach nowej inwestycji
+                        </li>
+                        <li>
+                            Koszty związane z zakupem robota lub urządzenia muszą być włączone do ewidencji środków trwałych i pozostać w niej przez cały okres utrzymania inwestycji
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Przynależność do Krajowego Klastra Kluczowego</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Przynależność do Krajowego Klastra Kluczowego wyłonionego w drodze konkursu organizowanego przez ministra właściwego do spraw gospodarki.
+                    </p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu, że w okresie utrzymania inwestycji będzie należał do Krajowego Klastra Kluczowego.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Prowadzenie działalności badawczo-rozwojowej</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Prowadzenie działalności badawczo-rozwojowej, gdzie:</p>
+                    <ul>
+                        <li>
+                            <strong>Opcja 1:</strong> 1% kosztów działalności ponoszonych przez przedsiębiorcę w zakładzie w danym roku podatkowym stanowią koszty:
+                            <ul>
+                                <li>
+                                    działalności badawczo-rozwojowej odpowiednio w rozumieniu art. 5a pkt 38 ustawy z dnia 26 lipca 1991 r. o podatku dochodowym od osób fizycznych lub art. 4a pkt 26 ustawy z dnia 15 lutego 1992 r. o podatku dochodowym od osób prawnych, lub
+                                </li>
+                                <li>
+                                    zakupu usług badawczo-rozwojowych klasyfikowanych do usług w zakresie badań naukowych i prac rozwojowych w rozumieniu przepisów w sprawie polskiej klasyfikacji wyrobów i usług
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Opcja 2:</strong> Zatrudnienie w ramach nowej inwestycji pracowników prowadzących prace rozwojowe odpowiednio w rozumieniu art. 5a pkt 40 ustawy z dnia 26 lipca 1991 r. o podatku dochodowym od osób fizycznych lub art. 4a pkt 28 ustawy z dnia 15 lutego 1992 r. o podatku dochodowym od osób prawnych wyniesie 2% ekwiwalentu czasu pracy wszystkich zatrudnionych pracowników.
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        <strong>W zakresie opcji 1:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w każdym roku okresu utrzymania inwestycji 1% kosztów działalności ponoszonych przez przedsiębiorcę w zakładzie stanowić będą koszty działalności badawczo-rozwojowej lub zakupu usług badawczo-rozwojowych.
+                    </p>
+                    <p>
+                        <strong>W zakresie opcji 2:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w każdym roku okresu utrzymania 2% ekwiwalentu czasu pracy wszystkich zatrudnionych pracowników w ramach zakładu przeznaczona zostanie na prace rozwojowe.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Nowa inwestycja w odnawialne źródła energii</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Nowa inwestycja w odnawialne źródła energii o mocy zapewniającej co najmniej 15% średniorocznego zużycia energii elektrycznej w zakładzie.
+                    </p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, czy w każdym roku okresu utrzymania inwestycji:
+                    </p>
+                    <ul>
+                        <li>
+                            Co najmniej 15% średniorocznego zużycia energii elektrycznej przedsiębiorcy pochodziło z odnawialnych źródeł energii
+                        </li>
+                        <li>
+                            Co najmniej taka ilość energii elektrycznej została wyprodukowana w instalacji OZE powstałej po rozpoczęciu inwestycji
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Posiadanie statusu mikroprzedsiębiorcy, małego przedsiębiorcy albo średniego przedsiębiorcy</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Posiadanie statusu mikroprzedsiębiorcy, małego przedsiębiorcy albo średniego przedsiębiorcy.</p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu o posiadanym statusie zgodnie ze stanem na dzień złożenia wniosku.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Utworzenie wyspecjalizowanych miejsc pracy w celu prowadzenia działalności gospodarczej objętej nową inwestycją i oferowanie stabilnego zatrudnienia</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Utworzenie wyspecjalizowanych miejsc pracy w celu prowadzenia działalności gospodarczej objętej nową inwestycją i oferowanie stabilnego zatrudnienia, obejmujące zatrudnienie co najmniej 80 % osób:
+                    </p>
+                    <ul>
+                        <li>
+                            posiadających wykształcenie wyższe, średnie, średnie branżowe, zasadnicze zawodowe lub zasadnicze branżowe poświadczone dyplomem, świadectwem lub innym dokumentem uprawniającym do wykonywania zawodu, oraz
+                        </li>
+                        <li>na podstawie umowy o pracę.</li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w każdym roku okresu utrzymania inwestycji:
+                    </p>
+                    <ul>
+                        <li>
+                            Co najmniej 80 % osób zatrudnionych na nowo utworzonych miejscach pracy w związku z realizacją nowej inwestycji zostanie zatrudnionych na podstawie umowy o pracę (nie wliczając członków zarządu - w przypadku spółek kapitałowych lub wspólników - w przypadku spółek osobowych)
+                        </li>
+                        <li>
+                            Co najmniej 80 % nowo zatrudnionych osób do realizacji nowej inwestycji będzie posiadać wykształcenie wyższe, średnie, średnie branżowe, zasadnicze zawodowe lub zasadnicze branżowe, poświadczone dyplomem lub świadectwem, lub innym dokumentem uprawniającym do wykonywania zawodu
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Prowadzenie działalności gospodarczej o niskim negatywnym wpływie na środowisko</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Prowadzenie działalności gospodarczej o niskim negatywnym wpływie na środowisko potwierdzone posiadaniem Certyfikatu EMAS, ETV lub ISO 14001 albo zastępującymi wskazane certyfikaty, dokumentu poświadczającego posiadanie statusu laureata GreenEvo lub Świadectwa Czystszej Produkcji, lub wpisu do Polskiego Rejestru Czystszej Produkcji i Odpowiedzialnej Przedsiębiorczości.
+                    </p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, czy przedsiębiorca w okresie utrzymania inwestycji posiada Certyfikat EMAS, ETV lub ISO 14001 albo zastępujący wskazane certyfikaty dokument poświadczający posiadanie statusu laureata GreenEvo lub Świadectwa Czystszej Produkcji, lub wpis do Polskiego Rejestru Czystszej Produkcji i Odpowiedzialnej Przedsiębiorczości, dotyczący zakładu, w którym została zrealizowana inwestycja.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Lokalizacja inwestycji</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Zlokalizowanie inwestycji:
+                        <ul>
+                            <li>w mieście średnim tracącym funkcje społeczno-gospodarcze wymienionym w tabeli nr 3, lub</li>
+                            <li>w gminie, na terenie której położone jest miasto, o którym mowa w pkt 1, lub</li>
+                            <li>w gminie graniczącej z gminą, o której mowa w pkt 2, lub miastem, o którym mowa w pkt 1, lub</li>
+                            <li>
+                                na obszarze powiatów lub miast na prawach powiatu, w których stopa bezrobocia wynosi co najmniej 160% przeciętnej stopy bezrobocia w kraju, z wyłączeniem miast, w których zlokalizowana jest siedziba wojewody lub sejmiku województwa.
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu dotyczące lokalizacji inwestycji w okresie jej utrzymania, oceniane odpowiednio na podstawie tabeli nr 3 lub aktualnego obwieszczenia Prezesa GUS ogłaszanego w Dzienniku Urzędowym Rzeczypospolitej Polskiej „Monitor Polski” na podstawie art. 82 ustawy z dnia 20 kwietnia 2004 r. o promocji zatrudnienia i instytucjach rynku pracy.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Wspieranie zdobywania wykształcenia i kwalifikacji zawodowych oraz współpraca ze szkołami branżowymi</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Wspieranie zdobywania wykształcenia i kwalifikacji zawodowych oraz współpraca ze szkolnictwem branżowym, obejmujące:
+                    </p>
+                    <ul>
+                        <li>
+                            oferowanie pracownikom szkoleń mających na celu uzyskanie, uzupełnienie lub doskonalenie umiejętności i kwalifikacji zawodowych lub ogólnych, potrzebnych do wykonywania pracy, lub
+                        </li>
+                        <li>dofinansowanie kosztów kształcenia, lub</li>
+                        <li>
+                            współpracę z branżowymi szkołami I stopnia, branżowymi szkołami II stopnia, technikami, szkołami policealnymi, centrami kształcenia zawodowego, placówkami kształcenia ustawicznego lub uczelniami, polegającą na organizowaniu praktyk, staży lub szkoleń, lub
+                        </li>
+                        <li>
+                            oferowanie pozaszkolnych zajęć edukacyjnych mających na celu uzyskanie, uzupełnienie lub doskonalenie umiejętności i kwalifikacji zawodowych lub ogólnych, potrzebnych do wykonywania pracy, w tym umiejętności poszukiwania zatrudnienia, finansowanych przez przedsiębiorcę, lub
+                        </li>
+                        <li>
+                            przekazanie na potrzeby szkoły, centrum kształcenia zawodowego, placówki kształcenia ustawicznego lub uczelni maszyn oraz narzędzi, lub
+                        </li>
+                        <li>stworzenie klasy patronackiej lub laboratorium, lub</li>
+                        <li>kształcenie dualne, lub</li>
+                        <li>prowadzenie przez zatrudnionego pracownika doktoratu wdrożeniowego.</li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja zadeklarowanych w oświadczeniu działań w okresie utrzymania. W zakresie pkt 1 i 2 przedsiębiorca składa oświadczenie, że w okresie utrzymania inwestycji poniesie koszty szkoleń świadczonych przez podmioty zewnętrzne lub kształcenia w jednostkach oświatowych lub uczelniach w wysokości co najmniej 1000 zł na pracownika na rok, dla co najmniej 50% wszystkich pracowników zatrudnionych w zakładzie, w którym realizowana jest nowa inwestycja. W przypadku szkoleń wewnętrznych przedsiębiorca składa oświadczenie, że w całym okresie utrzymania inwestycji, będzie zatrudniał co najmniej jednego pracownika, w zakresie obowiązków którego znajduje się wyłącznie szkolenie pracowników przedsiębiorcy. W zakresie pkt 3 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, w sprawie prowadzenia w każdym roku w okresie utrzymania inwestycji praktyk, staży lub szkoleń u tego przedsiębiorcy. W zakresie pkt 4 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, że w każdym roku w okresie utrzymania inwestycji oferować będzie, uczniom lub studentom, finansowane przez przedsiębiorcę pozaszkolne zajęcia edukacyjne, mające na celu uzyskanie, uzupełnienie lub doskonalenie umiejętności i kwalifikacji zawodowych lub ogólnych, potrzebne do wykonywania pracy. W zakresie pkt 5 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, której przedmiotem jest przekazanie, w okresie utrzymania inwestycji, na potrzeby tej szkoły, centrum kształcenia zawodowego, placówki kształcenia ustawicznego lub uczelni, maszyn oraz narzędzi, na podstawie protokołu przekazania maszyn oraz narzędzi. W zakresie pkt 6 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, której przedmiotem jest stworzenie w okresie utrzymania inwestycji klasy patronackiej lub laboratorium. W zakresie pkt 7 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, że w każdym roku utrzymania inwestycji przyjmie uczniów na praktyczną naukę zawodu lub staż lub studentów studiów dualnych na praktyki zawodowe. W zakresie pkt 8 przedsiębiorca składa oświadczenie, że w okresie utrzymania inwestycji co najmniej jeden z jego pracowników otworzy przewód doktorski w ramach doktoratu wdrożeniowego.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Podejmowanie działań w zakresie opieki nad pracownikiem</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Podejmowanie działań w zakresie opieki nad pracownikiem, w szczególności oferowanie pracownikom:</p>
+                    <ul>
+                        <li>udziału w dodatkowych programach opieki zdrowotnej wykraczających poza świadczenia wymagane przepisami prawa,</li>
+                        <li>
+                            dodatkowych świadczeń pracowniczych z zakresu różnych form wypoczynku, działalności kulturalno-oświatowej, sportowo-rekreacyjnej, ubezpieczeń.
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w okresie utrzymania inwestycji będzie ponosił koszty świadczeń w zakresie opieki nad pracownikiem w wysokości co najmniej 800 zł brutto na pracownika na rok, dla wszystkich pracowników zatrudnionych w zakładzie, w którym realizowana jest nowa inwestycja, w okresie utrzymania inwestycji.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <h3>Kryteria dla sektora usług (12 kryteriów)</h3>
+        <p>Kryteria dla usług są niemal identyczne z przemysłowymi, z dwoma różnicami:</p>
+        <div class="special-info-box">
+            <ul>
+                <li>Brak kryterium przynależności do Krajowego Klastra Kluczowego</li>
+                <li>
+                    Zamieniono kryterium dotyczące wyspecjalizowanych miejsc pracy na "Utworzenie wysokopłatnych miejsc pracy i oferowanie stabilnego zatrudnienia"
+                </li>
+            </ul>
+        </div>
+        <div class="criteria-list">
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Inwestycja w projekty wspierające branże zgodne z aktualną polityką rozwojową kraju, w których Rzeczpospolita Polska może uzyskać przewagę konkurencyjną lub z inteligentnymi specjalizacjami województwa, w którym jest planowana realizacja inwestycji</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Inwestycja w projekty wspierające branże zgodne z aktualną polityką rozwojową kraju, w których Rzeczpospolita Polska może uzyskać przewagę konkurencyjną, obejmujące inwestycję w ramach sektorów strategicznych zgodnych ze Strategią na rzecz Odpowiedzialnego Rozwoju:
+                    </p>
+                    <ul>
+                        <li>
+                            sektor żywności wysokiej jakości (PKWiU: 10.3, 10.7, 10.8, 11.07, 17.21, 20.15.3, 20.15.4, 20.15.5, 20.15.6, 20.15.7, 20.15.8, 20.2)
+                        </li>
+                        <li>
+                            sektor środków transportu (PKWiU: 13.96, 20.16.5, 20.17, 22.11, 22.19.4, 24.42, 25.5, 25.61, 29.1, 29.2, 29.3, 30.2, 33.17)
+                        </li>
+                        <li>
+                            sektor profesjonalnych urządzeń elektrycznych i elektronicznych (PKWiU: 20.11, 20.13.23, 20.13.5, 20.13.64, 23.43, 24.41, 24.45, 25.3, 26.1, 26.2, 26.3, 26.51, 26.70.23, 26.70.24, 27.11, 27.12, 27.20.2, 27.31, 27.32, 27.4, 27.9)
+                        </li>
+                        <li>sektor lotniczo-kosmiczny (PKWiU: 30.3, 33.16)</li>
+                        <li>
+                            sektor produktów higienicznych, leków i wyrobów medycznych (PKWiU: 17.22, 20.42, 20.53, 21.1, 21.2, 26.6, 30.92, 32.5)
+                        </li>
+                        <li>
+                            sektor maszynowy (PKWiU: 25.73.5, 28.11, 28.12, 28.13, 28.21, 28.22.18, 28.25, 28.29.43, 28.3, 28.4, 28.9, 33.12.2, 33.2)
+                        </li>
+                        <li>sektor odzysku materiałowego surowców i nowoczesnych tworzyw (PKWiU: 20.16.4, 38.3)</li>
+                        <li>
+                            sektor ekobudownictwa (PKWiU: 31.0, 27.5, 16.21, 16.22, 16.23.11, 17.24, 20.3, 20.52, 22.23.14, 23.11, 23.12, 23.31, 23.42)
+                        </li>
+                        <li>sektor usług specjalistycznych (PKWiU: 62.03, 63.11.11, 70.22.1, 71.1, 72, 74.1)</li>
+                        <li>sektor specjalistycznych usług teleinformatycznych (PKWiU: 58.21, 62.02.2, 62.01 z wyłączeniem 62.01.2)</li>
+                    </ul>
+                    <p>lub z inteligentnymi specjalizacjami województwa, w którym jest planowana realizacja inwestycji.</p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja w każdym roku okresu utrzymania w zakresie kodu głównego działalności prowadzonej w ramach nowej inwestycji w okresie utrzymania inwestycji (ze wskazaniem klasyfikacji PKWiU).
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Wykorzystanie potencjału zasobów ludzkich</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Aktywizacja zawodowa przez:</p>
+                    <ul>
+                        <li>
+                            tworzenie lub zlecenie utworzenia i prowadzenia podmiotowi zewnętrznemu przyzakładowego żłobka, klubu dziecięcego lub przedszkola, lub
+                        </li>
+                        <li>zatrudnienie lub zlecenia zatrudnienia podmiotowi zewnętrznemu przyzakładowego dziennego opiekuna, lub</li>
+                        <li>
+                            pokrywanie 80% kosztów związanych z pobytem w żłobku, klubie dziecięcym lub u dziennego opiekuna lub placówce wychowania przedszkolnego, oddziale przedszkolnym w szkole podstawowej, zespole wychowania przedszkolnego, punkcie przedszkolnym dziecka do lat 6, przy założeniu, że minimum 20% wszystkich pracowników zatrudnionych w ramach nowej inwestycji chce korzystać ze świadczenia, lub
+                        </li>
+                        <li>
+                            zatrudnienie w związku z realizacją nowej inwestycji w zakładzie co najmniej 4% osób (w odniesieniu do ogólnej liczby nowo zatrudnionych pracowników) z orzeczeniem o stopniu niepełnosprawności, lecz nie mniej niż jednego pracownika.
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja w każdym roku okresu utrzymania, że w okresie utrzymania inwestycji:
+                    </p>
+                    <ul>
+                        <li>
+                            będzie prowadził przyzakładowy żłobek, klub dziecięcy lub przedszkole lub zleci jego utworzenie i prowadzenie podmiotowi zewnętrznemu, lub
+                        </li>
+                        <li>zatrudni lub zleci zatrudnienie podmiotowi zewnętrznemu przyzakładowego dziennego opiekuna, lub</li>
+                        <li>będzie pokrywać koszty związane z opieką nad dziećmi do lat 6 pracowników zatrudnionych w zakładzie, lub</li>
+                        <li>była zatrudniona wskazana w decyzji o wsparciu liczba pracowników z orzeczeniem o stopniu niepełnosprawności.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Tworzenie powiązań regionalnych</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Współpraca z dostawcami, kooperantami w ramach realizacji nowej inwestycji.</p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w ramach nowej inwestycji:
+                    </p>
+                    <ul>
+                        <li>
+                            Przekaże w ramach zawartych umów kooperantom środki trwałe, których łączna wartość w każdym roku utrzymania nowej inwestycji wyniesie 0,5% kosztów kwalifikowanych
+                        </li>
+                        <li>
+                            Środki te będą wykorzystywane przez kooperantów nienależących do tej samej grupy kapitałowej wyłącznie do wytwarzania produktów niezbędnych w procesie produkcji wynikającym z wydanej decyzji o wsparciu
+                        </li>
+                        <li>
+                            Przedsiębiorca w każdym roku utrzymania inwestycji będzie współpracował w ramach nowej inwestycji z co najmniej trzema kooperantami prowadzącymi działalność w tym samym podregionie (NUTS 3), w którym realizowana będzie nowa inwestycja
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Robotyzacja i automatyzacja procesów prowadzonych w ramach nowej inwestycji</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Zakup w ramach nowej inwestycji co najmniej jednego:</p>
+                    <ul>
+                        <li>
+                            <strong>Manipulacyjnego robota przemysłowego</strong> (definicja zgodna z normą PN-EN ISO 8373:2021) - który jest automatycznie sterowaną, programowalną, wielozadaniową maszyną manipulacyjną o wielu stopniach swobody, posiadającą właściwości manipulacyjne lub lokomocyjne, stacjonarną lub mobilną, dla ważnych zastosowań przemysłowych, lub
+                        </li>
+                        <li>
+                            <strong>Innego urządzenia</strong> (zgodnie z pozycją 489 KŚT) stanowiącego zestaw przeprogramowywanych manipulatorów i urządzeń sterujących, służącego do wykonywania funkcji ruchowych, dysponującego możliwością swobodnego programowania zmian pozycji i kolejności operacji roboczych.
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w każdym roku okresu utrzymania inwestycji:
+                    </p>
+                    <ul>
+                        <li>Utrzyma odpowiednią liczbę robotów przemysłowych lub innych urządzeń zakupionych w ramach nowej inwestycji</li>
+                        <li>
+                            Zgodność z wymaganą normą będzie potwierdzona stosownym certyfikatem wydanym przez producenta danego robota lub urządzenia
+                        </li>
+                        <li>
+                            W przypadku innego urządzenia zgodnego z poz. 489 KŚT przedsiębiorca oświadcza, że utrzyma własność co najmniej jednego takiego urządzenia zakupionego w ramach nowej inwestycji
+                        </li>
+                        <li>
+                            Koszty związane z zakupem robota lub urządzenia muszą być włączone do ewidencji środków trwałych i pozostać w niej przez cały okres utrzymania inwestycji
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Prowadzenie działalności badawczo-rozwojowej</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Prowadzenie działalności badawczo-rozwojowej, gdzie:</p>
+                    <ul>
+                        <li>
+                            <strong>Opcja 1:</strong> 1% kosztów działalności ponoszonych przez przedsiębiorcę w zakładzie w danym roku podatkowym stanowią koszty:
+                            <ul>
+                                <li>
+                                    działalności badawczo-rozwojowej odpowiednio w rozumieniu art. 5a pkt 38 ustawy z dnia 26 lipca 1991 r. o podatku dochodowym od osób fizycznych lub art. 4a pkt 26 ustawy z dnia 15 lutego 1992 r. o podatku dochodowym od osób prawnych, lub
+                                </li>
+                                <li>
+                                    zakupu usług badawczo-rozwojowych klasyfikowanych do usług w zakresie badań naukowych i prac rozwojowych w rozumieniu przepisów w sprawie polskiej klasyfikacji wyrobów i usług
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Opcja 2:</strong> Zatrudnienie w ramach nowej inwestycji pracowników prowadzących prace rozwojowe odpowiednio w rozumieniu art. 5a pkt 40 ustawy z dnia 26 lipca 1991 r. o podatku dochodowym od osób fizycznych lub art. 4a pkt 28 ustawy z dnia 15 lutego 1992 r. o podatku dochodowym od osób prawnych wyniesie 2% ekwiwalentu czasu pracy wszystkich zatrudnionych pracowników.
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        <strong>W zakresie opcji 1:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w każdym roku okresu utrzymania inwestycji 1% kosztów działalności ponoszonych przez przedsiębiorcę w zakładzie stanowić będą koszty działalności badawczo-rozwojowej lub zakupu usług badawczo-rozwojowych.
+                    </p>
+                    <p>
+                        <strong>W zakresie opcji 2:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w każdym roku okresu utrzymania 2% ekwiwalentu czasu pracy wszystkich zatrudnionych pracowników w ramach zakładu przeznaczona zostanie na prace rozwojowe.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Nowa inwestycja w odnawialne źródła energii</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Nowa inwestycja w odnawialne źródła energii o mocy zapewniającej co najmniej 15% średniorocznego zużycia energii elektrycznej w zakładzie.
+                    </p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, czy w każdym roku okresu utrzymania inwestycji:
+                    </p>
+                    <ul>
+                        <li>
+                            Co najmniej 15% średniorocznego zużycia energii elektrycznej przedsiębiorcy pochodziło z odnawialnych źródeł energii
+                        </li>
+                        <li>
+                            Co najmniej taka ilość energii elektrycznej została wyprodukowana w instalacji OZE powstałej po rozpoczęciu inwestycji
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Posiadanie statusu mikroprzedsiębiorcy, małego przedsiębiorcy albo średniego przedsiębiorcy</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Posiadanie statusu mikroprzedsiębiorcy, małego przedsiębiorcy albo średniego przedsiębiorcy.</p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu o posiadanym statusie zgodnie ze stanem na dzień złożenia wniosku.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Utworzenie wysokopłatnych miejsc pracy i oferowanie stabilnego zatrudnienia</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Utworzenie wysokopłatnych miejsc pracy i oferowanie stabilnego zatrudnienia, obejmujące utworzenie miejsc pracy związanych z nową inwestycją, w których średnie wynagrodzenie brutto przewyższa przeciętne wynagrodzenie w gospodarce narodowej według aktualnego komunikatu Prezesa GUS oraz oferowanie w nich zatrudnienia dla co najmniej 80% osób na podstawie umowy o pracę.
+                    </p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w każdym roku okresu utrzymania inwestycji roczne średnie wynagrodzenie brutto każdego pracownika zatrudnionego w ramach nowej inwestycji, z wyłączeniem członków zarządu – w przypadku spółek kapitałowych lub wspólników – w przypadku spółek osobowych, przewyższy przeciętne wynagrodzenie w gospodarce narodowej według aktualnego komunikatu Prezesa GUS oraz co najmniej 80% osób zatrudnionych w ramach nowej inwestycji po dniu wydania decyzji o wsparciu będzie zatrudnionych na podstawie umowy o pracę.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Prowadzenie działalności gospodarczej o niskim negatywnym wpływie na środowisko</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Prowadzenie działalności gospodarczej o niskim negatywnym wpływie na środowisko potwierdzone posiadaniem Certyfikatu EMAS, ETV lub ISO 14001 albo zastępującymi wskazane certyfikaty, dokumentu poświadczającego posiadanie statusu laureata GreenEvo lub Świadectwa Czystszej Produkcji, lub wpisu do Polskiego Rejestru Czystszej Produkcji i Odpowiedzialnej Przedsiębiorczości.
+                    </p>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, czy przedsiębiorca w okresie utrzymania inwestycji posiada Certyfikat EMAS, ETV lub ISO 14001 albo zastępujący wskazane certyfikaty dokument poświadczający posiadanie statusu laureata GreenEvo lub Świadectwa Czystszej Produkcji, lub wpis do Polskiego Rejestru Czystszej Produkcji i Odpowiedzialnej Przedsiębiorczości, dotyczący zakładu, w którym została zrealizowana inwestycja.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Lokalizacja inwestycji</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Zlokalizowanie inwestycji:</p>
+                    <ul>
+                        <li>w mieście średnim tracącym funkcje społeczno-gospodarcze wymienionym w tabeli nr 3, lub</li>
+                        <li>w gminie, na terenie której położone jest miasto, o którym mowa w pkt 1, lub</li>
+                        <li>w gminie graniczącej z gminą, o której mowa w pkt 2, lub miastem, o którym mowa w pkt 1, lub</li>
+                        <li>
+                            na obszarze powiatów lub miast na prawach powiatu, w których stopa bezrobocia wynosi co najmniej 160% przeciętnej stopy bezrobocia w kraju, z wyłączeniem miast, w których zlokalizowana jest siedziba wojewody lub sejmiku województwa.
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu dotyczące lokalizacji inwestycji w okresie jej utrzymania, oceniane odpowiednio na podstawie tabeli nr 3 lub aktualnego obwieszczenia Prezesa GUS ogłaszanego w Dzienniku Urzędowym Rzeczypospolitej Polskiej „Monitor Polski" na podstawie art. 82 ustawy z dnia 20 kwietnia 2004 r. o promocji zatrudnienia i instytucjach rynku pracy.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Wspieranie zdobywania wykształcenia i kwalifikacji zawodowych oraz współpraca ze szkołami branżowymi</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>
+                        Wspieranie zdobywania wykształcenia i kwalifikacji zawodowych oraz współpraca ze szkolnictwem branżowym, obejmujące:
+                    </p>
+                    <ul>
+                        <li>
+                            oferowanie pracownikom szkoleń mających na celu uzyskanie, uzupełnienie lub doskonalenie umiejętności i kwalifikacji zawodowych lub ogólnych, potrzebnych do wykonywania pracy, lub
+                        </li>
+                        <li>dofinansowanie kosztów kształcenia, lub</li>
+                        <li>
+                            współpracę z branżowymi szkołami I stopnia, branżowymi szkołami II stopnia, technikami, szkołami policealnymi, centrami kształcenia zawodowego, placówkami kształcenia ustawicznego lub uczelniami, polegającą na organizowaniu praktyk, staży lub szkoleń, lub
+                        </li>
+                        <li>
+                            oferowanie pozaszkolnych zajęć edukacyjnych mających na celu uzyskanie, uzupełnienie lub doskonalenie umiejętności i kwalifikacji zawodowych lub ogólnych, potrzebnych do wykonywania pracy, w tym umiejętności poszukiwania zatrudnienia, finansowanych przez przedsiębiorcę, lub
+                        </li>
+                        <li>
+                            przekazanie na potrzeby szkoły, centrum kształcenia zawodowego, placówki kształcenia ustawicznego lub uczelni maszyn oraz narzędzi, lub
+                        </li>
+                        <li>stworzenie klasy patronackiej lub laboratorium, lub</li>
+                        <li>kształcenie dualne, lub</li>
+                        <li>prowadzenie przez zatrudnionego pracownika doktoratu wdrożeniowego.</li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja zadeklarowanych w oświadczeniu działań w okresie utrzymania. W zakresie pkt 1 i 2 przedsiębiorca składa oświadczenie, że w okresie utrzymania inwestycji poniesie koszty szkoleń świadczonych przez podmioty zewnętrzne lub kształcenia w jednostkach oświatowych lub uczelniach w wysokości co najmniej 1000 zł na pracownika na rok, dla co najmniej 50% wszystkich pracowników zatrudnionych w zakładzie, w którym realizowana jest nowa inwestycja. W przypadku szkoleń wewnętrznych przedsiębiorca składa oświadczenie, że w całym okresie utrzymania inwestycji, będzie zatrudniał co najmniej jednego pracownika, w zakresie obowiązków którego znajduje się wyłącznie szkolenie pracowników przedsiębiorcy. W zakresie pkt 3 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, w sprawie prowadzenia w każdym roku w okresie utrzymania inwestycji praktyk, staży lub szkoleń u tego przedsiębiorcy. W zakresie pkt 4 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, że w każdym roku w okresie utrzymania inwestycji oferować będzie, uczniom lub studentom, finansowane przez przedsiębiorcę pozaszkolne zajęcia edukacyjne, mające na celu uzyskanie, uzupełnienie lub doskonalenie umiejętności i kwalifikacji zawodowych lub ogólnych, potrzebne do wykonywania pracy. W zakresie pkt 5 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, której przedmiotem jest przekazanie, w okresie utrzymania inwestycji, na potrzeby tej szkoły, centrum kształcenia zawodowego, placówki kształcenia ustawicznego lub uczelni, maszyn oraz narzędzi, na podstawie protokołu przekazania maszyn oraz narzędzi. W zakresie pkt 6 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, której przedmiotem jest stworzenie w okresie utrzymania inwestycji klasy patronackiej lub laboratorium. W zakresie pkt 7 przedsiębiorca składa oświadczenie, że zawrze umowę z organem prowadzącym szkołę, centrum kształcenia zawodowego lub placówkę kształcenia ustawicznego lub uczelnią, że w każdym roku utrzymania inwestycji przyjmie uczniów na praktyczną naukę zawodu lub staż lub studentów studiów dualnych na praktyki zawodowe. W zakresie pkt 8 przedsiębiorca składa oświadczenie, że w okresie utrzymania inwestycji co najmniej jeden z jego pracowników otworzy przewód doktorski w ramach doktoratu wdrożeniowego.
+                    </p>
+                </div>
+            </div>
+            <div class="criterion-item">
+                <div class="criterion-header" onclick="toggleCriterion(this)">
+                    <span class="criterion-title">Podejmowanie działań w zakresie opieki nad pracownikiem</span>
+                    <span class="criterion-toggle">+</span>
+                </div>
+                <div class="criterion-content">
+                    <p>
+                        <strong>Dokładne brzmienie kryterium:</strong>
+                    </p>
+                    <p>Podejmowanie działań w zakresie opieki nad pracownikiem, w szczególności oferowanie pracownikom:</p>
+                    <ul>
+                        <li>udziału w dodatkowych programach opieki zdrowotnej wykraczających poza świadczenia wymagane przepisami prawa,</li>
+                        <li>
+                            dodatkowych świadczeń pracowniczych z zakresu różnych form wypoczynku, działalności kulturalno-oświatowej, sportowo-rekreacyjnej, ubezpieczeń.
+                        </li>
+                    </ul>
+                    <p>
+                        <strong>Sposób weryfikacji spełnienia kryterium:</strong>
+                    </p>
+                    <p>
+                        Oświadczenie przedsiębiorcy złożone we wniosku o wydanie decyzji o wsparciu i weryfikacja, że w okresie utrzymania inwestycji będzie ponosił koszty świadczeń w zakresie opieki nad pracownikiem w wysokości co najmniej 800 zł brutto na pracownika na rok, dla wszystkich pracowników zatrudnionych w zakładzie, w którym realizowana jest nowa inwestycja, w okresie utrzymania inwestycji.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <h2>Wymagana liczba punktów</h2>
+        <p>
+            Zgodnie z Rozporządzeniem Rady Ministrów z dnia 27 grudnia 2022 r., za spełnienie kryteriów jakościowych uznaje się uzyskanie:
+        </p>
+        <div class="points-table">
+            <div class="points-row highlight">
+                <div class="points-amount">6 punktów</div>
+                <div class="points-condition">
+                    Standardowo: minimum 6 punktów łącznie, przy czym co najmniej 1 punkt za każde wybrane kryterium
+                </div>
+            </div>
+            <div class="points-row">
+                <div class="points-amount">5 punktów</div>
+                <div class="points-condition">Na obszarach z intensywnością pomocy 40%</div>
+            </div>
+            <div class="points-row">
+                <div class="points-amount">4 punkty</div>
+                <div class="points-condition">Na obszarach z intensywnością pomocy 50%</div>
+            </div>
+        </div>
+        <div class="info-box">
+            <p>
+                Jak sprawdzić wymagania dla konkretnej gminy?
+                <br>
+                Wymaganą liczbę punktów dla konkretnej gminy można sprawdzić w naszej <a href="{% url 'gminy_list' %}">bazie gmin</a>.
+            </p>
+        </div>
+        <h2>Okres utrzymania inwestycji – kluczowa zasada</h2>
+        <p>Kryteria jakościowe należy spełnić w okresie utrzymania inwestycji, który wynosi:</p>
+        <div class="period-grid">
+            <div class="period-card">
+                <div class="period-duration">3 lata</div>
+                <div class="period-description">
+                    od daty zakończenia inwestycji – dla mikroprzedsiębiorców, małych i średnich przedsiębiorców (MŚP)
+                </div>
+            </div>
+            <div class="period-card">
+                <div class="period-duration">5 lat</div>
+                <div class="period-description">od daty zakończenia inwestycji – dla dużych przedsiębiorców</div>
+            </div>
+        </div>
+        <div class="warning-box">
+            <p>
+                ⚠️ Uwaga: Przez cały ten okres przedsiębiorca musi być gotowy na kontrole i musi wykazywać, że deklarowane w decyzji o wsparciu kryteria są rzeczywiście spełniane. Niespełnienie kryteriów może skutkować utratą prawa do zwolnienia podatkowego.
+            </p>
+        </div>
+        <h2>Praktyczne wskazówki</h2>
+        <p>
+            Wybór odpowiednich kryteriów jest kluczowy, ponieważ zobowiązanie do ich spełnienia zostaje wpisane do decyzji o wsparciu. Warto poświęcić czas na przemyślenie, które kryteria są realistyczne do spełnienia przez cały okres utrzymania inwestycji – czyli przez minimum 3 lub 5 lat.
+        </p>
+        <div class="info-box">
+            <p>
+                Różnice w interpretacji: W Polsce działa 14 Specjalnych Stref Ekonomicznych, z których każda może nieco inaczej interpretować poszczególne kryteria. Przykładowo, niektóre strefy traktują usługi magazynowania jako działalność przemysłową, inne jako usługową. Ministerstwo wydaje wprawdzie wytyczne do kontroli, jednak podlegają one okresowym zmianom.
+            </p>
+        </div>
+        <h3>Przed złożeniem wniosku warto:</h3>
+        <ul>
+            <li>Uzyskać wiążącą informację od zarządzającego strefą</li>
+            <li>
+                Sprawdzić wymagania dla konkretnej gminy w naszej <a href="{% url 'gminy_list' %}">bazie gmin</a>
+            </li>
+            <li>Wybrać kryteria możliwie proste i realistyczne do spełnienia długoterminowo</li>
+            <li>Upewnić się, że wybrane kryteria będzie można spełniać przez cały okres utrzymania inwestycji (3 lub 5 lat)</li>
+        </ul>
+        <div class="conclusion-box">
+            <p>
+                Przemyślany wybór kryteriów jakościowych na etapie składania wniosku to inwestycja w bezpieczeństwo prawne przez cały okres korzystania ze wsparcia.
+            </p>
+        </div>
+        <h2>Narzędzia pomocnicze</h2>
+        <div class="tools-section">
+            <div class="tool-card">
+                <h3>🗺️ Baza Gmin</h3>
+                <p>Sprawdź wymagania dla konkretnej lokalizacji inwestycji</p>
+                <a href="{% url 'gminy_list' %}" class="btn-tool">Przejdź do bazy gmin</a>
+            </div>
+            <div class="tool-card">
+                <h3>🧮 Kalkulator PSI</h3>
+                <p>Oszacuj wartość potencjalnej ulgi i sprawdź opłacalność inwestycji</p>
+                <a href="{% url 'kalkulator_psi' %}" class="btn-tool">Oblicz ulgę</a>
+            </div>
+            <div class="tool-card">
+                <h3>💼 Doradztwo</h3>
+                <p>Potrzebujesz pomocy w przygotowaniu wniosku? Skontaktuj się z nami</p>
+                <a href="{% url 'uslugi_doradcze' %}" class="btn-tool">Usługi doradcze</a>
+            </div>
+        </div>
+        <div class="article-footer">
+            <p>Masz pytania dotyczące kryteriów jakościowych lub chcesz dowiedzieć się więcej o programie PSI?</p>
+            <a href="{% url 'o_programie' %}">Wróć do informacji o programie</a> |
+            <a href="{% url 'uslugi_doradcze' %}">Skontaktuj się z ekspertem</a>
+        </div>
+    </div>
+    <script>
+        function toggleCriterion(header) {
+            // Toggle active class on header
+            header.classList.toggle('active');
+
+            // Get the content div
+            const content = header.nextElementSibling;
+
+            // Toggle active class on content
+            content.classList.toggle('active');
+        }
+    </script>
+{% endblock content %}
