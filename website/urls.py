@@ -8,6 +8,7 @@ urlpatterns = [
     path("kalkulator-psi/", views.kalkulator_psi, name="kalkulator_psi"),
     path("o-programie/", views.o_programie, name="o_programie"),
     path("kryteria-ilosciowe/", views.kryteria_ilosciowe, name="kryteria_ilosciowe"),
+    path("kryteria-jakosciowe/", views.kryteria_jakosciowe, name="kryteria_jakosciowe"),
     path("artykuly/", views.artykuly_list, name="artykuly_list"),
     path("artykuly/<slug:slug>/", views.artykul_detail, name="artykul_detail"),
     path(

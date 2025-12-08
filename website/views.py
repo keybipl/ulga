@@ -189,6 +189,11 @@ def kryteria_ilosciowe(request):
     return render(request, "website/kryteria_ilosciowe.html")
 
 
+def kryteria_jakosciowe(request):
+    """Widok z informacjami o kryteriach jakościowych PSI"""
+    return render(request, "website/kryteria_jakosciowe.html")
+
+
 def kalkulator_psi(request):
     """Widok kalkulatora PSI"""
     wyniki = None
