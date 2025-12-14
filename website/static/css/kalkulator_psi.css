@@ -63,15 +63,15 @@
 
 /* Info Box */
 .info-box {
-    background: #e8f4fd;
-    border-left: 4px solid #2196F3;
+    background: #fff9f0;
+    border-left: 4px solid #d4a574;
     border-radius: 8px;
     padding: 25px 30px;
     margin-bottom: 10px;
 }
 
 .info-box h3 {
-    color: #1565C0;
+    color: #1a2332;
     font-size: 1.375rem;
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 0.9375rem;
@@ -79,7 +79,7 @@
 }
 
 .info-box p {
-    color: #37474F;
+    color: #2c2c2c;
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 0.75rem;
@@ -91,20 +91,20 @@
 }
 
 .info-box ul li {
-    color: #37474F;
+    color: #2c2c2c;
     font-size: 1rem;
     margin-bottom: 0.625rem;
     line-height: 1.6;
 }
 
 .info-box ul li strong {
-    color: #1565C0;
+    color: #1a5f5f;
 }
 
 .info-note {
     font-size: 0.9375rem;
     font-style: italic;
-    color: #546E7A;
+    color: #5a5a5a;
     margin-top: 0.9375rem;
 }
 

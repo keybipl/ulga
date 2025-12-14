@@ -74,7 +74,7 @@
 }
 
 .article-content h4 {
-    color: #2d5016;
+    color: #1a5f5f;
     font-size: 1.125rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
@@ -120,7 +120,7 @@
 }
 
 .article-content blockquote {
-    border-left: 4px solid #2d5016;
+    border-left: 4px solid #1a5f5f;
     padding-left: 1.5rem;
     margin: 1.5rem 0;
     font-style: italic;
@@ -136,11 +136,11 @@
 }
 
 .article-content em {
-    color: #6b4c9a;
+    color: #1a5f5f;
 }
 
 .article-content a {
-    color: #2d5016;
+    color: #1a5f5f;
     text-decoration: underline;
 }
 
@@ -167,7 +167,7 @@
 }
 
 .btn-back:hover {
-    background: #2d5016 !important;
+    background: #1a5f5f !important;
 }
 
 @media (max-width: 768px) {

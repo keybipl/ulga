@@ -119,8 +119,8 @@
 
 .search-box input:focus {
     outline: none;
-    border-color: #6b4c9a;
-    box-shadow: 0 0 0 3px rgba(107, 76, 154, 0.1);
+    border-color: #1a5f5f;
+    box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
 }
 
 .search-box input:disabled {
@@ -152,8 +152,8 @@
 
 .filter-group select:focus {
     outline: none;
-    border-color: #6b4c9a;
-    box-shadow: 0 0 0 3px rgba(107, 76, 154, 0.1);
+    border-color: #1a5f5f;
+    box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
 }
 
 .filter-group select:disabled {
@@ -164,7 +164,7 @@
 
 .clear-btn {
     padding: 10px 20px;
-    background-color: #2d5016;
+    background-color: #1a5f5f;
     color: white;
     border: none;
     border-radius: 8px;
@@ -175,7 +175,7 @@
 }
 
 .clear-btn:hover {
-    background-color: #3d6b26;
+    background-color: #247a7a;
     transform: translateY(-2px);
     box-shadow: 0 2px 8px rgba(45, 80, 22, 0.3);
 }
@@ -393,7 +393,7 @@ td {
 
 .details-cell {
     padding: 25px 30px !important;
-    border-left: 4px solid #6b4c9a;
+    border-left: 4px solid #d4a574;
 }
 
 @media (max-width: 768px) {
@@ -453,8 +453,8 @@ td {
 }
 
 .firm-type-card:hover {
-    border-color: #6b4c9a;
-    box-shadow: 0 2px 8px rgba(107, 76, 154, 0.2);
+    border-color: #d4a574;
+    box-shadow: 0 2px 8px rgba(212, 165, 116, 0.2);
 }
 
 .firm-type-header {
@@ -494,7 +494,7 @@ td {
 
 .gmina-tracaca-badge {
     display: inline-block;
-    background: #2d5016;
+    background: #1a5f5f;
     color: white;
     padding: 4px 10px;
     border-radius: 6px;
@@ -528,7 +528,7 @@ td {
 
 .gmina-tracaca-info {
     background: rgba(45, 80, 22, 0.1);
-    border-left: 4px solid #2d5016;
+    border-left: 4px solid #1a5f5f;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 6px;
@@ -544,7 +544,7 @@ td {
 }
 
 .gmina-tracaca-info strong {
-    color: #2d5016;
+    color: #1a5f5f;
 }
 
 @media (max-width: 768px) {

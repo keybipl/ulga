@@ -193,6 +193,30 @@
         <!-- Footer -->
         <footer>
             <div class="container">
+                <!-- Footer Tools Section -->
+                <div class="footer-tools">
+                    <h3 class="footer-tools-title">Narzędzia PSI</h3>
+                    <div class="footer-tools-grid">
+                        <div class="footer-tool-card">
+                            <div class="footer-tool-icon">🗺️</div>
+                            <h4>Baza Gmin</h4>
+                            <p>Sprawdź wymagania dla konkretnej lokalizacji inwestycji</p>
+                            <a href="{% url 'gminy_list' %}" class="footer-btn-tool">Przejdź do bazy gmin</a>
+                        </div>
+                        <div class="footer-tool-card">
+                            <div class="footer-tool-icon">🧮</div>
+                            <h4>Kalkulator PSI</h4>
+                            <p>Oszacuj wartość potencjalnej ulgi i sprawdź opłacalność inwestycji</p>
+                            <a href="{% url 'kalkulator_psi' %}" class="footer-btn-tool">Oblicz ulgę</a>
+                        </div>
+                        <div class="footer-tool-card">
+                            <div class="footer-tool-icon">💼</div>
+                            <h4>Doradztwo</h4>
+                            <p>Potrzebujesz pomocy w przygotowaniu wniosku? Skontaktuj się z nami</p>
+                            <a href="{% url 'uslugi_doradcze' %}" class="footer-btn-tool">Usługi doradcze</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="footer-content">
                     <div class="footer-section">
                         <h3>O portalu ulga-psi.pl</h3>
