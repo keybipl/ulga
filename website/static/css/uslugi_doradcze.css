@@ -1,10 +1,13 @@
 /* Hero Section dla Usług Doradczych */
 .services-hero {
-    background: linear-gradient(135deg, #1a2332 0%, #2c3947 50%, #f5f5f5 100%);
+    background:
+        linear-gradient(135deg, rgba(26, 35, 50, 0.88) 0%, rgba(44, 57, 71, 0.80) 50%, rgba(26, 35, 50, 0.88) 100%),
+        url('https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=2070') center/cover no-repeat;
     color: #ffffff;
-    padding: 80px 0 60px;
+    padding: 80px 0;
     text-align: center;
     border-bottom: 3px solid #d4a574;
+    position: relative;
 }
 
 .services-hero h1 {

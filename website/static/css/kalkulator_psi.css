@@ -1,10 +1,13 @@
 /* Hero Section dla Kalkulatora PSI */
 .kalkulator-hero {
-    background: linear-gradient(135deg, #1a2332 0%, #2c3947 50%, #4a5568 100%);
+    background:
+        linear-gradient(135deg, rgba(26, 35, 50, 0.88) 0%, rgba(44, 57, 71, 0.80) 50%, rgba(26, 35, 50, 0.88) 100%),
+        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2072') center/cover no-repeat;
     color: #ffffff;
-    padding: 80px 0 60px;
+    padding: 80px 0;
     text-align: center;
     border-bottom: 3px solid #d4a574;
+    position: relative;
 }
 
 .kalkulator-hero h1 {
