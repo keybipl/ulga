@@ -2,7 +2,7 @@
 .kalkulator-hero {
     background:
         linear-gradient(135deg, rgba(26, 35, 50, 0.88) 0%, rgba(44, 57, 71, 0.80) 50%, rgba(26, 35, 50, 0.88) 100%),
-        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2072') center/cover no-repeat;
+        url('../images/hero-kalkulator-psi.jpg') center/cover no-repeat;
     color: #ffffff;
     padding: 80px 0;
     text-align: center;
