@@ -30,7 +30,7 @@
 }
 
 .artykul-date {
-    color: #d4a574;
+    color: var(--text-secondary);
     font-size: 0.9375rem;
     margin-bottom: 0.5rem;
 }
@@ -53,7 +53,7 @@
 
 .artykul-link {
     display: inline-block;
-    background: #1a5f5f;
+    background: var(--accent-red);
     color: #fff;
     padding: 0.75rem 1.5rem;
     border-radius: 4px;
@@ -80,7 +80,7 @@
 }
 
 .artykul-link:hover {
-    background: #247a7a !important;
+    background: var(--accent-red-hover) !important;
 }
 
 @media (max-width: 768px) {

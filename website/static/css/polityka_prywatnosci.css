@@ -25,7 +25,7 @@
     font-size: 1.75rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    border-bottom: 2px solid var(--gold-copper);
+    border-bottom: 2px solid var(--navy-dark);
     padding-bottom: 0.625rem;
 }
 
@@ -61,14 +61,14 @@
 
 .privacy-policy .info-box {
     background: #f8f9fa;
-    border-left: 4px solid var(--gold-copper);
+    border-left: 4px solid var(--navy-dark);
     padding: 20px;
     margin: 30px 0;
     border-radius: 4px;
 }
 
 .privacy-policy .contact-info {
-    border-left: 4px solid var(--gold-copper);
+    border-left: 4px solid var(--navy-dark);
     padding: 25px;
     margin: 30px 0;
 }

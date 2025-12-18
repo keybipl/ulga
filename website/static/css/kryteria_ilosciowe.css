@@ -6,7 +6,7 @@
     color: #ffffff;
     padding: 80px 0;
     text-align: center;
-    border-bottom: 3px solid #d4a574;
+    border-bottom: 3px solid var(--navy-dark);
     position: relative;
 }
 
@@ -78,15 +78,15 @@
 }
 
 .article-content a {
-    color: #d4a574;
+    color: var(--navy-dark);
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: all 0.2s;
 }
 
 .article-content a:hover {
-    color: #b8915f;
-    border-bottom-color: #b8915f;
+    color: var(--navy-hover);
+    border-bottom-color: var(--navy-hover);
 }
 
 .article-content ul {
@@ -108,7 +108,7 @@
     content: "—";
     position: absolute;
     left: 0;
-    color: #d4a574;
+    color: var(--navy-dark);
 }
 
 /* Costs Table */
@@ -138,7 +138,7 @@
 
 .cost-row.highlight {
     background-color: #fff9f0;
-    border-left: 4px solid #d4a574;
+    border-left: 4px solid var(--navy-dark);
 }
 
 .cost-amount {
@@ -176,7 +176,7 @@
 /* Info Box */
 .info-box {
     background: #ffffff;
-    border-left: 3px solid #d4a574;
+    border-left: 3px solid var(--navy-dark);
     padding: 25px 30px;
     margin: 30px 0;
     border-radius: 4px;
@@ -194,7 +194,7 @@
 /* Special Info Box */
 .special-info-box {
     background: #fff9f0;
-    border-left: 4px solid #d4a574;
+    border-left: 4px solid var(--navy-dark);
     padding: 25px 30px;
     margin: 30px 0;
     border-radius: 4px;
@@ -247,7 +247,7 @@
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    border-top: 4px solid #d4a574;
+    border-top: 4px solid var(--navy-dark);
 }
 
 .category-card h3 {
@@ -271,7 +271,7 @@
 .article-footer {
     margin-top: 80px;
     padding-top: 40px;
-    border-top: 1px solid #d4a574;
+    border-top: 1px solid var(--navy-dark);
     text-align: center;
 }
 
@@ -283,7 +283,7 @@
 
 .article-footer a {
     display: inline-block;
-    color: #d4a574;
+    color: var(--navy-dark);
     text-decoration: none;
     font-size: 1rem;
     padding: 0 20px;
@@ -291,7 +291,7 @@
 }
 
 .article-footer a:hover {
-    color: #b8915f;
+    color: var(--navy-hover);
     text-decoration: underline;
 }
 

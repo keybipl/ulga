@@ -8,7 +8,7 @@
 }
 
 .article-date {
-    color: #d4a574;
+    color: var(--text-secondary);
     font-size: 0.9375rem;
     margin-bottom: 1rem;
 }
@@ -60,7 +60,7 @@
     font-weight: 700;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    border-bottom: 2px solid #d4a574;
+    border-bottom: 2px solid var(--text-secondary);
     padding-bottom: 0.5rem;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .article-content h4 {
-    color: #1a5f5f;
+    color: var(--accent-red);
     font-size: 1.125rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
@@ -120,7 +120,7 @@
 }
 
 .article-content blockquote {
-    border-left: 4px solid #1a5f5f;
+    border-left: 4px solid var(--accent-red);
     padding-left: 1.5rem;
     margin: 1.5rem 0;
     font-style: italic;
@@ -136,16 +136,16 @@
 }
 
 .article-content em {
-    color: #1a5f5f;
+    color: var(--accent-red);
 }
 
 .article-content a {
-    color: #1a5f5f;
+    color: var(--accent-red);
     text-decoration: underline;
 }
 
 .article-content a:hover {
-    color: #d4a574;
+    color: var(--text-secondary);
 }
 
 .article-back {
@@ -167,7 +167,7 @@
 }
 
 .btn-back:hover {
-    background: #1a5f5f !important;
+    background: var(--accent-red) !important;
 }
 
 @media (max-width: 768px) {

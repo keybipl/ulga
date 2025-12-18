@@ -10,7 +10,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-inner">
-                <div class="article-date">📅 {{ artykul.data_publikacji|date:"d.m.Y" }}</div>
+                <div class="article-date"><i data-lucide="calendar" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;color:var(--text-secondary)"></i>{{ artykul.data_publikacji|date:"d.m.Y" }}</div>
                 <h1>{{ artykul.tytul }}</h1>
                 <p>{{ artykul.lead }}</p>
             </div>

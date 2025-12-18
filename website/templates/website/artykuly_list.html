@@ -9,7 +9,7 @@
 {% block content %}
     <section class="hero">
         <div class="container">
-            <h1>📰 Artykuły</h1>
+            <h1><i data-lucide="newspaper" style="width:36px;height:36px;vertical-align:middle;margin-right:12px"></i>Artykuły</h1>
             <p>Przydatne informacje o programie PSI</p>
         </div>
     </section>
@@ -19,10 +19,10 @@
                 {% for artykul in artykuly %}
                     <article class="artykul-card">
                         <div class="artykul-card-inner">
-                            <div class="artykul-date">📅 {{ artykul.data_publikacji|date:"d.m.Y" }}</div>
+                            <div class="artykul-date"><i data-lucide="calendar" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;color:var(--text-secondary)"></i>{{ artykul.data_publikacji|date:"d.m.Y" }}</div>
                             <h2 class="artykul-title">{{ artykul.tytul }}</h2>
                             <p class="artykul-lead">{{ artykul.lead }}</p>
-                            <a href="{% url 'artykul_detail' artykul.slug %}" class="artykul-link">Czytaj więcej →</a>
+                            <a href="{% url 'artykul_detail' artykul.slug %}" class="artykul-link">Czytaj więcej <i data-lucide="arrow-right" style="width:16px;height:16px;vertical-align:middle;margin-left:4px"></i></a>
                         </div>
                     </article>
                 {% endfor %}
