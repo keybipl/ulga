@@ -9,3 +9,6 @@ django-tinymce
 # Data processing
 pandas
 openpyxl
+
+# HTTP requests
+requests==2.31.0

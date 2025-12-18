@@ -2,7 +2,7 @@
 Moduł z logiką obliczeniową dla kalkulatora PSI (Polska Strefa Inwestycji).
 """
 from decimal import Decimal
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 
 class PSICalculator:
@@ -28,6 +28,10 @@ class PSICalculator:
 
     # Mnożnik dla istniejącego zakładu (50% progu)
     ISTNIEJACY_ZAKLAD_MULTIPLIER = Decimal('0.5')
+
+    # Progi dla segmentacji projektów (w EUR)
+    PROG_MALY_PROJEKT_EUR = Decimal('55000000')      # 55 mln EUR
+    PROG_BARDZO_DUZY_PROJEKT_EUR = Decimal('110000000')  # 110 mln EUR
 
     def __init__(self, gmina, wielkosc_firmy: str, nowy_zaklad: bool,
                  wartosc_inwestycji: Decimal, tylko_bpo: bool = False):
@@ -62,6 +66,22 @@ class PSICalculator:
         # Maksymalna intensywność to 70%
         return min(intensywnosc, Decimal('70'))
 
+    def _przelicz_na_eur(self, kwota_pln: Decimal, kurs_euro: Decimal) -> Decimal:
+        """
+        Przelicza kwotę z PLN na EUR.
+
+        Args:
+            kwota_pln: Kwota w PLN
+            kurs_euro: Kurs EUR/PLN
+
+        Returns:
+            Kwota w EUR
+        """
+        if kurs_euro == 0:
+            raise ValueError("Kurs EUR nie może być równy 0")
+
+        return (kwota_pln / kurs_euro).quantize(Decimal('0.01'))
+
     def oblicz_minimalne_naklady(self) -> Decimal:
         """
         Oblicza minimalne nakłady inwestycyjne wymagane dla kwalifikacji.
@@ -83,19 +103,71 @@ class PSICalculator:
 
         return minimalne_naklady
 
-    def oblicz_maksymalna_pomoc(self) -> Decimal:
+    def oblicz_maksymalna_pomoc(self, kurs_euro: Optional[Decimal] = None) -> Decimal:
         """
         Oblicza maksymalną kwotę pomocy publicznej.
+        Dla projektów 55-110 mln EUR stosuje wzór progresywny.
+
+        Args:
+            kurs_euro: Opcjonalny kurs EUR/PLN dla projektów wymagających segmentacji
 
         Returns:
             Maksymalna kwota pomocy w PLN
         """
-        intensywnosc = self.oblicz_intensywnosc_pomocy()
+        # Jeśli kurs nie podany → stara logika (backward compatibility)
+        if kurs_euro is None:
+            intensywnosc = self.oblicz_intensywnosc_pomocy()
+            maksymalna_pomoc = self.wartosc_inwestycji * (intensywnosc / Decimal('100'))
+            return maksymalna_pomoc.quantize(Decimal('0.01'))
 
-        # Maksymalna pomoc = wartość inwestycji × intensywność pomocy
-        maksymalna_pomoc = self.wartosc_inwestycji * (intensywnosc / Decimal('100'))
+        # Przelicz wartość na EUR
+        wartosc_eur = self._przelicz_na_eur(self.wartosc_inwestycji, kurs_euro)
 
-        return maksymalna_pomoc.quantize(Decimal('0.01'))
+        # Segment A: ≤55 mln EUR (mały projekt)
+        if wartosc_eur <= self.PROG_MALY_PROJEKT_EUR:
+            intensywnosc = self.oblicz_intensywnosc_pomocy()
+            maksymalna_pomoc = self.wartosc_inwestycji * (intensywnosc / Decimal('100'))
+            return maksymalna_pomoc.quantize(Decimal('0.01'))
+
+        # Segment B: 55-110 mln EUR (PROGRESYWNY)
+        elif wartosc_eur <= self.PROG_BARDZO_DUZY_PROJEKT_EUR:
+            # KRYTYCZNE: Zawsze intensywność bazowa (bez bonusów MŚP)
+            R = self.gmina.intensywnosc_pomocy / Decimal('100')
+
+            # A = koszty do 55 mln EUR (w PLN)
+            A_pln = self.PROG_MALY_PROJEKT_EUR * kurs_euro
+
+            # B = koszty powyżej 55 mln EUR (w PLN)
+            B_pln = self.wartosc_inwestycji - A_pln
+
+            # Wzór: I = R × (A + 0,5 × B)
+            maksymalna_pomoc = R * (A_pln + Decimal('0.5') * B_pln)
+            return maksymalna_pomoc.quantize(Decimal('0.01'))
+
+        # Segment C: >110 mln EUR (bardzo duży projekt)
+        else:
+            intensywnosc = self.oblicz_intensywnosc_pomocy()
+            maksymalna_pomoc = self.wartosc_inwestycji * (intensywnosc / Decimal('100'))
+            return maksymalna_pomoc.quantize(Decimal('0.01'))
+
+    def _okresl_segment_projektu(self, kurs_euro: Decimal) -> str:
+        """
+        Określa segment projektu na podstawie wartości w EUR.
+
+        Args:
+            kurs_euro: Kurs EUR/PLN
+
+        Returns:
+            'maly' | 'progresywny' | 'bardzo_duzy'
+        """
+        wartosc_eur = self._przelicz_na_eur(self.wartosc_inwestycji, kurs_euro)
+
+        if wartosc_eur <= self.PROG_MALY_PROJEKT_EUR:
+            return 'maly'
+        elif wartosc_eur <= self.PROG_BARDZO_DUZY_PROJEKT_EUR:
+            return 'progresywny'
+        else:
+            return 'bardzo_duzy'
 
     def czy_kwalifikuje_sie(self) -> bool:
         """
@@ -144,9 +216,14 @@ class PSICalculator:
         """
         return self.gmina.get_liczba_kryteriow_jakosciowych()
 
-    def oblicz_wyniki(self) -> Dict[str, Any]:
+    def oblicz_wyniki(self, kurs_euro: Optional[Decimal] = None,
+                      data_kursu: Optional[str] = None) -> Dict[str, Any]:
         """
         Przeprowadza wszystkie obliczenia i zwraca kompleksowy wynik.
+
+        Args:
+            kurs_euro: Kurs EUR/PLN (opcjonalny dla małych projektów)
+            data_kursu: Data kursu w formacie YYYY-MM-DD
 
         Returns:
             Słownik z wynikami obliczeń
@@ -172,13 +249,13 @@ class PSICalculator:
             'wyniki_obliczen': {
                 'intensywnosc_pomocy': intensywnosc,
                 'minimalne_naklady': minimalne_naklady,
-                'maksymalna_pomoc': self.oblicz_maksymalna_pomoc() if kwalifikuje_sie else Decimal('0'),
+                'maksymalna_pomoc': Decimal('0'),  # Będzie uzupełnione poniżej
                 'okres_waznosci': self.oblicz_okres_waznosci() if kwalifikuje_sie else 0,
                 'liczba_kryteriow': self.pobierz_liczbe_kryteriow(),
             }
         }
 
-        # Dodaj komunikat o przyczynie braku kwalifikacji
+        # Jeśli projekt się nie kwalifikuje, zwróć podstawowe wyniki
         if not kwalifikuje_sie:
             if self.gmina.intensywnosc_pomocy == 0:
                 wyniki['komunikat'] = 'Wybrana gmina nie kwalifikuje się do wsparcia w ramach PSI (intensywność pomocy 0%).'
@@ -188,5 +265,53 @@ class PSICalculator:
                 wyniki['komunikat'] = f'Wsparcie nie jest możliwe dla dużych przedsiębiorstw w istniejących zakładach w tym województwie. Duże przedsiębiorstwa mogą otrzymać wsparcie tylko dla nowych zakładów w tej lokalizacji.'
             else:
                 wyniki['komunikat'] = f'Wartość inwestycji ({self.wartosc_inwestycji:,.2f} PLN) jest niższa niż wymagane minimalne nakłady ({minimalne_naklady:,.2f} PLN).'
+            return wyniki
+
+        # Projekt się kwalifikuje - oblicz maksymalną pomoc
+        # Jeśli brak kursu → stara logika (bez segmentacji)
+        if kurs_euro is None:
+            wyniki['wyniki_obliczen']['maksymalna_pomoc'] = self.oblicz_maksymalna_pomoc()
+            return wyniki
+
+        # Nowa logika z segmentacją projektów
+        segment = self._okresl_segment_projektu(kurs_euro)
+        wartosc_eur = self._przelicz_na_eur(self.wartosc_inwestycji, kurs_euro)
+
+        # Dodaj informacje o kursie NBP
+        wyniki['kurs_nbp'] = {
+            'kurs': kurs_euro,
+            'data': data_kursu,
+            'wartosc_inwestycji_eur': wartosc_eur,
+        }
+        wyniki['segment_projektu'] = segment
+
+        # Oblicz pomoc z uwzględnieniem segmentu
+        wyniki['wyniki_obliczen']['maksymalna_pomoc'] = self.oblicz_maksymalna_pomoc(kurs_euro)
+
+        # Dodatkowe dane dla segmentu progresywnego (55-110 mln EUR)
+        if segment == 'progresywny':
+            A_eur = self.PROG_MALY_PROJEKT_EUR
+            B_eur = wartosc_eur - A_eur
+            A_pln = A_eur * kurs_euro
+            B_pln = B_eur * kurs_euro
+
+            wyniki['dane_progresywne'] = {
+                'intensywnosc_dla_duzego': self.gmina.intensywnosc_pomocy,
+                'A_eur': A_eur,
+                'B_eur': B_eur,
+                'A_pln': A_pln,
+                'B_pln': B_pln,
+            }
+
+        # Komunikat dla bardzo dużych projektów (>110 mln EUR)
+        if segment == 'bardzo_duzy':
+            wyniki['wymaga_notyfikacji_ke'] = True
+            wyniki['komunikat_ke'] = (
+                'Projekty inwestycyjne o wartości przekraczającej 110 mln EUR '
+                'podlegają obowiązkowi notyfikacji Komisji Europejskiej zgodnie '
+                'z przepisami o pomocy regionalnej.'
+            )
+            # Nie wyświetlamy maksymalnej pomocy dla projektów wymagających notyfikacji
+            wyniki['wyniki_obliczen']['maksymalna_pomoc'] = None
 
         return wyniki

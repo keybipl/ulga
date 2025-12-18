@@ -1,5 +1,6 @@
 {% extends "website/base.html" %}
 {% load static %}
+{% load humanize %}
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/kalkulator_psi.css' %}">
 {% endblock extra_css %}
@@ -153,6 +154,13 @@
                             </div>
                         {% endif %}
 
+                        <!-- Komunikat błędu kursu NBP -->
+                        {% if kurs_error %}
+                            <div class="alert alert-warning">
+                                <strong>Uwaga:</strong> {{ kurs_error }}
+                            </div>
+                        {% endif %}
+
                         <!-- Szczegóły lokalizacji -->
                         <div class="wyniki-section">
                             <h3>Wybrana lokalizacja</h3>
@@ -173,15 +181,18 @@
                         </div>
 
                         {% if wyniki.kwalifikuje_sie %}
-                            <!-- Główne wyniki -->
+                            <!-- Główne wyniki - NIE pokazuj dla projektów >110 mln EUR -->
+                            {% if not wyniki.wymaga_notyfikacji_ke %}
                             <div class="wyniki-section wyniki-main">
                                 <h3>Kluczowe informacje</h3>
                                 <div class="wyniki-highlight-grid">
+                                    {% if wyniki.wyniki_obliczen.maksymalna_pomoc %}
                                     <div class="wynik-highlight">
                                         <div class="wynik-highlight-label">Maksymalna pomoc</div>
                                         <div class="wynik-highlight-value">{{ wyniki.wyniki_obliczen.maksymalna_pomoc|floatformat:"0" }} PLN</div>
                                         <div class="wynik-highlight-desc">Maksymalna kwota wsparcia dla Twojego projektu</div>
                                     </div>
+                                    {% endif %}
                                     <div class="wynik-highlight">
                                         <div class="wynik-highlight-label">Intensywność pomocy</div>
                                         <div class="wynik-highlight-value">{{ wyniki.wyniki_obliczen.intensywnosc_pomocy }}%</div>
@@ -194,6 +205,70 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
+
+                            <!-- Informacja o kursie EUR -->
+                            {% if wyniki.kurs_nbp and wyniki.segment_projektu != 'maly' %}
+                            <div class="wyniki-section kurs-section">
+                                <h3>Przeliczenie na EUR</h3>
+                                <div class="kurs-info-box">
+                                    <div class="kurs-main">
+                                        <div class="kurs-label">Wartość projektu:</div>
+                                        <div class="kurs-value-eur">{{ wyniki.kurs_nbp.wartosc_inwestycji_eur|floatformat:0|intcomma }} EUR</div>
+                                    </div>
+                                    <div class="kurs-details">
+                                        <span class="kurs-detail-item">
+                                            <strong>Kurs NBP:</strong> {{ wyniki.kurs_nbp.kurs|stringformat:".4f" }} PLN/EUR
+                                        </span>
+                                        <span class="kurs-detail-item">
+                                            <strong>Data:</strong> {{ wyniki.kurs_nbp.data }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <!-- Sekcja progresywna (55-110 mln EUR) -->
+                            {% if wyniki.segment_projektu == 'progresywny' %}
+                            <div class="wyniki-section wyniki-progressive">
+                                <h3>Duży projekt inwestycyjny - obliczenie progresywne</h3>
+                                <div class="progressive-info">
+                                    <p class="info-highlight">
+                                        Projekt w przedziale 55-110 mln EUR. Stosujemy <strong>wzór progresywny</strong>
+                                        zgodnie z przepisami UE o pomocy regionalnej.
+                                    </p>
+
+                                    <div class="formula-box">
+                                        <h4>Zastosowany wzór</h4>
+                                        <div class="formula">I = R × (A + 0,5 × B)</div>
+                                        <div class="formula-legend">
+                                            <p><strong>R</strong> = {{ wyniki.dane_progresywne.intensywnosc_dla_duzego }}% (intensywność dla dużego przedsiębiorstwa)</p>
+                                            <p><strong>A</strong> = {{ wyniki.dane_progresywne.A_pln|floatformat:"0" }} PLN ({{ wyniki.dane_progresywne.A_eur|floatformat:"0" }} EUR)</p>
+                                            <p><strong>B</strong> = {{ wyniki.dane_progresywne.B_pln|floatformat:"0" }} PLN ({{ wyniki.dane_progresywne.B_eur|floatformat:"-2" }} EUR)</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert alert-info">
+                                        <strong>Ważne:</strong> Dla projektów w tym przedziale stosujemy intensywność bazową
+                                        ({{ wyniki.dane_progresywne.intensywnosc_dla_duzego }}%) bez bonusów dla MŚP.
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <!-- Komunikat notyfikacji KE (>110 mln EUR) -->
+                            {% if wyniki.wymaga_notyfikacji_ke %}
+                            <div class="wyniki-section">
+                                <div class="alert alert-notyfikacja">
+                                    <div class="notyfikacja-icon">⚠️</div>
+                                    <div class="notyfikacja-content">
+                                        <h4>Wymagana notyfikacja Komisji Europejskiej</h4>
+                                        <p>{{ wyniki.komunikat_ke }}</p>
+                                        <p class="notyfikacja-note">Przed wydaniem decyzji o wsparciu konieczne jest przeprowadzenie procedury notyfikacyjnej i uzyskanie zgody Komisji Europejskiej.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
 
                             <!-- Kryteria jakościowe -->
                             <div class="wyniki-section">
@@ -206,7 +281,7 @@
                                     </p>
                                     <p class="kryteria-note">
                                         Szczegółową listę kryteriów znajdziesz w zakładce
-                                        <a href="{% url 'o_programie' %}#kryteria-jakosciowe">O Programie</a>.
+                                        <a href="{% url 'kryteria_jakosciowe' %}">Kryteria jakościowe</a>.
                                     </p>
                                 </div>
                             </div>

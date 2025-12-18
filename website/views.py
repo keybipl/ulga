@@ -195,8 +195,13 @@ def kryteria_jakosciowe(request):
 
 
 def kalkulator_psi(request):
-    """Widok kalkulatora PSI"""
+    """Widok kalkulatora PSI z obsługą progresywnej logiki"""
+    from .services import NBPService
+    import logging
+
+    logger = logging.getLogger(__name__)
     wyniki = None
+    kurs_error = None
 
     if request.method == 'POST':
         form = KalkulatorPSIForm(request.POST)
@@ -208,7 +213,7 @@ def kalkulator_psi(request):
             wartosc_inwestycji = form.cleaned_data['wartosc_inwestycji']
             tylko_bpo = form.cleaned_data['tylko_bpo']
 
-            # Wykonaj obliczenia
+            # Utwórz kalkulator
             kalkulator = PSICalculator(
                 gmina=gmina,
                 wielkosc_firmy=wielkosc_firmy,
@@ -217,13 +222,32 @@ def kalkulator_psi(request):
                 tylko_bpo=tylko_bpo
             )
 
-            wyniki = kalkulator.oblicz_wyniki()
+            # Pobierz kurs EUR z NBP
+            kurs_data = None
+            try:
+                kurs_data = NBPService.get_euro_exchange_rate()
+                logger.info(f"Pobrano kurs EUR: {kurs_data['rate']} z {kurs_data['date']}")
+            except Exception as e:
+                logger.error(f"Błąd pobierania kursu EUR: {e}")
+                kurs_error = "Nie udało się pobrać kursu EUR z NBP."
+
+            # Wykonaj obliczenia
+            if kurs_data:
+                wyniki = kalkulator.oblicz_wyniki(
+                    kurs_euro=kurs_data['rate'],
+                    data_kursu=kurs_data['date']
+                )
+            else:
+                # Fallback - obliczenia bez segmentacji
+                wyniki = kalkulator.oblicz_wyniki()
+
     else:
         form = KalkulatorPSIForm()
 
     context = {
         'form': form,
         'wyniki': wyniki,
+        'kurs_error': kurs_error,
     }
 
     return render(request, 'website/kalkulator_psi.html', context)
